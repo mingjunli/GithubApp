@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.anly.githubapp"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile project(':mvp')
+
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:cardview-v7:24.0.0'
+
+    // Logger
+    // https://github.com/orhanobut/logger
+    compile 'com.orhanobut:logger:1.14'
+
+    // Retrofit for rest client
+    // https://github.com/square/retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+
+    // OkHttp logging interceptor
+    // https://github.com/square/okhttp/wiki/Interceptors
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+
+    // RxAndroid
+    // https://github.com/ReactiveX/RxAndroid
+    // https://github.com/ReactiveX/RxJava
+    // https://github.com/ReactiveX/RxJavaJoins
+    compile 'io.reactivex:rxandroid:1.2.1'
+
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.1.6'
+
+    // Rx Life Cycle
+    // https://github.com/trello/RxLifecycle
+    compile 'com.trello:rxlifecycle:0.6.1'
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+
+    // RxBinding
+    // https://github.com/JakeWharton/RxBinding
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:0.4.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
+
+    // ButterKnife
+    // https://github.com/JakeWharton/butterknife
+    compile 'com.jakewharton:butterknife:8.1.0'
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+
+    // Glide for image loader
+    // https://github.com/bumptech/glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+
+    // Dagger2
+    // https://github.com/google/dagger
+    final DAGGER_VERSION = '2.5'
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    apt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+}
