@@ -3,7 +3,8 @@ package com.anly.githubapp.di.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.mingjun.news.di.ApplicationContext;
+
+import com.anly.githubapp.di.ApplicationContext;
 
 import dagger.Module;
 import dagger.Provides;
