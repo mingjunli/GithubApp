@@ -14,7 +14,7 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoListPresenter;
 import com.anly.githubapp.ui.base.BaseActivity;
-import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
+import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
 import com.anly.mvp.lce.LceView;
 
 import java.util.ArrayList;

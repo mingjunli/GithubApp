@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/dimen_10">
+        android:padding="@dimen/dimen_5">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left|center_vertical"
+            android:maxLines="1"
             android:text="@string/app_name"
             android:textColor="@android:color/black"
             android:textSize="@dimen/text_size_18"/>
@@ -37,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dimen_5"
             android:orientation="horizontal">
 
             <ImageView
@@ -63,41 +65,86 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_20"
             android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/dimen_5"
             android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/watch"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="@android:color/black"
-                android:text="@string/app_name"
-                />
+                android:orientation="horizontal"
+                android:gravity="left|center_vertical">
 
-            <TextView
-                android:id="@+id/star"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="@android:color/black"
-                android:text="@string/app_name"
-                />
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_watch"/>
 
-            <TextView
-                android:id="@+id/fork"
+                <TextView
+                    android:id="@+id/watch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    android:text="@string/app_name"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="@android:color/black"
-                android:text="@string/app_name"
-                />
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_star"/>
+
+                <TextView
+                    android:id="@+id/star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    android:text="@string/app_name"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_fork"/>
+
+                <TextView
+                    android:id="@+id/fork"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    android:text="@string/app_name"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

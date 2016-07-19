@@ -15,11 +15,11 @@
     <com.gigamole.navigationtabbar.ntb.NavigationTabBar
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_60"
+        android:layout_height="@dimen/dimen_48"
         app:ntb_badge_gravity="top"
         app:ntb_badge_position="right"
         app:ntb_badged="true"
-        app:ntb_scaled="true"
+        app:ntb_scaled="false"
         app:ntb_tinted="true"
         app:ntb_title_mode="all"
         app:ntb_titled="true"

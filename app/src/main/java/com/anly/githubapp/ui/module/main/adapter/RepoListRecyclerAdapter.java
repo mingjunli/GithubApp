@@ -1,4 +1,4 @@
-package com.anly.githubapp.ui.module.repo.adapter;
+package com.anly.githubapp.ui.module.main.adapter;
 
 import android.widget.ImageView;
 
@@ -21,7 +21,7 @@ public class RepoListRecyclerAdapter extends BaseQuickAdapter<Repo> {
 
     @Override
     protected void convert(BaseViewHolder holder, Repo repo) {
-        holder.setText(R.id.name, repo.getFull_name());
+        holder.setText(R.id.name, repo.getName());
         holder.setText(R.id.desc, repo.getDescription());
         holder.setText(R.id.owner, repo.getOwner().getLogin());
 
