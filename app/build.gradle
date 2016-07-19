@@ -88,4 +88,8 @@ dependencies {
     // NavigationTabBar
     // https://github.com/DevLight-Mobile-Agency/NavigationTabBar
     compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.3'
+
+    // Material EditText
+    // https://github.com/rengwuxian/MaterialEditText
+    compile 'com.rengwuxian.materialedittext:library:2.1.4'
 }
