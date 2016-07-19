@@ -11,4 +11,5 @@
     <dimen name="dimen_32">32dp</dimen>
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
 </resources>

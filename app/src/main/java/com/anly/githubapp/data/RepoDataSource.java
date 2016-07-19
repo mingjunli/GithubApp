@@ -1,6 +1,6 @@
 package com.anly.githubapp.data;
 
-import com.anly.githubapp.common.constant.Configs;
+import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.api.impl.response.SearchResultResp;
@@ -38,7 +38,7 @@ public class RepoDataSource implements RepoApi {
         AppLog.d("searchMostStarredRepo, q:" + q);
 
         // we get the most starred 30 repos.
-        return mRepoService.searchRepo(q, SORT_BY_STARS, ORDER_BY_DESC, 1, Configs.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
+        return mRepoService.searchRepo(q, SORT_BY_STARS, ORDER_BY_DESC, 1, Constants.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
             @Override
             public ArrayList<Repo> call(SearchResultResp searchResultResp) {
                 return searchResultResp.getItems();

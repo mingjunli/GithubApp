@@ -3,6 +3,7 @@ package com.anly.githubapp;
 import android.app.Application;
 import android.content.Context;
 
+import com.anly.githubapp.common.config.MainMenuConfig;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.di.component.ApplicationComponent;
 import com.anly.githubapp.di.component.DaggerApplicationComponent;
@@ -19,6 +20,9 @@ public class GithubApplication extends Application {
 
         // init logger.
         AppLog.init();
+
+        // init Main menu
+        MainMenuConfig.init(getApplicationContext());
     }
 
     public static GithubApplication get(Context context) {

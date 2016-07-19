@@ -84,4 +84,8 @@ dependencies {
     // BaseRecyclerViewAdapterHelper
     // https://github.com/CymChad/BaseRecyclerViewAdapterHelper
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.8.5'
+
+    // NavigationTabBar
+    // https://github.com/DevLight-Mobile-Agency/NavigationTabBar
+    compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.3'
 }
