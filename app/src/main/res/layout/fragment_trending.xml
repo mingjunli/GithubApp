@@ -6,10 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.anly.githubapp.ui.module.repo.RepoListActivity">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/repo_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_name"
-        android:gravity="center"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

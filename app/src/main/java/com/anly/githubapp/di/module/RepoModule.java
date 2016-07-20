@@ -16,16 +16,6 @@ import retrofit2.Retrofit;
 public class RepoModule {
 
     @Provides
-    Retrofit provideRetrofit(GithubRepoRetrofit githubRetrofit) {
-        return githubRetrofit.get();
-    }
-
-    @Provides
-    RepoService provideRepoService(Retrofit retrofit) {
-        return retrofit.create(RepoService.class);
-    }
-
-    @Provides
     RepoApi provideRepoApi(RepoDataSource dataSource) {
         return dataSource;
     }

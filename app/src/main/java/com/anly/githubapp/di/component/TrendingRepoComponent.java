@@ -4,7 +4,6 @@ import com.anly.githubapp.di.PerActivity;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.di.module.TrendingRepoModule;
-import com.anly.githubapp.ui.module.main.MostStarFragment;
 import com.anly.githubapp.ui.module.main.TrendingFragment;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
 
@@ -16,10 +15,8 @@ import dagger.Component;
 @PerActivity
 @Component(
         dependencies = ApplicationComponent.class,
-        modules = {ActivityModule.class, RepoModule.class, TrendingRepoModule.class})
-public interface MainComponent extends ActivityComponent {
+        modules = {ActivityModule.class, TrendingRepoModule.class})
+public interface TrendingRepoComponent extends ActivityComponent {
 
-    void inject(MostStarFragment mostStarFragment);
-
-    void inject(TrendingFragment trendingFragment);
+    void inject(TrendingFragment fragment);
 }

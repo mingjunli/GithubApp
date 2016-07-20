@@ -3,6 +3,8 @@ package com.anly.githubapp.di.component;
 import android.app.Application;
 import android.content.Context;
 
+import com.anly.githubapp.data.net.service.RepoService;
+import com.anly.githubapp.data.net.service.TrendingService;
 import com.anly.githubapp.di.ApplicationContext;
 import com.anly.githubapp.di.module.ApplicationModule;
 
@@ -18,4 +20,8 @@ public interface ApplicationComponent {
     Context context();
 
     Application application();
+
+    RepoService repoService();
+
+    TrendingService trendingService();
 }

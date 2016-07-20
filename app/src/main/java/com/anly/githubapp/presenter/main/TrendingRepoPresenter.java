@@ -1,7 +1,7 @@
 package com.anly.githubapp.presenter.main;
 
-import com.anly.githubapp.data.api.RepoApi;
-import com.anly.githubapp.data.model.Repo;
+import com.anly.githubapp.data.api.TrendingApi;
+import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
 import com.anly.mvp.BaseMvpPresenter;
@@ -16,19 +16,19 @@ import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by mingjun on 16/7/19.
+ * Created by mingjun on 16/7/20.
  */
-public class MostStarPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> {
+public class TrendingRepoPresenter extends RxMvpPresenter<LceView<ArrayList<TrendingRepo>>> {
 
-    private final RepoApi mRepoApi;
+    private final TrendingApi mTrendingApi;
 
     @Inject
-    public MostStarPresenter(RepoApi api) {
-        this.mRepoApi = api;
+    public TrendingRepoPresenter(TrendingApi api) {
+        this.mTrendingApi = api;
     }
 
-    public void loadRepoList(String key, String language) {
-        mCompositeSubscription.add(mRepoApi.searchMostStarredRepo(key, language)
+    public void loadTrendingRepo(@TrendingApi.LanguageType int languageType) {
+        mCompositeSubscription.add(mTrendingApi.getTrendingRepo(languageType)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {
@@ -43,16 +43,15 @@ public class MostStarPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
                         getMvpView().dismissLoading();
                     }
                 })
-                .subscribe(new ResponseObserver<ArrayList<Repo>>() {
+                .subscribe(new ResponseObserver<ArrayList<TrendingRepo>>() {
+                    @Override
+                    public void onSuccess(ArrayList<TrendingRepo> trendingRepos) {
+                        getMvpView().showContent(trendingRepos);
+                    }
 
                     @Override
                     public void onError(Throwable e) {
                         getMvpView().showError(e);
-                    }
-
-                    @Override
-                    public void onSuccess(ArrayList<Repo> repos) {
-                        getMvpView().showContent(repos);
                     }
                 }));
     }
