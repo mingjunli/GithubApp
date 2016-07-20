@@ -1,6 +1,6 @@
 package com.anly.githubapp.di.module;
 
-import com.anly.githubapp.data.RepoDataSource;
+import com.anly.githubapp.data.net.RepoDataSource;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.net.client.GithubRepoRetrofit;
 import com.anly.githubapp.data.net.service.RepoService;

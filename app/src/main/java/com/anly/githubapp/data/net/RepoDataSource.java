@@ -1,4 +1,4 @@
-package com.anly.githubapp.data;
+package com.anly.githubapp.data.net;
 
 import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
