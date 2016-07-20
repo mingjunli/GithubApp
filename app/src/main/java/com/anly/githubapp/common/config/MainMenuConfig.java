@@ -24,7 +24,7 @@ public class MainMenuConfig {
 
         Resources res = context.getResources();
         mNavModels.add(new NavigationTabBar.Model.Builder(
-                            res.getDrawable(R.drawable.ic_trending), res.getColor(R.color.menu_1))
+                            res.getDrawable(R.drawable.ic_trending_up), res.getColor(R.color.menu_1))
                             .title(res.getString(R.string.menu_trending))
                             .build());
 
@@ -34,8 +34,8 @@ public class MainMenuConfig {
                             .build());
 
         mNavModels.add(new NavigationTabBar.Model.Builder(
-                            res.getDrawable(R.drawable.ic_profile), res.getColor(R.color.menu_3))
-                            .title(res.getString(R.string.menu_profile))
+                            res.getDrawable(R.drawable.ic_search), res.getColor(R.color.menu_3))
+                            .title(res.getString(R.string.menu_search))
                             .build());
     }
 }

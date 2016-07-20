@@ -66,6 +66,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         fragments.add(new SearchFragment());
 
         mAdapter.setList(fragments);
+        mViewPager.setOffscreenPageLimit(fragments.size());
     }
 
     @Override

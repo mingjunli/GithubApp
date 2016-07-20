@@ -2,6 +2,7 @@ package com.anly.githubapp.ui.base.adapter;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.Arrays;
 import java.util.List;

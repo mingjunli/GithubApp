@@ -4,7 +4,8 @@
     <!-- main menu labels -->
     <string name="menu_trending">Trending</string>
     <string name="menu_most_star">Most Star</string>
-    <string name="menu_profile">Profile</string>
+    <string name="menu_search">Search</string>
+
     <string name="settings">Settings</string>
     <string name="profile">Profile</string>
 
