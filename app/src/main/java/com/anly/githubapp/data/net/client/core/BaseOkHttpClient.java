@@ -1,0 +1,35 @@
+package com.anly.githubapp.data.net.client.core;
+
+import com.anly.githubapp.BuildConfig;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+
+/**
+ * Created by mingjun on 16/7/20.
+ */
+public abstract class BaseOkHttpClient {
+
+    private static final long TIMEOUT_CONNECT = 30 * 1000;
+
+    public OkHttpClient get() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+
+        builder.connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
+                .addInterceptor(new HttpLoggingInterceptor()
+                        .setLevel(BuildConfig.DEBUG ?
+                                HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE));
+
+        if (getInterceptor() != null) {
+            builder.addInterceptor(getInterceptor());
+        }
+
+        return builder.build();
+    }
+
+    public abstract Interceptor getInterceptor();
+
+}

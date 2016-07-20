@@ -24,7 +24,7 @@
     <com.gigamole.navigationtabbar.ntb.NavigationTabBar
         android:id="@+id/nav_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_48"
+        android:layout_height="?attr/actionBarSize"
         app:ntb_badge_gravity="top"
         app:ntb_badge_position="right"
         app:ntb_badged="true"

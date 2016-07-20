@@ -1,6 +1,6 @@
-package com.anly.githubapp.data.api.impl.service;
+package com.anly.githubapp.data.net.service;
 
-import com.anly.githubapp.data.api.impl.response.SearchResultResp;
+import com.anly.githubapp.data.net.response.SearchResultResp;
 
 import retrofit2.http.GET;
 import retrofit2.http.Query;

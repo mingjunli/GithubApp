@@ -3,8 +3,8 @@ package com.anly.githubapp.data;
 import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.api.RepoApi;
-import com.anly.githubapp.data.api.impl.response.SearchResultResp;
-import com.anly.githubapp.data.api.impl.service.RepoService;
+import com.anly.githubapp.data.net.response.SearchResultResp;
+import com.anly.githubapp.data.net.service.RepoService;
 import com.anly.githubapp.data.model.Repo;
 
 import java.util.ArrayList;

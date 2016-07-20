@@ -1,4 +1,4 @@
-package com.anly.githubapp.data.api.impl.response;
+package com.anly.githubapp.data.net.response;
 
 import android.os.Parcel;
 import android.os.Parcelable;
