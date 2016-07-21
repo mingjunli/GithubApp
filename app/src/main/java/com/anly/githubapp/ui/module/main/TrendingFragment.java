@@ -32,8 +32,6 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.trending_toolbar)
-    Toolbar mTrendingToolbar;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -70,9 +68,6 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
     }
 
     private void initViews() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setSupportActionBar(mTrendingToolbar);
-
         mAdapter = new TrendingRepoRecyclerAdapter(null);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

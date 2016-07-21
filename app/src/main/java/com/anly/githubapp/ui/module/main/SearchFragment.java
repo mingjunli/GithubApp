@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import com.anly.githubapp.R;
@@ -22,9 +21,7 @@ import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.SearchPresenter;
 import com.anly.githubapp.ui.base.LceFragment;
-import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
-import com.anly.githubapp.ui.widget.RxClickableView;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
@@ -33,7 +30,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.functions.Action1;
 
 /**
  * Created by mingjun on 16/7/19.
@@ -46,8 +42,6 @@ public class SearchFragment extends LceFragment<ArrayList<Repo>> {
     MaterialEditText mSearchKeyText;
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.search_toolbar)
-    Toolbar mSearchToolbar;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -78,9 +72,7 @@ public class SearchFragment extends LceFragment<ArrayList<Repo>> {
     }
 
     private void initViews() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setSupportActionBar(mSearchToolbar);
-        setHasOptionsMenu(true);
+        mPresenter.bindSearchView(mSearchKeyText);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.languages, android.R.layout.simple_spinner_item);
@@ -106,29 +98,5 @@ public class SearchFragment extends LceFragment<ArrayList<Repo>> {
     @Override
     public void showError(Throwable e) {
 
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_menu, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                String key = mSearchKeyText.getText().toString();
-                String lang = (String) mLanguageSpinner.getSelectedItem();
-                if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(lang)) {
-                    mPresenter.searchRepo(key, lang);
-                }
-                return true;
-
-            default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-
-        }
     }
 }

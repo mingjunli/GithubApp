@@ -32,8 +32,6 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.most_star_toolbar)
-    Toolbar mStarToolbar;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -70,9 +68,6 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
     }
 
     private void initViews() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.setSupportActionBar(mStarToolbar);
-
         mAdapter = new RepoListRecyclerAdapter(null);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

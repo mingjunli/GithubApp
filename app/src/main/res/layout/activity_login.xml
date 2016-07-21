@@ -21,20 +21,18 @@
             android:scaleType="centerInside"
             android:src="@mipmap/ic_launcher"/>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/username"
             android:layout_width="@dimen/dimen_200"
             android:layout_height="wrap_content"
             android:inputType="text"
-            app:met_floatingLabel="normal"
             android:hint="Account"/>
 
-        <com.rengwuxian.materialedittext.MaterialEditText
+        <EditText
             android:id="@+id/password"
             android:layout_width="@dimen/dimen_200"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            app:met_floatingLabel="normal"
             android:hint="Password"
             />
 

@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="tool_bar_color">#605271</color>
+
     <!-- main menu colors -->
     <color name="menu_1">#DF5A55</color>
     <color name="menu_2">#F9BB72</color>

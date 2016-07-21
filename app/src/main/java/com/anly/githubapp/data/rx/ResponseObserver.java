@@ -17,6 +17,7 @@ public abstract class ResponseObserver<T> extends Subscriber<T> {
     public void onNext(T t) {
         AppLog.d("onNext");
         onSuccess(t);
+        onCompleted();
     }
 
     public abstract void onSuccess(T t);
