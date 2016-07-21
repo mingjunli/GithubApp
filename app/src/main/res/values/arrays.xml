@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Main menu -->
-    <string-array name="main_menu_colors">
-        <item>#DF5A55</item>
-        <item>#F9BB72</item>
-        <item>#76AFCF</item>
-        <!--<item>#dd6495</item>-->
-        <!--<item>#72d3b4</item>-->
+    <string-array name="languages">
+        <item>Java</item>
+        <item>JavaScript</item>
+        <item>HTML</item>
+        <item>CSS</item>
+        <item>Python</item>
+        <item>Objective-C</item>
+        <item>Swift</item>
     </string-array>
 
-    <string-array name="main_menu_labels">
-        <item>Trending</item>
-        <item>Most Star</item>
-        <item>Profile</item>
-    </string-array>
 </resources>

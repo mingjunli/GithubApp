@@ -4,12 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.anly.githubapp.ui.module.repo.RepoListActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/app_name"
-        android:gravity="center"/>
+        android:layout_height="@dimen/dimen_60"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/language_spinner"
+            android:layout_width="@dimen/dimen_120"
+            android:layout_height="match_parent"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/search_key"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/search"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/repo_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
