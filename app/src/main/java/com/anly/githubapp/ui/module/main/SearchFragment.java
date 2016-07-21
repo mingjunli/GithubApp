@@ -5,15 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.anly.githubapp.R;
@@ -22,7 +18,6 @@ import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.SearchPresenter;
 import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
-import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 
@@ -39,7 +34,7 @@ public class SearchFragment extends LceFragment<ArrayList<Repo>> {
     @BindView(R.id.language_spinner)
     Spinner mLanguageSpinner;
     @BindView(R.id.search_key)
-    MaterialEditText mSearchKeyText;
+    EditText mSearchKeyText;
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
 
