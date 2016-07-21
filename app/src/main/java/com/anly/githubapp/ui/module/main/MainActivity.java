@@ -69,7 +69,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         return DaggerMainComponent.builder()
                 .applicationComponent(GithubApplication.get(this).getComponent())
                 .activityModule(new ActivityModule(this))
-                .repoModule(new RepoModule())
                 .build();
     }
 
