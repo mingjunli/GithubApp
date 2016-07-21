@@ -7,7 +7,6 @@ import com.anly.githubapp.di.module.TrendingRepoModule;
 import com.anly.githubapp.ui.module.main.MostStarFragment;
 import com.anly.githubapp.ui.module.main.SearchFragment;
 import com.anly.githubapp.ui.module.main.TrendingFragment;
-import com.anly.githubapp.ui.module.repo.RepoListActivity;
 
 import dagger.Component;
 

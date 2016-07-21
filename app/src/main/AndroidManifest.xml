@@ -21,10 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.module.repo.RepoListActivity"
-            android:screenOrientation="portrait">
-        </activity>
         <activity android:name=".ui.module.account.LoginActivity">
         </activity>
     </application>
