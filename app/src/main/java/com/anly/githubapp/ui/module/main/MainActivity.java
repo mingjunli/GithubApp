@@ -29,9 +29,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent> {
 
-    @BindView(R.id.main_toolbar)
-    Toolbar mToolbar;
-
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
     @BindView(R.id.nav_bar)
@@ -50,8 +47,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void initViews() {
-        setSupportActionBar(mToolbar);
-
         mAdapter = new MainFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mAdapter);
 
@@ -90,9 +85,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         switch (item.getItemId()) {
             case R.id.action_account:
                 LoginActivity.launch(this);
-                return true;
-
-            case R.id.action_settings:
                 return true;
 
             default:

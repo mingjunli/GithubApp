@@ -3,9 +3,9 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_account"
-        android:icon="@drawable/ic_account"
-        android:title="@string/profile"
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
         app:showAsAction="ifRoom"/>
 
 </menu>

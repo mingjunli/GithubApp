@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,8 @@ import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
-import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.TrendingRepoRecyclerAdapter;
-import com.anly.mvp.lce.LceView;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,8 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
+    @BindView(R.id.trending_toolbar)
+    Toolbar mTrendingToolbar;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -69,6 +70,9 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
     }
 
     private void initViews() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setSupportActionBar(mTrendingToolbar);
+
         mAdapter = new TrendingRepoRecyclerAdapter(null);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));

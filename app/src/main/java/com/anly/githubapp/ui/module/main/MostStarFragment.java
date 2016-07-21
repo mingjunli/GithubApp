@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,8 @@ import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
-import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
-import com.anly.mvp.lce.LceView;
 
 import java.util.ArrayList;
 
@@ -33,6 +32,8 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
+    @BindView(R.id.most_star_toolbar)
+    Toolbar mStarToolbar;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -69,6 +70,9 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
     }
 
     private void initViews() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setSupportActionBar(mStarToolbar);
+
         mAdapter = new RepoListRecyclerAdapter(null);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
