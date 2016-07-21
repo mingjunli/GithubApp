@@ -1,6 +1,7 @@
 package com.anly.githubapp.ui.module.main;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
 import com.anly.githubapp.ui.base.BaseFragment;
+import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
 import com.anly.mvp.lce.LceView;
 
@@ -27,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * Created by mingjun on 16/7/19.
  */
-public class MostStarFragment extends BaseFragment implements LceView<ArrayList<Repo>> {
+public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
@@ -73,13 +75,10 @@ public class MostStarFragment extends BaseFragment implements LceView<ArrayList<
         mRepoListView.setAdapter(mAdapter);
     }
 
+    @NonNull
     @Override
-    public void showLoading() {
-    }
-
-    @Override
-    public void dismissLoading() {
-
+    public String getLoadingMessage() {
+        return getString(R.string.loading);
     }
 
     @Override
@@ -92,6 +91,4 @@ public class MostStarFragment extends BaseFragment implements LceView<ArrayList<
     public void showError(Throwable e) {
 
     }
-
-
 }
