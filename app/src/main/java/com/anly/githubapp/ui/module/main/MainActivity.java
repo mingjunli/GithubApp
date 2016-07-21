@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private void loadData() {
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new TrendingFragment());
-        fragments.add(new MostStarFragment());
+//        fragments.add(new MostStarFragment());
         fragments.add(new SearchFragment());
 
         mAdapter.setList(fragments);

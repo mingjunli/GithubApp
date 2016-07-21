@@ -27,11 +27,11 @@ public class MainMenuConfig {
                             res.getDrawable(R.drawable.ic_trending_up), res.getColor(R.color.menu_1))
                             .title(res.getString(R.string.menu_trending))
                             .build());
-
-        mNavModels.add(new NavigationTabBar.Model.Builder(
-                            res.getDrawable(R.drawable.ic_most_star), res.getColor(R.color.menu_2))
-                            .title(res.getString(R.string.menu_most_star))
-                            .build());
+//
+//        mNavModels.add(new NavigationTabBar.Model.Builder(
+//                            res.getDrawable(R.drawable.ic_most_star), res.getColor(R.color.menu_2))
+//                            .title(res.getString(R.string.menu_most_star))
+//                            .build());
 
         mNavModels.add(new NavigationTabBar.Model.Builder(
                             res.getDrawable(R.drawable.ic_search), res.getColor(R.color.menu_3))
