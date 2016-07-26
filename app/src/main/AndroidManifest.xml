@@ -13,8 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.module.main.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

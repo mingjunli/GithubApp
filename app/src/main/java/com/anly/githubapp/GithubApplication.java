@@ -20,9 +20,6 @@ public class GithubApplication extends Application {
 
         // init logger.
         AppLog.init();
-
-        // init Main menu
-        MainMenuConfig.init(getApplicationContext());
     }
 
     public static GithubApplication get(Context context) {

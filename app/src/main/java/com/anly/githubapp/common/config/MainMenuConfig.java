@@ -1,10 +1,9 @@
 package com.anly.githubapp.common.config;
 
-import android.content.Context;
-import android.content.res.Resources;
-
 import com.anly.githubapp.R;
-import com.gigamole.navigationtabbar.ntb.NavigationTabBar;
+import com.anly.githubapp.ui.module.main.MostStarFragment;
+import com.anly.githubapp.ui.module.main.SearchFragment;
+import com.anly.githubapp.ui.module.main.TrendingFragment;
 
 import java.util.ArrayList;
 
@@ -13,29 +12,34 @@ import java.util.ArrayList;
  */
 public class MainMenuConfig {
 
-    public static ArrayList<NavigationTabBar.Model> getNavModels() {
-        return mNavModels;
+    public static ArrayList<MainMenu> MENUS = new ArrayList<>();
+
+    static {
+        MENUS.add(new MainMenu(
+                R.drawable.ic_trending_up,
+                R.string.menu_trending,
+                TrendingFragment.class.getName()));
+
+        MENUS.add(new MainMenu(
+                R.drawable.ic_most_star,
+                R.string.menu_most_star,
+                MostStarFragment.class.getName()));
+
+        MENUS.add(new MainMenu(
+                R.drawable.ic_search,
+                R.string.menu_search,
+                SearchFragment.class.getName()));
     }
 
-    private static ArrayList<NavigationTabBar.Model> mNavModels;
+    public static class MainMenu {
+        public int iconResId;
+        public int labelResId;
+        public String fragmentClass;
 
-    public static void init(Context context) {
-        mNavModels = new ArrayList<>();
-
-        Resources res = context.getResources();
-        mNavModels.add(new NavigationTabBar.Model.Builder(
-                            res.getDrawable(R.drawable.ic_trending_up), res.getColor(R.color.menu_1))
-                            .title(res.getString(R.string.menu_trending))
-                            .build());
-//
-//        mNavModels.add(new NavigationTabBar.Model.Builder(
-//                            res.getDrawable(R.drawable.ic_most_star), res.getColor(R.color.menu_2))
-//                            .title(res.getString(R.string.menu_most_star))
-//                            .build());
-
-        mNavModels.add(new NavigationTabBar.Model.Builder(
-                            res.getDrawable(R.drawable.ic_search), res.getColor(R.color.menu_3))
-                            .title(res.getString(R.string.menu_search))
-                            .build());
+        public MainMenu(int iconResId, int labelResId, String fragmentClass) {
+            this.iconResId = iconResId;
+            this.labelResId = labelResId;
+            this.fragmentClass = fragmentClass;
+        }
     }
 }
