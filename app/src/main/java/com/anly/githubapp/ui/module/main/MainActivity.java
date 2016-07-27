@@ -7,8 +7,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
@@ -18,10 +20,12 @@ import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.anly.githubapp.ui.module.main.adapter.MainMenuListAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent> {
 
@@ -36,6 +40,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
+    @BindView(R.id.user_icon)
+    ImageView mUserIcon;
+    @BindView(R.id.username)
+    TextView mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,5 +95,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .applicationComponent(GithubApplication.get(this).getComponent())
                 .activityModule(new ActivityModule(this))
                 .build();
+    }
+
+    @OnClick(R.id.user_icon)
+    public void onClick() {
+        LoginActivity.launch(this);
     }
 }

@@ -54,4 +54,8 @@ public class AppLog {
     public static void e(String msg) {
         Logger.e(msg);
     }
+
+    public static void e(Throwable e) {
+        Logger.e(e, "");
+    }
 }

@@ -11,5 +11,6 @@
     <string name="search">Search</string>
     <string name="load_searching">Searching</string>
     <string name="loading">Loading</string>
+    <string name="sign_in">Sign In</string>
 
 </resources>

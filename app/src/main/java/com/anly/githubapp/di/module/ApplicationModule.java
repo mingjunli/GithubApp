@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.Context;
 
 
+import com.anly.githubapp.data.net.client.GithubAuthRetrofit;
 import com.anly.githubapp.data.net.client.GithubRepoRetrofit;
 import com.anly.githubapp.data.net.client.GithubTrendingRetrofit;
+import com.anly.githubapp.data.net.service.AccountService;
 import com.anly.githubapp.data.net.service.RepoService;
 import com.anly.githubapp.data.net.service.TrendingService;
 import com.anly.githubapp.di.ApplicationContext;
@@ -49,4 +51,5 @@ public class ApplicationModule {
     TrendingService provideTrendingService(GithubTrendingRetrofit retrofit) {
         return retrofit.get().create(TrendingService.class);
     }
+
 }
