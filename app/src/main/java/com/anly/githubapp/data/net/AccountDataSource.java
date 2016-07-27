@@ -1,5 +1,8 @@
 package com.anly.githubapp.data.net;
 
+import android.app.Application;
+import android.text.TextUtils;
+
 import com.anly.githubapp.common.config.GithubConfig;
 import com.anly.githubapp.data.api.AccountApi;
 import com.anly.githubapp.data.model.User;
@@ -7,6 +10,7 @@ import com.anly.githubapp.data.net.client.GithubAuthRetrofit;
 import com.anly.githubapp.data.net.request.CreateAuthorization;
 import com.anly.githubapp.data.net.response.AuthorizationResp;
 import com.anly.githubapp.data.net.service.AccountService;
+import com.anly.githubapp.data.pref.AccountPref;
 
 import javax.inject.Inject;
 
@@ -20,6 +24,9 @@ public class AccountDataSource implements AccountApi {
 
     @Inject
     GithubAuthRetrofit mRetrofit;
+
+    @Inject
+    Application mContext;
 
     @Inject
     public AccountDataSource() {
@@ -39,10 +46,29 @@ public class AccountDataSource implements AccountApi {
                     .flatMap(new Func1<AuthorizationResp, Observable<User>>() {
                         @Override
                         public Observable<User> call(AuthorizationResp authorizationResp) {
-                            // TODO should save token.
+
+                            String token = authorizationResp.getToken();
+
+                            // save token
+                            AccountPref.saveLoginToken(mContext, token);
 
                             return accountService.getUserInfo(authorizationResp.getToken());
                         }
                     });
+    }
+
+    @Override
+    public boolean isLogon() {
+        return !TextUtils.isEmpty(getLogonToken()) && getLogonUser() != null;
+    }
+
+    @Override
+    public User getLogonUser() {
+        return AccountPref.getLogonUser(mContext);
+    }
+
+    @Override
+    public String getLogonToken() {
+        return AccountPref.getLoginToken(mContext);
     }
 }

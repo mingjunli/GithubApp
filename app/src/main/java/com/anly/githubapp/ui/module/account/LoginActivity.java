@@ -1,5 +1,6 @@
 package com.anly.githubapp.ui.module.account;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.constant.IntentExtra;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.AccountComponent;
@@ -44,6 +46,10 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
         context.startActivity(new Intent(context, LoginActivity.class));
     }
 
+    public static void launchForResult(Activity activity) {
+        activity.startActivityForResult(new Intent(activity, LoginActivity.class), 0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +75,10 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
 
     @Override
     public void showContent(User data) {
-
+        Intent result = new Intent();
+        result.putExtra(IntentExtra.USER, data);
+        setResult(RESULT_OK, result);
+        finish();
     }
 
     @Override

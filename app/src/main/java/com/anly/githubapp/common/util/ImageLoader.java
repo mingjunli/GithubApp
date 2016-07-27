@@ -5,6 +5,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 /**
  * Created by mingjun on 16/7/17.
  */
@@ -20,6 +22,14 @@ public class ImageLoader {
         Glide.with(context)
                 .load(source)
                 .centerCrop()
+                .into(view);
+    }
+
+    public static void loadWithCircle(Context context, Object source, ImageView view) {
+        Glide.with(context)
+                .load(source)
+                .bitmapTransform(new CropCircleTransformation(context))
+                .fitCenter()
                 .into(view);
     }
 }

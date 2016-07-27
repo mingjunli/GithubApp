@@ -34,7 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_10"
             android:layout_marginBottom="@dimen/dimen_20"
-            android:textSize="@dimen/text_size_14"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_18"
             android:textColor="@android:color/black"/>
 
         <ListView

@@ -1,5 +1,6 @@
 package com.anly.githubapp.ui.module.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +16,10 @@ import android.widget.TextView;
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.config.MainMenuConfig;
+import com.anly.githubapp.common.constant.IntentExtra;
+import com.anly.githubapp.common.util.ImageLoader;
+import com.anly.githubapp.data.model.User;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
@@ -63,6 +68,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
+
+        if (AccountPref.getLogonUser(this) != null) {
+            updateUserInfo(AccountPref.getLogonUser(this));
+        }
     }
 
     private AdapterView.OnItemClickListener mMenuItemClickListener = new AdapterView.OnItemClickListener() {
@@ -99,6 +108,21 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @OnClick(R.id.user_icon)
     public void onClick() {
-        LoginActivity.launch(this);
+        LoginActivity.launchForResult(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (RESULT_OK == resultCode) {
+            User user = data.getParcelableExtra(IntentExtra.USER);
+            updateUserInfo(user);
+        }
+    }
+
+    private void updateUserInfo(User user) {
+        mUsername.setText(user.getLogin());
+        ImageLoader.loadWithCircle(this, user.getAvatar_url(), mUserIcon);
     }
 }
