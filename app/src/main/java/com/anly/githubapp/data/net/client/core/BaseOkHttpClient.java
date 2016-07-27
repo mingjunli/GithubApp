@@ -4,7 +4,6 @@ import com.anly.githubapp.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -23,13 +22,11 @@ public abstract class BaseOkHttpClient {
                         .setLevel(BuildConfig.DEBUG ?
                                 HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE));
 
-        if (getInterceptor() != null) {
-            builder.addInterceptor(getInterceptor());
-        }
+        builder = customize(builder);
 
         return builder.build();
     }
 
-    public abstract Interceptor getInterceptor();
+    public abstract OkHttpClient.Builder customize(OkHttpClient.Builder builder);
 
 }
