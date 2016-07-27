@@ -66,25 +66,17 @@ public class GithubAuthRetrofit extends BaseRetrofit {
         @Override
         public OkHttpClient.Builder customize(OkHttpClient.Builder builder) {
 
-            AppLog.d("username:" + username);
-            AppLog.d("password:" + password);
-
             if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
                 builder.addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
 
-
                         // https://developer.github.com/v3/auth/#basic-authentication
                         // https://developer.github.com/v3/oauth/#non-web-application-flow
                         String userCredentials = username + ":" + password;
 
-                        AppLog.d("userCredentials:" + userCredentials);
-
                         String basicAuth =
                                 "Basic " + new String(Base64.encode(userCredentials.getBytes(), Base64.DEFAULT));
-
-                        AppLog.d("basicAuth:" + basicAuth);
 
                         Request original = chain.request();
 
