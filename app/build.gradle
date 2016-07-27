@@ -95,4 +95,10 @@ dependencies {
     // spots-dialog
     // https://github.com/d-max/spots-dialog
     compile 'com.github.d-max:spots-dialog:0.4@aar'
+
+    // MaterialDrawer
+    // https://github.com/mikepenz/MaterialDrawer
+    compile('com.mikepenz:materialdrawer:5.3.6@aar') {
+        transitive = true
+    }
 }
