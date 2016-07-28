@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.anly.githubapp.GithubApplication;
@@ -19,6 +20,7 @@ import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -41,7 +43,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     // save our header or result
     private Drawer mDrawer = null;
     private AccountHeader mAccountHeader = null;
-    private IProfile mAccountProfile;
+    private ProfileDrawerItem mAccountProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,14 +83,30 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             );
         }
 
-        mAccountProfile = new ProfileDrawerItem().withName("Please Login").withIcon(R.drawable.ic_github);
+        mAccountProfile = new ProfileDrawerItem()
+                .withName("Please Login")
+                .withIcon(R.drawable.ic_github);
+
         mAccountHeader = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withCompactStyle(true)
                 .withHeaderBackground(R.drawable.header)
+                .withSelectionListEnabled(false)
                 .addProfiles(
                         mAccountProfile
                 )
+                .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
+                    @Override
+                    public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
+                        LoginActivity.launchForResult(MainActivity.this);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onProfileImageLongClick(View view, IProfile profile, boolean current) {
+                        return false;
+                    }
+                })
                 .build();
 
         mDrawer = new DrawerBuilder(this)
@@ -154,5 +172,11 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void updateUserInfo(User user) {
+        String displayName = TextUtils.isEmpty(user.getName()) ? user.getLogin() : user.getName();
+        mAccountProfile.withName(displayName)
+                .withIcon(user.getAvatar_url())
+                .withEmail(user.getEmail());
+
+        mAccountHeader.updateProfile(mAccountProfile);
     }
 }
