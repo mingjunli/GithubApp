@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                            selectItem(menu);
+                            switchMenu(menu);
                             return false;
                         }
                     })
@@ -100,7 +100,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .withAccountHeader(mAccountHeader)
                 .withDrawerItems(items)
                 .withSavedInstance(savedInstanceState)
-                .withSelectedItem(0)
+                .withSelectedItemByPosition(1)
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
 
@@ -109,17 +109,30 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         }
     }
 
-    private void selectItem(MainMenuConfig.MainMenu menu) {
-        AppLog.d("selectItem menu:" + getString(menu.labelResId));
+    private Fragment mCurrentFragment;
+    private void switchMenu(MainMenuConfig.MainMenu menu) {
 
-        // Create a new fragment and specify the planet to show based on position
-        Fragment fragment = Fragment.instantiate(this, menu.fragmentClass);
-
-        // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
+
+        String tag = getString(menu.labelResId);
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+
+        AppLog.d("switch menu:" + fragment);
+        if (fragment != null) {
+            if (fragment == mCurrentFragment) return;
+
+            fragmentManager.beginTransaction().show(fragment).commit();
+        }
+        else {
+            fragment = Fragment.instantiate(this, menu.fragmentClass);
+            fragmentManager.beginTransaction().add(R.id.content_frame, fragment, tag).commit();
+        }
+
+        if (mCurrentFragment != null) {
+            fragmentManager.beginTransaction().hide(mCurrentFragment).commit();
+        }
+
+        mCurrentFragment = fragment;
     }
 
     @Override
