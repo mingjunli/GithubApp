@@ -4,20 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.config.MainMenuConfig;
 import com.anly.githubapp.common.constant.IntentExtra;
-import com.anly.githubapp.common.util.ImageLoader;
+import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
@@ -25,30 +19,29 @@ import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
-import com.anly.githubapp.ui.module.account.LoginActivity;
-import com.anly.githubapp.ui.module.main.adapter.MainMenuListAdapter;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent> {
 
-    @BindView(R.id.content_frame)
-    FrameLayout mContentFrame;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
-    @BindView(R.id.left_menu)
-    ListView mLeftMenuListView;
-
-    @BindView(R.id.left_drawer)
-    LinearLayout mLeftDrawer;
-
-    @BindView(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-    @BindView(R.id.user_icon)
-    ImageView mUserIcon;
-    @BindView(R.id.username)
-    TextView mUsername;
+    // save our header or result
+    private Drawer mDrawer = null;
+    private AccountHeader mAccountHeader = null;
+    private IProfile mAccountProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,33 +49,69 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initViews();
+        initViews(savedInstanceState);
     }
 
-    private void initViews() {
-        MainMenuListAdapter adapter = new MainMenuListAdapter(this, MainMenuConfig.MENUS);
-        mLeftMenuListView.setAdapter(adapter);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //add the values which need to be saved from the drawer to the bundle
+        outState = mDrawer.saveInstanceState(outState);
+        outState = mAccountHeader.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
+    }
 
-        mLeftMenuListView.setOnItemClickListener(mMenuItemClickListener);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_drawer);
+    private void initViews(Bundle savedInstanceState) {
+
+        setSupportActionBar(mToolbar);
+
+        ArrayList<IDrawerItem> items = new ArrayList<>();
+        for (final MainMenuConfig.MainMenu menu : MainMenuConfig.MENUS) {
+            items.add(new PrimaryDrawerItem()
+                    .withName(menu.labelResId)
+                    .withIcon(menu.iconResId)
+                    .withSelectable(true)
+                    .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                        @Override
+                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                            selectItem(menu);
+                            return false;
+                        }
+                    })
+            );
+        }
+
+        mAccountProfile = new ProfileDrawerItem().withName("Please Login").withIcon(R.drawable.ic_github);
+        mAccountHeader = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withCompactStyle(true)
+                .withHeaderBackground(R.drawable.header)
+                .addProfiles(
+                        mAccountProfile
+                )
+                .build();
+
+        mDrawer = new DrawerBuilder(this)
+                .withActivity(this)
+                .withToolbar(mToolbar)
+                .withDisplayBelowStatusBar(true)
+                .withPositionBasedStateManagement(false)
+                .withActionBarDrawerToggleAnimated(true)
+                .withAccountHeader(mAccountHeader)
+                .withDrawerItems(items)
+                .withSavedInstance(savedInstanceState)
+                .withSelectedItem(0)
+                .withShowDrawerOnFirstLaunch(true)
+                .build();
 
         if (AccountPref.getLogonUser(this) != null) {
             updateUserInfo(AccountPref.getLogonUser(this));
         }
     }
 
-    private AdapterView.OnItemClickListener mMenuItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-            MainMenuConfig.MainMenu menu = (MainMenuConfig.MainMenu) adapterView.getAdapter().getItem(position);
-            selectItem(menu, position);
-        }
-    };
+    private void selectItem(MainMenuConfig.MainMenu menu) {
+        AppLog.d("selectItem menu:" + getString(menu.labelResId));
 
-    private void selectItem(MainMenuConfig.MainMenu menu, int pos) {
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment = Fragment.instantiate(this, menu.fragmentClass);
 
@@ -91,11 +120,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
-
-        // Highlight the selected item, update the title, and close the drawer
-        mLeftMenuListView.setItemChecked(pos, true);
-        setTitle(menu.labelResId);
-        mDrawerLayout.closeDrawer(mLeftDrawer);
     }
 
     @Override
@@ -104,11 +128,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .applicationComponent(GithubApplication.get(this).getComponent())
                 .activityModule(new ActivityModule(this))
                 .build();
-    }
-
-    @OnClick(R.id.user_icon)
-    public void onClick() {
-        LoginActivity.launchForResult(this);
     }
 
     @Override
@@ -122,7 +141,5 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void updateUserInfo(User user) {
-        mUsername.setText(user.getLogin());
-        ImageLoader.loadWithCircle(this, user.getAvatar_url(), mUserIcon);
     }
 }
