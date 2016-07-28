@@ -45,47 +45,22 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private AccountHeader mAccountHeader = null;
     private ProfileDrawerItem mAccountProfile;
 
+    private FragmentManager mFragmentManager = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        initViews(savedInstanceState);
+        initViews();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //add the values which need to be saved from the drawer to the bundle
-        outState = mDrawer.saveInstanceState(outState);
-        outState = mAccountHeader.saveInstanceState(outState);
-        super.onSaveInstanceState(outState);
-    }
-
-
-    private void initViews(Bundle savedInstanceState) {
-
+    private void initViews() {
         setSupportActionBar(mToolbar);
 
-        ArrayList<IDrawerItem> items = new ArrayList<>();
-        for (final MainMenuConfig.MainMenu menu : MainMenuConfig.MENUS) {
-            items.add(new PrimaryDrawerItem()
-                    .withName(menu.labelResId)
-                    .withIcon(menu.iconResId)
-                    .withSelectable(true)
-                    .withIdentifier(menu.id)
-                    .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
-                        @Override
-                        public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                            switchMenu(menu);
-                            return false;
-                        }
-                    })
-            );
-        }
-
         mAccountProfile = new ProfileDrawerItem()
-                .withName("Please Login")
+                .withName(getString(R.string.please_login))
                 .withIcon(R.drawable.ic_github);
 
         mAccountHeader = new AccountHeaderBuilder()
@@ -118,12 +93,35 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .withPositionBasedStateManagement(false)
                 .withActionBarDrawerToggleAnimated(true)
                 .withAccountHeader(mAccountHeader)
-                .withDrawerItems(items)
-                .withSavedInstance(savedInstanceState)
+                .addDrawerItems(
+                        new PrimaryDrawerItem()
+                                .withName(R.string.menu_trending)
+                                .withIcon(R.drawable.ic_trending_up)
+                                .withIdentifier(MainMenuConfig.ID_TREND)
+                                .withTag(TrendingFragment.class.getName()),
+                        new PrimaryDrawerItem()
+                                .withName(R.string.menu_most_star)
+                                .withIcon(R.drawable.ic_star)
+                                .withIdentifier(MainMenuConfig.ID_STARS)
+                                .withTag(MostStarFragment.class.getName()),
+                        new PrimaryDrawerItem()
+                                .withName(R.string.menu_search)
+                                .withIcon(R.drawable.ic_search)
+                                .withIdentifier(MainMenuConfig.ID_SEARCH)
+                                .withTag(SearchFragment.class.getName())
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        if (drawerItem != null && drawerItem instanceof PrimaryDrawerItem) {
+                            switchMenu((PrimaryDrawerItem) drawerItem);
+                        }
+                        return false;
+                    }
+                })
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
 
-        // default selected the TREND.
         mDrawer.setSelection(MainMenuConfig.ID_TREND, true);
 
         if (AccountPref.getLogonUser(this) != null) {
@@ -132,29 +130,29 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private Fragment mCurrentFragment;
-    private void switchMenu(MainMenuConfig.MainMenu menu) {
+    private void switchMenu(PrimaryDrawerItem item) {
+        String tag = item.getName().getText(this);
+        AppLog.d("switch menu tag:" + tag);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = mFragmentManager.findFragmentByTag(tag);
+        AppLog.d("switch menu fragment:" + fragment);
 
-        String tag = getString(menu.labelResId);
-        Fragment fragment = fragmentManager.findFragmentByTag(tag);
-
-        AppLog.d("switch menu:" + fragment);
         if (fragment != null) {
             if (fragment == mCurrentFragment) return;
 
-            fragmentManager.beginTransaction().show(fragment).commit();
+            mFragmentManager.beginTransaction().show(fragment).commit();
         }
         else {
-            fragment = Fragment.instantiate(this, menu.fragmentClass);
-            fragmentManager.beginTransaction().add(R.id.content_frame, fragment, tag).commit();
+            fragment = Fragment.instantiate(this, (String) item.getTag());
+            mFragmentManager.beginTransaction().add(R.id.content_frame, fragment, tag).commit();
         }
 
         if (mCurrentFragment != null) {
-            fragmentManager.beginTransaction().hide(mCurrentFragment).commit();
+            mFragmentManager.beginTransaction().hide(mCurrentFragment).commit();
         }
 
         mCurrentFragment = fragment;
+        setTitle(tag);
     }
 
     @Override

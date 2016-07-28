@@ -3,7 +3,7 @@
 
     <!-- main menu labels -->
     <string name="menu_trending">Trending</string>
-    <string name="menu_most_star">Most Star</string>
+    <string name="menu_most_star">Most Stars</string>
     <string name="menu_search">Search</string>
 
     <string name="settings">Settings</string>
@@ -12,5 +12,6 @@
     <string name="load_searching">Searching</string>
     <string name="loading">Loading</string>
     <string name="sign_in">Sign In</string>
+    <string name="please_login">Please Login</string>
 
 </resources>
