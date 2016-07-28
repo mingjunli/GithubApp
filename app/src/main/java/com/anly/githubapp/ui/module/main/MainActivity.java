@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     .withName(menu.labelResId)
                     .withIcon(menu.iconResId)
                     .withSelectable(true)
+                    .withIdentifier(menu.id)
                     .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                         @Override
                         public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
@@ -111,6 +112,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
         mDrawer = new DrawerBuilder(this)
                 .withActivity(this)
+                .withRootView(R.id.drawer_container)
                 .withToolbar(mToolbar)
                 .withDisplayBelowStatusBar(true)
                 .withPositionBasedStateManagement(false)
@@ -118,9 +120,11 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .withAccountHeader(mAccountHeader)
                 .withDrawerItems(items)
                 .withSavedInstance(savedInstanceState)
-                .withSelectedItemByPosition(1)
                 .withShowDrawerOnFirstLaunch(true)
                 .build();
+
+        // default selected the TREND.
+        mDrawer.setSelection(MainMenuConfig.ID_TREND, true);
 
         if (AccountPref.getLogonUser(this) != null) {
             updateUserInfo(AccountPref.getLogonUser(this));
