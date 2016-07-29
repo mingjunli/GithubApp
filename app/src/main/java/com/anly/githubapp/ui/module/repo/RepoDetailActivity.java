@@ -96,8 +96,6 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
     }
 
     private void initViews() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         mForkListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));

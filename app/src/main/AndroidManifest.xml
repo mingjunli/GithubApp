@@ -25,7 +25,6 @@
                   android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.module.repo.RepoDetailActivity"
-                  android:parentActivityName=".ui.module.main.MainActivity"
                   android:screenOrientation="portrait">
         </activity>
     </application>
