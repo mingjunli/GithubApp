@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
 import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.TrendingRepoRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 
@@ -52,6 +55,7 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
         getComponent(MainComponent.class).inject(this);
 
         mPresenter.attachView(this);
+        mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
     }
 
     @Override
@@ -60,18 +64,24 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
         mPresenter.detachView();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
-    }
-
     private void initViews() {
         mAdapter = new TrendingRepoRecyclerAdapter(null);
+        mAdapter.setOnRecyclerViewItemClickListener(mItemClickListener);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRepoListView.setAdapter(mAdapter);
     }
+
+    private BaseQuickAdapter.OnRecyclerViewItemClickListener mItemClickListener = new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+        @Override
+        public void onItemClick(View view, int i) {
+            TrendingRepo trendingRepo = mAdapter.getItem(i);
+
+            String fullName = StringUtil.replaceAllBlank(trendingRepo.getTitle());
+            String[] array = fullName.split("\\/");
+            RepoDetailActivity.launch(getActivity(), array[0], array[1]);
+        }
+    };
 
     @NonNull
     @Override

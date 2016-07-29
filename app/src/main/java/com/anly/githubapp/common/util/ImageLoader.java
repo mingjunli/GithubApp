@@ -25,10 +25,25 @@ public class ImageLoader {
                 .into(view);
     }
 
+    public static void load(Object source, ImageView view) {
+        Glide.with(view.getContext())
+                .load(source)
+                .centerCrop()
+                .into(view);
+    }
+
     public static void loadWithCircle(Context context, Object source, ImageView view) {
         Glide.with(context)
                 .load(source)
                 .bitmapTransform(new CropCircleTransformation(context))
+                .fitCenter()
+                .into(view);
+    }
+
+    public static void loadWithCircle(Object source, ImageView view) {
+        Glide.with(view.getContext())
+                .load(source)
+                .bitmapTransform(new CropCircleTransformation(view.getContext()))
                 .fitCenter()
                 .into(view);
     }

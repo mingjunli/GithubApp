@@ -16,6 +16,8 @@ import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
 import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 
@@ -43,11 +45,6 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
         getComponent(MainComponent.class).inject(this);
 
         mPresenter.attachView(this);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         mPresenter.loadRepoList("android", "java");
     }
 
@@ -68,10 +65,19 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
 
     private void initViews() {
         mAdapter = new RepoListRecyclerAdapter(null);
+        mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRepoListView.setAdapter(mAdapter);
     }
+
+    private BaseQuickAdapter.OnRecyclerViewItemClickListener mItemtClickListener = new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            Repo repo = mAdapter.getItem(position);
+            RepoDetailActivity.launch(getActivity(), repo.getOwner().getLogin(), repo.getName());
+        }
+    };
 
     @NonNull
     @Override

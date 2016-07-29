@@ -1,5 +1,8 @@
 package com.anly.githubapp.common.util;
 
+import android.text.TextUtils;
+import android.util.Base64;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,5 +29,10 @@ public class StringUtil {
             dest = m.replaceAll("");
         }
         return dest;
+    }
+
+    public static String base64Decode(String originalString) {
+        if (TextUtils.isEmpty(originalString)) return "";
+        return new String(Base64.decode(originalString, 0));
     }
 }

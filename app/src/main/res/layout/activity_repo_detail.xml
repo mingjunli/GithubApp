@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical"
+            android:maxLines="2"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_size_12"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/dimen_32"
+                android:layout_height="@dimen/dimen_32"
+                android:scaleType="centerInside"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/owner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_14"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_20"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="left|center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_watch"/>
+
+                <TextView
+                    android:id="@+id/watch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_star"/>
+
+                <TextView
+                    android:id="@+id/star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="right|center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_16"
+                    android:layout_height="@dimen/dimen_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_fork"/>
+
+                <TextView
+                    android:id="@+id/fork"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dimen_5"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size_12"
+                    android:textColor="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Forks"/>
+
+                <TextView
+                    android:id="@+id/forks_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="0"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fork_list"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60"
+                android:paddingLeft="@dimen/dimen_10"
+                android:paddingRight="@dimen/dimen_10"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Contributors"/>
+
+                <TextView
+                    android:id="@+id/contributors_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="0"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/contributor_list"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_60"
+                android:paddingLeft="@dimen/dimen_10"
+                android:paddingRight="@dimen/dimen_10"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="README"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/readme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dimen_10"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

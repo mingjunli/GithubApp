@@ -2,7 +2,11 @@ package com.anly.githubapp.data.net;
 
 import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.RepoApi;
+import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.model.User;
+import com.anly.githubapp.data.net.response.Content;
 import com.anly.githubapp.data.net.response.SearchResultResp;
 import com.anly.githubapp.data.net.service.RepoService;
 import com.anly.githubapp.data.model.Repo;
@@ -12,7 +16,9 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscriber;
 import rx.functions.Func1;
+import rx.functions.Func4;
 
 /**
  * Created by mingjun on 16/7/15.
@@ -44,5 +50,33 @@ public class RepoDataSource implements RepoApi {
                 return searchResultResp.getItems();
             }
         });
+    }
+
+    @Override
+    public Observable<Repo> getRepo(String owner, String repo) {
+        return mRepoService.get(owner, repo);
+    }
+
+    @Override
+    public Observable<RepoDetail> getRepoDetail(String owner, String name) {
+        return Observable.zip(mRepoService.get(owner, name),
+                mRepoService.contributors(owner, name),
+                mRepoService.listForks(owner, name, "newest"),
+                mRepoService.readme(owner, name),
+                new Func4<Repo, ArrayList<User>, ArrayList<Repo>, Content, RepoDetail>() {
+                    @Override
+                    public RepoDetail call(Repo repo, ArrayList<User> users, ArrayList<Repo> forks, Content readme) {
+                        RepoDetail detail = new RepoDetail();
+                        detail.setBaseRepo(repo);
+                        detail.setForks(forks);
+
+                        // because the readme content is encode with Base64 by github.
+                        readme.content = StringUtil.base64Decode(readme.content);
+                        detail.setReadme(readme);
+
+                        detail.setContributors(users);
+                        return detail;
+                    }
+                });
     }
 }

@@ -101,4 +101,8 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.3.6@aar') {
         transitive = true
     }
+
+    // RichText to support markdown file.
+    // https://github.com/zzhoujay/RichText
+    compile 'com.zzhoujay.richtext:richtext:2.0.0'
 }
