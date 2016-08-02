@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -85,7 +86,11 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
         ButterKnife.bind(this);
         initViews();
         mPresenter.attachView(this);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         loadDetailData();
     }
 
@@ -120,20 +125,30 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
         }
     }
 
-    @NonNull
-    @Override
-    public String getLoadingMessage() {
-        return getString(R.string.loading);
-    }
-
     @Override
     public void showContent(RepoDetail data) {
+        super.showContent(data);
         updateViews(data);
     }
 
     @Override
-    public void showError(Throwable e) {
+    public View getAnchorView() {
+        return null;
+    }
 
+    @Override
+    public View.OnClickListener getRetryListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadDetailData();
+            }
+        };
+    }
+
+    @Override
+    public void showError(Throwable e) {
+        AppLog.e(e);
     }
 
     private void updateViews(RepoDetail detail) {

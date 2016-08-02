@@ -1,13 +1,13 @@
 package com.anly.githubapp.ui.module.main;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.AppLog;
@@ -33,6 +33,8 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
+    @BindView(R.id.root_layout)
+    LinearLayout mRootLayout;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -79,20 +81,20 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
         }
     };
 
-    @NonNull
-    @Override
-    public String getLoadingMessage() {
-        return getString(R.string.loading);
-    }
-
     @Override
     public void showContent(ArrayList<Repo> data) {
+        super.showContent(data);
         AppLog.d("data size: " + data.size());
         mAdapter.setNewData(data);
     }
 
     @Override
-    public void showError(Throwable e) {
+    public View getAnchorView() {
+        return mRootLayout;
+    }
 
+    @Override
+    public View.OnClickListener getRetryListener() {
+        return null;
     }
 }

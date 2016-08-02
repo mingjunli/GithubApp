@@ -1,9 +1,11 @@
 package com.anly.githubapp.ui.base;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.annotation.CallSuper;
+import android.view.View;
 
-import com.anly.githubapp.ui.widget.loading.LoadingView;
+import com.anly.githubapp.common.util.AppLog;
+import com.anly.mvp.lce.LceHelper;
 import com.anly.mvp.lce.LceView;
 
 /**
@@ -11,25 +13,57 @@ import com.anly.mvp.lce.LceView;
  */
 public abstract class LceFragment<M> extends BaseFragment implements LceView<M> {
 
-    private LoadingView mLoadingView;
+    private LceHelper mLceHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mLoadingView = new LoadingView(this.getContext(), getLoadingMessage());
+        mLceHelper = new LceHelper(getActivity());
     }
 
     @Override
     public void showLoading() {
-        mLoadingView.show();
+        if (getAnchorView() != null) {
+            mLceHelper.loading(getAnchorView(), true);
+        }
+        else {
+            mLceHelper.loading();
+        }
     }
 
     @Override
     public void dismissLoading() {
-        mLoadingView.dismiss();
+        mLceHelper.dismiss();
     }
 
-    @NonNull
-    public abstract String getLoadingMessage();
+    @Override
+    public void showEmpty() {
+        if (getAnchorView() != null) {
+            mLceHelper.empty(getAnchorView());
+        }
+        else {
+            mLceHelper.empty();
+        }
+    }
+
+    @Override
+    public void showError(Throwable e) {
+        AppLog.e(e);
+        if (getAnchorView() != null) {
+            mLceHelper.error(getAnchorView(), getRetryListener());
+        }
+        else {
+            mLceHelper.error(getRetryListener());
+        }
+    }
+
+    @CallSuper
+    @Override
+    public void showContent(M data) {
+        mLceHelper.dismissAll();
+    }
+
+    public abstract View getAnchorView();
+    public abstract View.OnClickListener getRetryListener();
 }

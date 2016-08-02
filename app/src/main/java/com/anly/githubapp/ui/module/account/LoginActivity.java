@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,14 +68,9 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
         mPresenter.detachView();
     }
 
-    @NonNull
-    @Override
-    public String getLoadingMessage() {
-        return "Login...";
-    }
-
     @Override
     public void showContent(User data) {
+        super.showContent(data);
         Intent result = new Intent();
         result.putExtra(IntentExtra.USER, data);
         setResult(RESULT_OK, result);
@@ -82,8 +78,13 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
     }
 
     @Override
-    public void showError(Throwable e) {
+    public View getAnchorView() {
+        return null;
+    }
 
+    @Override
+    public View.OnClickListener getRetryListener() {
+        return null;
     }
 
     @OnClick(R.id.login_btn)

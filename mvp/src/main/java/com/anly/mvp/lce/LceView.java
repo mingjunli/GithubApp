@@ -20,4 +20,7 @@ public interface LceView<M> extends MvpView {
 
     @UiThread
     public void showError(Throwable e);
+
+    @UiThread
+    public void showEmpty();
 }

@@ -89,19 +89,19 @@ public class SearchFragment extends LceFragment<ArrayList<Repo>> {
         mRepoListView.setAdapter(mAdapter);
     }
 
-    @NonNull
-    @Override
-    public String getLoadingMessage() {
-        return getString(R.string.load_searching);
-    }
-
     @Override
     public void showContent(ArrayList<Repo> data) {
+        super.showContent(data);
         mAdapter.setNewData(data);
     }
 
     @Override
-    public void showError(Throwable e) {
+    public View getAnchorView() {
+        return null;
+    }
 
+    @Override
+    public View.OnClickListener getRetryListener() {
+        return null;
     }
 }

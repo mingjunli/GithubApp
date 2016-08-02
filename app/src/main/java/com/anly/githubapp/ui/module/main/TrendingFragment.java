@@ -1,13 +1,13 @@
 package com.anly.githubapp.ui.module.main;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.StringUtil;
@@ -34,6 +34,8 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
+    @BindView(R.id.root_layout)
+    LinearLayout mRootLayout;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -56,6 +58,21 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
 
         mPresenter.attachView(this);
         mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
+    }
+
+    @Override
+    public View getAnchorView() {
+        return mRootLayout;
+    }
+
+    @Override
+    public View.OnClickListener getRetryListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
+            }
+        };
     }
 
     @Override
@@ -83,19 +100,9 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
         }
     };
 
-    @NonNull
-    @Override
-    public String getLoadingMessage() {
-        return getString(R.string.loading);
-    }
-
     @Override
     public void showContent(ArrayList<TrendingRepo> data) {
+        super.showContent(data);
         mAdapter.setNewData(data);
-    }
-
-    @Override
-    public void showError(Throwable e) {
-
     }
 }
