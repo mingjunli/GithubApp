@@ -24,6 +24,9 @@
         <activity android:name=".ui.module.account.LoginActivity"
                   android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.module.repo.RepoListActivity"
+                  android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".ui.module.repo.RepoDetailActivity"
                   android:screenOrientation="portrait">
         </activity>

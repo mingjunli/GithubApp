@@ -56,19 +56,4 @@ public class AccountDataSource implements AccountApi {
                         }
                     });
     }
-
-    @Override
-    public boolean isLogon() {
-        return !TextUtils.isEmpty(getLogonToken()) && getLogonUser() != null;
-    }
-
-    @Override
-    public User getLogonUser() {
-        return AccountPref.getLogonUser(mContext);
-    }
-
-    @Override
-    public String getLogonToken() {
-        return AccountPref.getLoginToken(mContext);
-    }
 }

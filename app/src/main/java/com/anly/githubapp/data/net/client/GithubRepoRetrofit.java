@@ -14,10 +14,10 @@ public class GithubRepoRetrofit extends BaseRetrofit {
 
     private static final String END_POINT = "https://api.github.com/";
 
-    NormalHttpClient mHttpClient;
+    GithubHttpClient mHttpClient;
 
     @Inject
-    public GithubRepoRetrofit(NormalHttpClient mHttpClient) {
+    public GithubRepoRetrofit(GithubHttpClient mHttpClient) {
         this.mHttpClient = mHttpClient;
     }
 

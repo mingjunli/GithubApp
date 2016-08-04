@@ -13,6 +13,7 @@ import com.anly.githubapp.R;
 import com.anly.githubapp.common.config.MainMenuConfig;
 import com.anly.githubapp.common.constant.IntentExtra;
 import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.data.api.AccountApi;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
@@ -21,6 +22,7 @@ import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.LoginActivity;
+import com.anly.githubapp.ui.module.repo.RepoListActivity;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -31,6 +33,8 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,7 +78,14 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .withOnAccountHeaderProfileImageListener(new AccountHeader.OnAccountHeaderProfileImageListener() {
                     @Override
                     public boolean onProfileImageClick(View view, IProfile profile, boolean current) {
-                        LoginActivity.launchForResult(MainActivity.this);
+                        AppLog.d("already log on:" + AccountPref.isLogon(MainActivity.this));
+
+                        if (AccountPref.isLogon(MainActivity.this)) {
+                            RepoListActivity.launch(MainActivity.this);
+                        }
+                        else {
+                            LoginActivity.launchForResult(MainActivity.this);
+                        }
                         return false;
                     }
 

@@ -10,10 +10,4 @@ import rx.Observable;
 public interface AccountApi {
 
     Observable<User> login(String username, String password);
-
-    boolean isLogon();
-
-    User getLogonUser();
-
-    String getLogonToken();
 }

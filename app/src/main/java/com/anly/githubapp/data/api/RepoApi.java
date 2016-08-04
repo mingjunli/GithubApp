@@ -35,4 +35,6 @@ public interface RepoApi {
      * @return
      */
     Observable<RepoDetail> getRepoDetail(String owner, String name);
+
+    Observable<ArrayList<Repo>> getMyRepos();
 }

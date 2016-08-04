@@ -22,16 +22,19 @@ public interface RepoService {
                                             @Query("order") String order, @Query("page") int page,
                                             @Query("per_page") int pageSize);
 
-    @GET("/repos/{owner}/{name}")
+    @GET("repos/{owner}/{name}")
     Observable<Repo> get(@Path("owner") String owner, @Path("name") String repo);
 
-    @GET("/repos/{owner}/{name}/contributors")
+    @GET("repos/{owner}/{name}/contributors")
     Observable<ArrayList<User>> contributors(@Path("owner") String owner, @Path("name") String repo);
 
-    @GET("/repos/{owner}/{name}/readme")
+    @GET("repos/{owner}/{name}/readme")
     Observable<Content> readme(@Path("owner") String owner, @Path("name") String repo);
 
-    @GET("/repos/{owner}/{name}/forks")
+    @GET("repos/{owner}/{name}/forks")
     Observable<ArrayList<Repo>> listForks(@Path("owner") String owner, @Path("name") String repo,
                          @Query("sort") String sort);
+
+    @GET("user/repos")
+    Observable<ArrayList<Repo>> getMyRepos();
 }

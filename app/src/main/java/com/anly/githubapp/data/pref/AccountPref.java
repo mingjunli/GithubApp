@@ -24,7 +24,7 @@ public class AccountPref {
         getPreference(context).edit().putString(KEY_LOGIN_TOKEN, loginToken).apply();
     }
 
-    public static String getLoginToken(Context context) {
+    public static String getLogonToken(Context context) {
         return getPreference(context).getString(KEY_LOGIN_TOKEN, "");
     }
 
@@ -44,5 +44,9 @@ public class AccountPref {
             user = new Gson().fromJson(userJson, User.class);
         }
         return user;
+    }
+
+    public static boolean isLogon(Context context) {
+        return !TextUtils.isEmpty(getLogonToken(context)) && getLogonUser(context) != null;
     }
 }

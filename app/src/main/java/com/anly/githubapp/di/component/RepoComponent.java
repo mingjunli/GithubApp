@@ -8,6 +8,7 @@ import com.anly.githubapp.ui.module.main.MostStarFragment;
 import com.anly.githubapp.ui.module.main.SearchFragment;
 import com.anly.githubapp.ui.module.main.TrendingFragment;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.anly.githubapp.ui.module.repo.RepoListActivity;
 
 import dagger.Component;
 
@@ -20,5 +21,6 @@ import dagger.Component;
         modules = {ActivityModule.class, RepoModule.class})
 public interface RepoComponent extends ActivityComponent {
 
+    void inject(RepoListActivity listActivity);
     void inject(RepoDetailActivity detailActivity);
 }
