@@ -59,6 +59,8 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        setTitle(R.string.sign_in);
+
         mPresenter.attachView(this);
     }
 

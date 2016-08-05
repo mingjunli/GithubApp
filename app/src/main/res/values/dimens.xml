@@ -18,4 +18,5 @@
     <dimen name="dimen_200">200dp</dimen>
     <dimen name="dimen_120">120dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
+    <dimen name="dimen_100">100dp</dimen>
 </resources>

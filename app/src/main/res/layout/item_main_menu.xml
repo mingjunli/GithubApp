@@ -15,7 +15,7 @@
         android:id="@+id/label"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/menu_3"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_14"
         android:textStyle="bold"
         android:gravity="center_vertical"

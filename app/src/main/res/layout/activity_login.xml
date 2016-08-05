@@ -1,47 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:paddingLeft="@dimen/dimen_60"
+    android:paddingRight="@dimen/dimen_60"
+    tools:context=".ui.module.account.LoginActivity">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:gravity="center"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
         >
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="@dimen/dimen_120"
-            android:layout_height="@dimen/dimen_120"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_github"/>
-
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="@dimen/dimen_200"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:inputType="text"
-            android:hint="Account"/>
+            android:padding="@dimen/dimen_20"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="@dimen/dimen_200"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:hint="Password"
-            />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/dimen_100"
+                android:layout_height="@dimen/dimen_100"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_github"/>
 
-        <Button
-            android:id="@+id/login_btn"
-            android:layout_width="@dimen/dimen_200"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:text="@string/sign_in"/>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/username_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:hint="Username"
+                    android:inputType="text"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <com.rey.material.widget.Button
+                android:id="@+id/login_btn"
+                android:layout_width="@dimen/dimen_200"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:background="@color/button_bg"
+                android:elevation="4dp"
+                android:text="@string/sign_in"
+                tools:targetApi="lollipop"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
 
 </RelativeLayout>
