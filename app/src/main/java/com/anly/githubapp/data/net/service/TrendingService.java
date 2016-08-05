@@ -10,7 +10,7 @@ import rx.Observable;
  */
 public interface TrendingService {
 
-    @GET("trending?languages[]=java&languages[]=objective-c&languages[]=bash&languages[]=python&languages[]=html")
+    @GET("trending?languages[]=java&languages[]=swift&languages[]=objective-c&languages[]=bash&languages[]=python&languages[]=html")
     Observable<TrendingResultResp> getTrendingRepos();
 
 }

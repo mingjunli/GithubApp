@@ -19,6 +19,7 @@ import com.anly.githubapp.ui.base.BaseLceFragment;
 import com.anly.githubapp.ui.module.main.adapter.TrendingRepoRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.github.clans.fab.FloatingActionMenu;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by mingjun on 16/7/19.
@@ -35,6 +37,8 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
+    @BindView(R.id.menu)
+    FloatingActionMenu mFloatMenu;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -115,5 +119,40 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
     public void showContent(ArrayList<TrendingRepo> data) {
         super.showContent(data);
         mAdapter.setNewData(data);
+    }
+
+    @OnClick({R.id.lang_java,
+            R.id.lang_oc,
+            R.id.lang_swift,
+            R.id.lang_bash,
+            R.id.lang_html,
+            R.id.lang_python})
+    public void onLangMenuClick(View view) {
+        mFloatMenu.close(true);
+
+        int lang = TrendingApi.LANG_JAVA;
+
+        switch (view.getId()) {
+            case R.id.lang_java:
+                lang = TrendingApi.LANG_JAVA;
+                break;
+            case R.id.lang_oc:
+                lang = TrendingApi.LANG_OC;
+                break;
+            case R.id.lang_swift:
+                lang = TrendingApi.LANG_SWIFT;
+                break;
+            case R.id.lang_bash:
+                lang = TrendingApi.LANG_BASH;
+                break;
+            case R.id.lang_html:
+                lang = TrendingApi.LANG_HTML;
+                break;
+            case R.id.lang_python:
+                lang = TrendingApi.LANG_PYTHON;
+                break;
+        }
+
+        mPresenter.loadTrendingRepo(lang);
     }
 }
