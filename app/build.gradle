@@ -109,4 +109,8 @@ dependencies {
     // material
     // https://github.com/rey5137/material
     compile 'com.github.rey5137:material:1.2.4'
+
+    // recycler view divider
+    // https://github.com/yqritc/RecyclerView-FlexibleDivider
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
 }

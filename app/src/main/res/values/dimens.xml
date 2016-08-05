@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="divider_height">@dimen/dimen_5</dimen>
+
+    <dimen name="dimen_2">2dp</dimen>
     <dimen name="dimen_4">4dp</dimen>
     <dimen name="dimen_5">5dp</dimen>
     <dimen name="dimen_10">10dp</dimen>

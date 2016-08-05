@@ -1,5 +1,6 @@
 package com.anly.githubapp.ui.module.main;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.anly.githubapp.R;
@@ -18,6 +20,7 @@ import com.anly.githubapp.ui.base.LceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -34,7 +37,7 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
     @BindView(R.id.root_layout)
-    LinearLayout mRootLayout;
+    FrameLayout mRootLayout;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -70,6 +73,11 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
         mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mRepoListView.addItemDecoration(new HorizontalDividerItemDecoration
+                .Builder(getContext())
+                .color(Color.TRANSPARENT)
+                .size(getResources().getDimensionPixelSize(R.dimen.divider_height))
+                .build());
         mRepoListView.setAdapter(mAdapter);
     }
 
