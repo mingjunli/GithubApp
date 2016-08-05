@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/repo_list"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/repo_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen_10"
+        android:layout_marginBottom="@dimen/dimen_10">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/lang_java"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="JAVA"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/lang_oc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="Objective-C"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/lang_swift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_label="Swift"
+            />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

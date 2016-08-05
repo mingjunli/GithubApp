@@ -12,6 +12,8 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -23,6 +25,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:multidex:1.0.1'
+
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile project(':mvp')
@@ -113,4 +117,8 @@ dependencies {
     // recycler view divider
     // https://github.com/yqritc/RecyclerView-FlexibleDivider
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+
+    // FloatingActionButton
+    // https://github.com/Clans/FloatingActionButton
+    compile 'com.github.clans:fab:1.6.4'
 }

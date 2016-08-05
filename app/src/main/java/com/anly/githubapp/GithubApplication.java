@@ -1,12 +1,11 @@
 package com.anly.githubapp;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.multidex.MultiDexApplication;
 import android.widget.ImageView;
 
-import com.anly.githubapp.common.config.MainMenuConfig;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.ImageLoader;
 import com.anly.githubapp.di.component.ApplicationComponent;
@@ -18,7 +17,7 @@ import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 /**
  * Created by mingjun on 16/7/15.
  */
-public class GithubApplication extends Application {
+public class GithubApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
