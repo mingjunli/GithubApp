@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.StringUtil;
@@ -17,7 +15,7 @@ import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
-import com.anly.githubapp.ui.base.LceFragment;
+import com.anly.githubapp.ui.base.BaseLceFragment;
 import com.anly.githubapp.ui.module.main.adapter.TrendingRepoRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -33,12 +31,10 @@ import butterknife.ButterKnife;
 /**
  * Created by mingjun on 16/7/19.
  */
-public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
+public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.root_layout)
-    FrameLayout mRootLayout;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -48,10 +44,15 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_trending, null);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, view);
         initViews();
         return view;
+    }
+
+    @Override
+    public int getContentView() {
+        return R.layout.fragment_trending;
     }
 
     @Override
@@ -60,12 +61,12 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
         getComponent(MainComponent.class).inject(this);
 
         mPresenter.attachView(this);
-        mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
     }
 
     @Override
-    public View getAnchorView() {
-        return mRootLayout;
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
     }
 
     @Override
@@ -87,6 +88,7 @@ public class TrendingFragment extends LceFragment<ArrayList<TrendingRepo>> {
     private void initViews() {
         mAdapter = new TrendingRepoRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemClickListener);
+        mAdapter.setEmptyView(LayoutInflater.from(getContext()).inflate(R.layout.empty_view, null));
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         mRepoListView.addItemDecoration(new HorizontalDividerItemDecoration

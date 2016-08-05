@@ -9,14 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
-import com.anly.githubapp.ui.base.LceFragment;
+import com.anly.githubapp.ui.base.BaseLceFragment;
 import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -32,12 +31,10 @@ import butterknife.ButterKnife;
 /**
  * Created by mingjun on 16/7/19.
  */
-public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
+public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.root_layout)
-    FrameLayout mRootLayout;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -50,16 +47,26 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
         getComponent(MainComponent.class).inject(this);
 
         mPresenter.attachView(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mPresenter.loadRepoList("android", "java");
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_most_star, null);
+        View view = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, view);
         initViews();
         return view;
+    }
+
+    @Override
+    public int getContentView() {
+        return R.layout.fragment_most_star;
     }
 
     @Override
@@ -94,11 +101,6 @@ public class MostStarFragment extends LceFragment<ArrayList<Repo>> {
         super.showContent(data);
         AppLog.d("data size: " + data.size());
         mAdapter.setNewData(data);
-    }
-
-    @Override
-    public View getAnchorView() {
-        return mRootLayout;
     }
 
     @Override

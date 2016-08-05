@@ -5,7 +5,6 @@ import android.support.annotation.CallSuper;
 import android.view.View;
 
 import com.anly.githubapp.common.util.AppLog;
-import com.anly.mvp.lce.LceHelper;
 import com.anly.mvp.lce.LceView;
 
 /**
@@ -13,56 +12,33 @@ import com.anly.mvp.lce.LceView;
  */
 public abstract class LceActivity<M> extends BaseActivity implements LceView<M> {
 
-    private LceHelper mLceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mLceHelper = new LceHelper(this);
     }
 
 
     @Override
     public void showLoading() {
-        if (getAnchorView() != null) {
-            mLceHelper.loading(getAnchorView(), true);
-        }
-        else {
-            mLceHelper.loading();
-        }
     }
 
     @Override
     public void dismissLoading() {
-        mLceHelper.dismiss();
     }
 
     @Override
     public void showEmpty() {
-        if (getAnchorView() != null) {
-            mLceHelper.empty(getAnchorView());
-        }
-        else {
-            mLceHelper.empty();
-        }
     }
 
     @Override
     public void showError(Throwable e) {
-        AppLog.e(e);
-        if (getAnchorView() != null) {
-            mLceHelper.error(getAnchorView(), getRetryListener());
-        }
-        else {
-            mLceHelper.error(getRetryListener());
-        }
     }
 
     @CallSuper
     @Override
     public void showContent(M data) {
-        mLceHelper.dismissAll();
     }
 
     public abstract View getAnchorView();
