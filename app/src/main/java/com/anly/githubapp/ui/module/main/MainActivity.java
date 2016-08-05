@@ -7,13 +7,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.config.MainMenuConfig;
 import com.anly.githubapp.common.constant.IntentExtra;
 import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.data.api.AccountApi;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
@@ -31,10 +31,6 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -191,5 +187,18 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 .withEmail(user.getEmail());
 
         mAccountHeader.updateProfile(mAccountProfile);
+    }
+
+    private long mLastBackTime = 0;
+    @Override
+    public void onBackPressed() {
+        // finish while click back key 2 times during 1s.
+        if ((System.currentTimeMillis() - mLastBackTime) < 1000) {
+            finish();
+        } else {
+            mLastBackTime = System.currentTimeMillis();
+            Toast.makeText(this, R.string.exit_click_back_again, Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

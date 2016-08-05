@@ -13,5 +13,6 @@
     <string name="loading">Loading</string>
     <string name="sign_in">Sign In</string>
     <string name="please_login">Please Login</string>
+    <string name="exit_click_back_again">再按一次退出应用</string>
 
 </resources>
