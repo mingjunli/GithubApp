@@ -1,5 +1,7 @@
 package com.anly.githubapp.data.net;
 
+import android.text.TextUtils;
+
 import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.StringUtil;
@@ -39,12 +41,16 @@ public class RepoDataSource implements RepoApi {
     public Observable<ArrayList<Repo>> searchMostStarredRepo(String key, String language) {
 
         // base on https://developer.github.com/v3/search/#search-repositories
-        // compose the key
-        String q = new StringBuilder().append(key).append("+").append("language:").append(language).toString();
-        AppLog.d("searchMostStarredRepo, q:" + q);
+        // build to query params.
+        StringBuilder queryParams = new StringBuilder().append(key);
+        if (!TextUtils.isEmpty(language)) {
+            queryParams.append("+language:");
+            queryParams.append(language);
+        }
+        AppLog.d("searchMostStarredRepo, q:" + queryParams.toString());
 
         // we get the most starred 30 repos.
-        return mRepoService.searchRepo(q, SORT_BY_STARS, ORDER_BY_DESC, 1, Constants.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
+        return mRepoService.searchRepo(queryParams.toString(), SORT_BY_STARS, ORDER_BY_DESC, 1, Constants.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
             @Override
             public ArrayList<Repo> call(SearchResultResp searchResultResp) {
                 return searchResultResp.getItems();
