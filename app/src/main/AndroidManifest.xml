@@ -24,6 +24,15 @@
         <activity android:name=".ui.module.account.LoginActivity"
                   android:screenOrientation="portrait">
         </activity>
+
+        <activity android:name=".ui.module.repo.SearchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable"/>
+        </activity>
+
         <activity android:name=".ui.module.repo.RepoListActivity"
                   android:screenOrientation="portrait">
         </activity>

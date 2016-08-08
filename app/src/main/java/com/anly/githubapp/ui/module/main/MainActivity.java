@@ -1,20 +1,22 @@
 package com.anly.githubapp.ui.module.main;
 
-import android.content.Intent;
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuCompat;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.constant.IntentExtra;
 import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
@@ -22,6 +24,7 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
+import com.anly.githubapp.ui.module.repo.SearchActivity;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     FrameLayout mContentFrame;
 
     BottomBar mBottomBar;
+    SearchView mSearchView;
 
     private FragmentManager mFragmentManager = getSupportFragmentManager();
 
@@ -110,18 +114,33 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu, menu);
 
+        MenuItem item = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) MenuItemCompat.getActionView(item);
+        return true;
+    }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.action_search:
+//                SearchActivity.launch(this);
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @Override
-    public MainComponent getComponent() {
-        return DaggerMainComponent.builder()
-                .applicationComponent(GithubApplication.get(this).getComponent())
-                .activityModule(new ActivityModule(this))
-                .build();
+    public boolean onSearchRequested() {
+        AppLog.d("onSearchRequested");
+        return super.onSearchRequested();
     }
 
     private long mLastBackTime = 0;
-
     @Override
     public void onBackPressed() {
         // finish while click back key 2 times during 1s.
@@ -132,5 +151,13 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             Toast.makeText(this, R.string.exit_click_back_again, Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public MainComponent getComponent() {
+        return DaggerMainComponent.builder()
+                .applicationComponent(GithubApplication.get(this).getComponent())
+                .activityModule(new ActivityModule(this))
+                .build();
     }
 }
