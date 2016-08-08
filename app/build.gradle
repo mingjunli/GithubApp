@@ -94,7 +94,10 @@ dependencies {
 
     // NavigationTabBar
     // https://github.com/DevLight-Mobile-Agency/NavigationTabBar
-    compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.3'
+    // compile 'com.github.devlight.navigationtabbar:navigationtabbar:1.2.3'
+
+    // https://github.com/roughike/BottomBar
+    compile 'com.roughike:bottom-bar:1.4.0.1'
 
     // spots-dialog
     // https://github.com/d-max/spots-dialog

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_trending"
+        android:icon="@drawable/ic_trending_up"
+        android:title="@string/menu_trending" />
+    <item
+        android:id="@+id/menu_most_stars"
+        android:icon="@drawable/ic_most_star"
+        android:title="@string/menu_most_star" />
+    <item
+        android:id="@+id/menu_account"
+        android:icon="@drawable/ic_account"
+        android:title="@string/menu_account" />
+</menu>

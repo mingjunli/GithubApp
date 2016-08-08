@@ -1,5 +1,6 @@
-package com.anly.githubapp.ui.module.main;
+package com.anly.githubapp.ui.module.repo;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,17 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;
-import com.anly.githubapp.presenter.main.SearchPresenter;
+import com.anly.githubapp.presenter.main.MostStarPresenter;
 import com.anly.githubapp.ui.base.BaseLceFragment;
-import com.anly.githubapp.ui.module.main.adapter.RepoListRecyclerAdapter;
-import com.jakewharton.rxbinding.widget.RxAdapterView;
+import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 
@@ -25,24 +26,19 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.functions.Action1;
 
 /**
  * Created by mingjun on 16/7/19.
  */
-public class SearchFragment extends BaseLceFragment<ArrayList<Repo>> {
+public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
 
-    @BindView(R.id.language_spinner)
-    Spinner mLanguageSpinner;
-    @BindView(R.id.search_key)
-    EditText mSearchKeyText;
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
 
     private RepoListRecyclerAdapter mAdapter;
 
     @Inject
-    SearchPresenter mPresenter;
+    MostStarPresenter mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +46,12 @@ public class SearchFragment extends BaseLceFragment<ArrayList<Repo>> {
         getComponent(MainComponent.class).inject(this);
 
         mPresenter.attachView(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.loadRepoList("android", "java");
     }
 
     @Nullable
@@ -63,7 +65,7 @@ public class SearchFragment extends BaseLceFragment<ArrayList<Repo>> {
 
     @Override
     public int getContentView() {
-        return R.layout.fragment_search;
+        return R.layout.fragment_most_star;
     }
 
     @Override
@@ -73,28 +75,30 @@ public class SearchFragment extends BaseLceFragment<ArrayList<Repo>> {
     }
 
     private void initViews() {
-        mPresenter.bindSearchView(mSearchKeyText);
-
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
-                R.array.languages, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mLanguageSpinner.setAdapter(adapter);
-        RxAdapterView.itemSelections(mLanguageSpinner)
-                .subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer position) {
-                        mPresenter.setLanguage((String) adapter.getItem(position));
-                    }
-                });
-
         mAdapter = new RepoListRecyclerAdapter(null);
-        mRepoListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
+
+        mRepoListView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        mRepoListView.addItemDecoration(new HorizontalDividerItemDecoration
+                .Builder(getContext())
+                .color(Color.TRANSPARENT)
+                .size(getResources().getDimensionPixelSize(R.dimen.divider_height))
+                .build());
         mRepoListView.setAdapter(mAdapter);
     }
+
+    private BaseQuickAdapter.OnRecyclerViewItemClickListener mItemtClickListener = new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            Repo repo = mAdapter.getItem(position);
+            RepoDetailActivity.launch(getActivity(), repo.getOwner().getLogin(), repo.getName());
+        }
+    };
 
     @Override
     public void showContent(ArrayList<Repo> data) {
         super.showContent(data);
+        AppLog.d("data size: " + data.size());
         mAdapter.setNewData(data);
     }
 

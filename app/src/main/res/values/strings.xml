@@ -4,6 +4,7 @@
     <!-- main menu labels -->
     <string name="menu_trending">Trending</string>
     <string name="menu_most_star">Most Stars</string>
+    <string name="menu_account">Profile</string>
     <string name="menu_search">Search</string>
 
     <string name="settings">Settings</string>
@@ -14,5 +15,8 @@
     <string name="sign_in">Sign In</string>
     <string name="please_login">Please Login</string>
     <string name="exit_click_back_again">再按一次退出应用</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

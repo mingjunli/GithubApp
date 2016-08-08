@@ -1,4 +1,4 @@
-package com.anly.githubapp.ui.module.main.adapter;
+package com.anly.githubapp.ui.module.repo.adapter;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.StringUtil;

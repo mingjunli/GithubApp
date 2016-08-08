@@ -1,4 +1,4 @@
-package com.anly.githubapp.ui.module.main;
+package com.anly.githubapp.ui.module.repo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
 import com.anly.githubapp.ui.base.BaseLceFragment;
-import com.anly.githubapp.ui.module.main.adapter.TrendingRepoRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.adapter.TrendingRepoRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.clans.fab.FloatingActionMenu;
