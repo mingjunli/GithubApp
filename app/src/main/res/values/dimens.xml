@@ -22,4 +22,6 @@
     <dimen name="dimen_120">120dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
+    <dimen name="dimen_230">230dp</dimen>
+    <dimen name="dimen_64">64dp</dimen>
 </resources>

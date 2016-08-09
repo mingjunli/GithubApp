@@ -1,6 +1,7 @@
 package com.anly.githubapp.ui.base;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 
 import com.anly.githubapp.ui.widget.loading.LoadingView;
 import com.anly.mvp.lce.LoadView;
@@ -28,4 +29,9 @@ public abstract class BaseLoadingActivity extends BaseActivity implements LoadVi
     }
 
     public abstract String getLoadingMessage();
+
+    @Override
+    public void error(Throwable e) {
+        Snackbar.make(getWindow().getDecorView(), e.getMessage(), Snackbar.LENGTH_LONG).show();
+    }
 }

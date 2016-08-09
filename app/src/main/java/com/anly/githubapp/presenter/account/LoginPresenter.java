@@ -63,7 +63,7 @@ public class LoginPresenter extends RxMvpPresenter<LoginView> {
                     @Override
                     public void onError(Throwable e) {
                         AppLog.e(e);
-                        getMvpView().loginFailed(e.getMessage());
+                        getMvpView().error(e);
                     }
                 }));
     }

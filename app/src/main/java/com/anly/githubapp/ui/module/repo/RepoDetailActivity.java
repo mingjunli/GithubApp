@@ -3,23 +3,17 @@ package com.anly.githubapp.ui.module.repo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Base64;
-import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.ImageLoader;
-import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -27,9 +21,10 @@ import com.anly.githubapp.di.component.RepoComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
-import com.anly.githubapp.ui.base.LceActivity;
+import com.anly.githubapp.ui.base.BaseLoadingActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
+import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.zzhoujay.richtext.RichText;
 
 import javax.inject.Inject;
@@ -37,7 +32,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasComponent<RepoComponent> {
+public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetailView, HasComponent<RepoComponent> {
 
     @Inject
     RepoDetailPresenter mPresenter;
@@ -89,6 +84,11 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
     }
 
     @Override
+    public String getLoadingMessage() {
+        return null;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         loadDetailData();
@@ -125,32 +125,6 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
         }
     }
 
-    @Override
-    public void showContent(RepoDetail data) {
-        super.showContent(data);
-        updateViews(data);
-    }
-
-    @Override
-    public View getAnchorView() {
-        return null;
-    }
-
-    @Override
-    public View.OnClickListener getRetryListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadDetailData();
-            }
-        };
-    }
-
-    @Override
-    public void showError(Throwable e) {
-        AppLog.e(e);
-    }
-
     private void updateViews(RepoDetail detail) {
         setTitle(detail.getBaseRepo().getName());
 
@@ -180,5 +154,10 @@ public class RepoDetailActivity extends LceActivity<RepoDetail> implements HasCo
                 .activityModule(new ActivityModule(this))
                 .repoModule(new RepoModule())
                 .build();
+    }
+
+    @Override
+    public void showRepoDetail(RepoDetail detail) {
+        updateViews(detail);
     }
 }

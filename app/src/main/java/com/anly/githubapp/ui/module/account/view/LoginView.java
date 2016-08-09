@@ -9,6 +9,4 @@ import com.anly.mvp.lce.LoadView;
 public interface LoginView extends LoadView {
 
     void loginSuccess(User user);
-
-    void loginFailed(String reason);
 }

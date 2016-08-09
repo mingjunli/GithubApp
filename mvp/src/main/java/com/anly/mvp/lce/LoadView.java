@@ -14,4 +14,7 @@ public interface LoadView extends MvpView {
 
     @UiThread
     public void dismissLoading();
+
+    @UiThread
+    public void error(Throwable e);
 }

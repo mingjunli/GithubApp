@@ -3,6 +3,7 @@ package com.anly.githubapp.common.util;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.anly.githubapp.R;
 import com.bumptech.glide.Glide;
 
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
@@ -36,7 +37,7 @@ public class ImageLoader {
         Glide.with(context)
                 .load(source)
                 .bitmapTransform(new CropCircleTransformation(context))
-                .fitCenter()
+                .placeholder(R.drawable.ic_github)
                 .into(view);
     }
 
@@ -44,7 +45,6 @@ public class ImageLoader {
         Glide.with(view.getContext())
                 .load(source)
                 .bitmapTransform(new CropCircleTransformation(view.getContext()))
-                .fitCenter()
                 .into(view);
     }
 }

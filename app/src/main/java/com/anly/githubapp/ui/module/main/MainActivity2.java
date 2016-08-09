@@ -23,7 +23,6 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
-import com.anly.githubapp.ui.module.repo.RepoListActivity;
 import com.anly.githubapp.ui.module.repo.SearchFragment;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -83,7 +82,6 @@ public class MainActivity2 extends BaseActivity implements HasComponent<MainComp
                         AppLog.d("already log on:" + AccountPref.isLogon(MainActivity2.this));
 
                         if (AccountPref.isLogon(MainActivity2.this)) {
-                            RepoListActivity.launch(MainActivity2.this);
                         }
                         else {
                             LoginActivity.launchForResult(MainActivity2.this);

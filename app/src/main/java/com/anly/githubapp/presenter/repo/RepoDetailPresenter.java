@@ -6,7 +6,9 @@ import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
+import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.anly.mvp.lce.LceView;
+import com.anly.mvp.lce.LoadView;
 
 import javax.inject.Inject;
 
@@ -19,8 +21,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by mingjun on 16/7/29.
  */
-public class RepoDetailPresenter extends RxMvpPresenter<LceView<RepoDetail>> {
-
+public class RepoDetailPresenter extends RxMvpPresenter<RepoDetailView> {
 
     private final RepoApi mRepoApi;
 
@@ -50,12 +51,12 @@ public class RepoDetailPresenter extends RxMvpPresenter<LceView<RepoDetail>> {
                         .subscribe(new ResponseObserver<RepoDetail>() {
                             @Override
                             public void onSuccess(RepoDetail detail) {
-                                getMvpView().showContent(detail);
+                                getMvpView().showRepoDetail(detail);
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                getMvpView().showError(e);
+                                getMvpView().error(e);
                             }
                         })
         );

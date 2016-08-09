@@ -104,9 +104,4 @@ public class LoginActivity extends BaseLoadingActivity implements LoginView, Has
         AccountPref.saveLogonUser(this, user);
         MainActivity.launch(this);
     }
-
-    @Override
-    public void loginFailed(String reason) {
-        Snackbar.make(mLoginBtn, reason, Snackbar.LENGTH_LONG).show();
-    }
 }
