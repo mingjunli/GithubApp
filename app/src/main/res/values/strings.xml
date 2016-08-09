@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GithubApp</string>
+    <string name="app_name">Github</string>
 
     <!-- main menu labels -->
     <string name="menu_trending">Trending</string>

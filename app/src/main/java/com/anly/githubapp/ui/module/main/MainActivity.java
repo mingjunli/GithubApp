@@ -1,11 +1,11 @@
 package com.anly.githubapp.ui.module.main;
 
-import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +24,6 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
-import com.anly.githubapp.ui.module.repo.SearchActivity;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -47,6 +46,10 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     SearchView mSearchView;
 
     private FragmentManager mFragmentManager = getSupportFragmentManager();
+
+    public static void launch(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
