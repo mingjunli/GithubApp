@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".ui.module.main.IntroduceActivity"
                   android:screenOrientation="portrait"
-                  android:theme="@style/Theme.Design.NoActionBar">
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity
             android:name=".ui.module.main.MainActivity"
@@ -31,7 +31,9 @@
             android:theme="@style/MaterialDrawerTheme.Light.DarkToolbar">
         </activity>
         <activity android:name=".ui.module.account.LoginActivity"
-                  android:screenOrientation="portrait">
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustResize"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
 
         <activity android:name=".ui.module.repo.SearchActivity">

@@ -1,7 +1,9 @@
 package com.anly.githubapp.ui.module.main;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.data.pref.AppPref;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.daimajia.androidanimations.library.Techniques;
 import com.viksaa.sssplash.lib.activity.AwesomeSplash;
 import com.viksaa.sssplash.lib.cnst.Flags;
@@ -38,7 +40,12 @@ public class WelcomeActivity extends AwesomeSplash {
             IntroduceActivity.launch(this);
         }
         else {
-            MainActivity.launch(this);
+            if (AccountPref.isLogon(this)) {
+                MainActivity.launch(this);
+            }
+            else {
+                LoginActivity.launch(this);
+            }
         }
         finish();
     }

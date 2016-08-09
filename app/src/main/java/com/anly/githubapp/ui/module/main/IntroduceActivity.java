@@ -7,7 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.data.pref.AppPref;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
@@ -58,6 +60,12 @@ public class IntroduceActivity extends AppIntro {
         super.onDonePressed(currentFragment);
 
         AppPref.setAlreadyRun(this);
-        MainActivity.launch(this);
+
+        if (AccountPref.isLogon(this)) {
+            MainActivity.launch(this);
+        }
+        else {
+            LoginActivity.launch(this);
+        }
     }
 }

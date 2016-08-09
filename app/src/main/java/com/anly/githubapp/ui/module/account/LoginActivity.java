@@ -4,24 +4,26 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.constant.IntentExtra;
+import com.anly.githubapp.common.util.InputMethodUtils;
 import com.anly.githubapp.data.model.User;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.AccountComponent;
 import com.anly.githubapp.di.component.DaggerAccountComponent;
 import com.anly.githubapp.di.module.AccountModule;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.presenter.account.LoginPresenter;
-import com.anly.githubapp.ui.base.LceActivity;
+import com.anly.githubapp.ui.base.BaseLoadingActivity;
+import com.anly.githubapp.ui.module.account.view.LoginView;
+import com.anly.githubapp.ui.module.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -29,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends LceActivity<User> implements HasComponent<AccountComponent> {
+public class LoginActivity extends BaseLoadingActivity implements LoginView, HasComponent<AccountComponent> {
 
     @BindView(R.id.icon)
     ImageView mIcon;
@@ -65,36 +67,24 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
     }
 
     @Override
+    public String getLoadingMessage() {
+        return null;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
     }
 
-    @Override
-    public void showContent(User data) {
-        super.showContent(data);
-        Intent result = new Intent();
-        result.putExtra(IntentExtra.USER, data);
-        setResult(RESULT_OK, result);
-        finish();
-    }
-
-    @Override
-    public View getAnchorView() {
-        return null;
-    }
-
-    @Override
-    public View.OnClickListener getRetryListener() {
-        return null;
-    }
-
     @OnClick(R.id.login_btn)
     public void onClick() {
+
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
 
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+            InputMethodUtils.hideSoftInput(this);
             mPresenter.login(username, password);
         }
     }
@@ -106,5 +96,17 @@ public class LoginActivity extends LceActivity<User> implements HasComponent<Acc
                 .activityModule(new ActivityModule(this))
                 .accountModule(new AccountModule())
                 .build();
+    }
+
+    @Override
+    public void loginSuccess(User user) {
+        Snackbar.make(mLoginBtn, "Login Success", Snackbar.LENGTH_LONG).show();
+        AccountPref.saveLogonUser(this, user);
+        MainActivity.launch(this);
+    }
+
+    @Override
+    public void loginFailed(String reason) {
+        Snackbar.make(mLoginBtn, reason, Snackbar.LENGTH_LONG).show();
     }
 }

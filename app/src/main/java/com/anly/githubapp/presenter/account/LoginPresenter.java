@@ -10,6 +10,7 @@ import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.di.ApplicationContext;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
+import com.anly.githubapp.ui.module.account.view.LoginView;
 import com.anly.mvp.lce.LceView;
 
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by mingjun on 16/7/27.
  */
-public class LoginPresenter extends RxMvpPresenter<LceView<User>> {
+public class LoginPresenter extends RxMvpPresenter<LoginView> {
 
     private final AccountApi mAccountApi;
 
@@ -56,13 +57,13 @@ public class LoginPresenter extends RxMvpPresenter<LceView<User>> {
                         AccountPref.saveLogonUser(mContext, user);
 
                         AppLog.d("user:" + user.getLogin());
-                        getMvpView().showContent(user);
+                        getMvpView().loginSuccess(user);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         AppLog.e(e);
-                        getMvpView().showError(e);
+                        getMvpView().loginFailed(e.getMessage());
                     }
                 }));
     }
