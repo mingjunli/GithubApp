@@ -4,5 +4,5 @@
 
     <string name="error_text">Ooops!!!</string>
     <string name="error_desc">Looks like something went wrong!</string>
-    <string name="retry_btn_label">Try Refreshing</string>
+    <string name="retry_btn_label">Retry</string>
 </resources>

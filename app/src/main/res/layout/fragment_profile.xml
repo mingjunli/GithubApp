@@ -143,20 +143,16 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
-        <android.support.design.widget.TabLayout
+        <LinearLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="bottom"
-            android:background="@color/md_amber_200"
-            android:fillViewport="false"
-            app:layout_scrollFlags="scroll"
-            app:tabIndicatorColor="@color/accent"
-            app:tabIndicatorHeight="@dimen/dimen_2"
-            app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/accent">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/md_amber_200">
 
-        </android.support.design.widget.TabLayout>
+        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -167,11 +163,52 @@
         android:scrollbars="none"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/view_pager"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_10"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/my_repo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_64"
+                app:cardCornerRadius="0dp"
+                android:elevation="@dimen/dimen_2"
+                app:contentPadding="@dimen/dimen_10"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/repositories"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="@color/black"/>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/my_starred"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_64"
+                android:layout_marginTop="@dimen/dimen_10"
+                app:cardCornerRadius="0dp"
+                android:elevation="@dimen/dimen_2"
+                app:contentPadding="@dimen/dimen_10"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/your_stars"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_size_14"
+                    android:textColor="@color/black"/>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>

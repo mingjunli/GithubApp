@@ -14,9 +14,11 @@ import com.anly.githubapp.common.util.ImageLoader;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.ui.base.BaseFragment;
+import com.anly.githubapp.ui.module.repo.RepoListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by mingjun on 16/8/8.
@@ -68,5 +70,16 @@ public class ProfileFragment extends BaseFragment {
         mBlog.setText(user.getBlog());
         mLocation.setText(user.getLocation());
         mEmail.setText(user.getEmail());
+    }
+
+    @OnClick({R.id.my_repo, R.id.my_starred})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.my_repo:
+                RepoListActivity.launch(getActivity());
+                break;
+            case R.id.my_starred:
+                break;
+        }
     }
 }
