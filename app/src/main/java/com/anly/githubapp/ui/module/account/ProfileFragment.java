@@ -29,6 +29,14 @@ public class ProfileFragment extends BaseFragment {
     TextView mUsername;
     @BindView(R.id.bio)
     TextView mBio;
+    @BindView(R.id.company)
+    TextView mCompany;
+    @BindView(R.id.location)
+    TextView mLocation;
+    @BindView(R.id.blog)
+    TextView mBlog;
+    @BindView(R.id.email)
+    TextView mEmail;
 
     private User mUser;
 
@@ -51,9 +59,14 @@ public class ProfileFragment extends BaseFragment {
     private void updateUser(User user) {
         ImageLoader.loadWithCircle(getContext(), user.getAvatar_url(), mUserIcon);
 
-        String displayName = TextUtils.isEmpty(user.getName()) ?  user.getLogin() : user.getName();
+        String displayName = TextUtils.isEmpty(user.getName()) ? user.getLogin() : user.getName();
         mUsername.setText(displayName);
 
         mBio.setText(user.getBio());
+
+        mCompany.setText(user.getCompany());
+        mBlog.setText(user.getBlog());
+        mLocation.setText(user.getLocation());
+        mEmail.setText(user.getEmail());
     }
 }
