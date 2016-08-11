@@ -1,17 +1,17 @@
 package com.anly.githubapp.ui.module.main;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.anly.githubapp.GithubApplication;
@@ -24,6 +24,7 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
+import com.anly.githubapp.ui.module.repo.SearchActivity;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -119,28 +120,19 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu, menu);
-
-        MenuItem item = menu.findItem(R.id.action_search);
-        mSearchView = (SearchView) MenuItemCompat.getActionView(item);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//            case R.id.action_search:
-//                SearchActivity.launch(this);
-//                return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
     @Override
-    public boolean onSearchRequested() {
-        AppLog.d("onSearchRequested");
-        return super.onSearchRequested();
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                SearchActivity.launch(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private long mLastBackTime = 0;

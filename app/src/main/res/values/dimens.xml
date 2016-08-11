@@ -15,11 +15,13 @@
     <dimen name="text_size_14">14sp</dimen>
     <dimen name="dimen_20">20dp</dimen>
     <dimen name="dimen_60">60dp</dimen>
+    <dimen name="dimen_72">72dp</dimen>
     <dimen name="dimen_48">48dp</dimen>
     <dimen name="dimen_16">16dp</dimen>
     <dimen name="dimen_96">96dp</dimen>
     <dimen name="dimen_200">200dp</dimen>
     <dimen name="dimen_120">120dp</dimen>
+    <dimen name="dimen_160">160dp</dimen>
     <dimen name="dimen_40">40dp</dimen>
     <dimen name="dimen_100">100dp</dimen>
     <dimen name="dimen_230">230dp</dimen>

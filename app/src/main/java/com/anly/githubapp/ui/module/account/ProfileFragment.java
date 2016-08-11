@@ -15,6 +15,7 @@ import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
+import com.anly.githubapp.ui.module.repo.StarredRepoListActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,6 +80,7 @@ public class ProfileFragment extends BaseFragment {
                 RepoListActivity.launch(getActivity());
                 break;
             case R.id.my_starred:
+                StarredRepoListActivity.launch(getActivity());
                 break;
         }
     }

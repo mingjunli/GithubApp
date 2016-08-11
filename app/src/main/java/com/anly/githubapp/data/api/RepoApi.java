@@ -37,4 +37,6 @@ public interface RepoApi {
     Observable<RepoDetail> getRepoDetail(String owner, String name);
 
     Observable<ArrayList<Repo>> getMyRepos();
+
+    Observable<ArrayList<Repo>> getMyStarredRepos();
 }

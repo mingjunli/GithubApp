@@ -90,4 +90,9 @@ public class RepoDataSource implements RepoApi {
     public Observable<ArrayList<Repo>> getMyRepos() {
         return mRepoService.getMyRepos();
     }
+
+    @Override
+    public Observable<ArrayList<Repo>> getMyStarredRepos() {
+        return mRepoService.getMyStarredRepos();
+    }
 }

@@ -5,7 +5,6 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.di.module.TrendingRepoModule;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
-import com.anly.githubapp.ui.module.repo.SearchFragment;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 
 import dagger.Component;
@@ -23,5 +22,4 @@ public interface MainComponent extends ActivityComponent {
 
     void inject(TrendingFragment trendingFragment);
 
-    void inject(SearchFragment searchFragment);
 }

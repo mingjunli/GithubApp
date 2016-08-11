@@ -37,4 +37,7 @@ public interface RepoService {
 
     @GET("user/repos")
     Observable<ArrayList<Repo>> getMyRepos();
+
+    @GET("user/starred")
+    Observable<ArrayList<Repo>> getMyStarredRepos();
 }
