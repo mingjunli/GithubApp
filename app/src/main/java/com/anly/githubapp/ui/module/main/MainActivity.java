@@ -1,9 +1,9 @@
 package com.anly.githubapp.ui.module.main;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.anly.githubapp.GithubApplication;
@@ -44,7 +43,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     FrameLayout mContentFrame;
 
     BottomBar mBottomBar;
-    SearchView mSearchView;
 
     private FragmentManager mFragmentManager = getSupportFragmentManager();
 
@@ -116,6 +114,12 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             default:
                 return null;
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        mBottomBar.onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState, outPersistentState);
     }
 
     @Override

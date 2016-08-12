@@ -147,4 +147,8 @@ dependencies {
     // PagerSlidingTabStrip
     // https://github.com/astuetz/PagerSlidingTabStrip
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+
+    // FlycoLabelView
+    // https://github.com/H07000223/FlycoLabelView
+    compile 'com.flyco.labelview:FlycoLabelView_Lib:1.0.2@aar'
 }

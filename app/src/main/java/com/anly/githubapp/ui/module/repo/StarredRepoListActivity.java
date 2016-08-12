@@ -19,7 +19,7 @@ import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.StarredRepoListPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
-import com.anly.githubapp.ui.module.repo.adapter.StarredRepoListRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
 import com.anly.mvp.lce.LceView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -43,7 +43,7 @@ public class StarredRepoListActivity extends BaseLoadingActivity implements LceV
     @Inject
     StarredRepoListPresenter mPresenter;
 
-    private StarredRepoListRecyclerAdapter mAdapter;
+    private RepoListRecyclerAdapter mAdapter;
 
     public static void launch(Context context) {
         context.startActivity(new Intent(context, StarredRepoListActivity.class));
@@ -71,7 +71,7 @@ public class StarredRepoListActivity extends BaseLoadingActivity implements LceV
     }
 
     private void initViews() {
-        mAdapter = new StarredRepoListRecyclerAdapter(null);
+        mAdapter = new RepoListRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemClickListener);
 
         mRepoListView.setLayoutManager(new LinearLayoutManager(this));

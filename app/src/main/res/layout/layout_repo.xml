@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    android:id="@+id/card_view"
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="@dimen/dimen_2"
-    app:contentPadding="@dimen/dimen_10"
-    app:cardCornerRadius="0dp">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_10">
 
         <TextView
             android:id="@+id/name"
@@ -37,8 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginTop="@dimen/dimen_5"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -53,27 +51,50 @@
                 android:id="@+id/owner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="left|center_vertical"
                 android:layout_marginLeft="@dimen/dimen_10"
+                android:gravity="left|center_vertical"
                 android:text="@string/app_name"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_size_14"/>
 
         </LinearLayout>
 
+        <View
+            android:layout_marginTop="@dimen/dimen_5"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grey"/>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_32"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_5"
-            android:gravity="center_vertical">
+            android:paddingTop="@dimen/dimen_10">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/update_time"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:gravity="left">
+                android:gravity="left|center_vertical"
+                android:text="@string/app_name"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_12"
+                />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grey"/>
+
+            <LinearLayout
+                android:id="@+id/star_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/dimen_16"
@@ -87,27 +108,25 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/dimen_5"
                     android:gravity="center"
-                    android:textSize="@dimen/text_size_12"
-                    android:textColor="@android:color/black"
                     android:text="@string/app_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/text_size_12"
                     />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/update_time"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/dimen_5"
-                android:gravity="center"
-                android:textSize="@dimen/text_size_12"
-                android:textColor="@android:color/black"
-                android:text="@string/app_name"
-                />
 
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+    <com.flyco.labelview.LabelView
+        android:id="@+id/label_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        app:lv_background_color="@color/md_yellow_500"
+        app:lv_gravity="TOP_RIGHT"
+        app:lv_text="TEST"
+        app:lv_text_size="@dimen/text_size_12"/>
+</FrameLayout>
