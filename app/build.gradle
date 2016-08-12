@@ -109,7 +109,6 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.3.6@aar') {
         transitive = true
     }
-    compile "com.mikepenz:crossfader:1.3.7@aar"
 
     // RichText to support markdown file.
     // https://github.com/zzhoujay/RichText

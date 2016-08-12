@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +15,6 @@ import android.view.View;
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.common.util.CrossfaderWrapper;
 import com.anly.githubapp.common.util.InputMethodUtils;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.HasComponent;
@@ -28,10 +28,8 @@ import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.view.SearchView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-import com.mikepenz.crossfader.Crossfader;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.MiniDrawer;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
@@ -78,12 +76,14 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
 
     @Override
     public String getLoadingMessage() {
-        return null;
+        return getString(R.string.load_searching);
     }
 
     private void initViews() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        setTitle(R.string.search);
 
         mSearchView.setVoiceSearch(false);
         mSearchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
@@ -94,36 +94,32 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withTranslucentStatusBar(false)
-                .withSliderBackgroundColor(getResources().getColor(R.color.md_teal_A100))
+                .withDisplayBelowStatusBar(true)
+                .withActionBarDrawerToggleAnimated(true)
+                .withDrawerWidthRes(R.dimen.dimen_160)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("java").withIcon(R.drawable.ic_github),
-                        new PrimaryDrawerItem().withName("android").withIcon(R.drawable.ic_github)
+                        new PrimaryDrawerItem().withName("Java").withIcon(R.drawable.ic_java),
+                        new PrimaryDrawerItem().withName("Objective-C").withIcon(R.drawable.ic_ios),
+                        new PrimaryDrawerItem().withName("Swift").withIcon(R.drawable.ic_ios),
+                        new PrimaryDrawerItem().withName("JavaScript").withIcon(R.drawable.ic_js),
+                        new PrimaryDrawerItem().withName("Python").withIcon(R.drawable.ic_python),
+                        new PrimaryDrawerItem().withName("HTML").withIcon(R.drawable.ic_html),
+                        new PrimaryDrawerItem().withName("C#").withIcon(R.drawable.ic_cshap),
+                        new PrimaryDrawerItem().withName("C++").withIcon(R.drawable.ic_cpp),
+                        new PrimaryDrawerItem().withName("Ruby").withIcon(R.drawable.ic_ruby)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         AppLog.d("onItemClick, position = " + position + ", item = " + ((Nameable)drawerItem).getName());
+
+                        mCurrentLang = ((Nameable)drawerItem).getName().toString();
+                        search(mCurrentKey, mCurrentLang);
+                        mDrawer.closeDrawer();
                         return true;
                     }
                 })
-                .withGenerateMiniDrawer(true)
-                .buildView();
-
-        //the MiniDrawer is managed by the Drawer and we just get it to hook it into the Crossfader
-        MiniDrawer miniDrawer = mDrawer.getMiniDrawer();
-        View miniDrawerView = miniDrawer.build(this);
-        miniDrawerView.setBackgroundColor(getResources().getColor(R.color.md_teal_A100));
-
-        //create and build our crossfader (see the MiniDrawer is also builded in here, as the build method returns the view to be used in the crossfader)
-        //the crossfader library can be found here: https://github.com/mikepenz/Crossfader
-        Crossfader crossFader = new Crossfader()
-                .withContent(findViewById(R.id.repo_list))
-                .withFirst(mDrawer.getSlider(), getResources().getDimensionPixelOffset(R.dimen.dimen_120))
-                .withSecond(miniDrawerView, getResources().getDimensionPixelOffset(R.dimen.dimen_72))
                 .build();
-
-        //define the crossfader to be used with the miniDrawer. This is required to be able to automatically toggle open / close
-        miniDrawer.withCrossFader(new CrossfaderWrapper(crossFader));
 
         mAdapter = new RepoListRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
@@ -136,6 +132,9 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
                 .build());
 
         mRepoListView.setAdapter(mAdapter);
+
+        // default is null
+        mCurrentLang = "";
     }
 
     private BaseQuickAdapter.OnRecyclerViewItemClickListener mItemtClickListener = new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
@@ -150,11 +149,10 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
         @Override
         public boolean onQueryTextSubmit(String query) {
             InputMethodUtils.hideSoftInput(SearchActivity.this);
+            mSearchView.closeSearch();
 
-            PrimaryDrawerItem current = (PrimaryDrawerItem) mDrawer.getDrawerItems().get(mDrawer.getCurrentSelectedPosition());
-            AppLog.d("current:" + current.getName().toString());
-
-            mPresenter.searchRepo(query, current.getName().toString());
+            mCurrentKey = query;
+            search(mCurrentKey, mCurrentLang);
             return true;
         }
 
@@ -163,6 +161,15 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
             return false;
         }
     };
+
+    private String mCurrentKey;
+    private String mCurrentLang;
+    private void search(String key, String lang) {
+        AppLog.d("search, key = " + key + ", lang = " + lang);
+        if (!TextUtils.isEmpty(key)) {
+            mPresenter.searchRepo(key, lang);
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -192,7 +199,6 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
 
     @Override
     public void showSearchResult(ArrayList<Repo> repos) {
-        mSearchView.closeSearch();
         mAdapter.setNewData(repos);
     }
 }
