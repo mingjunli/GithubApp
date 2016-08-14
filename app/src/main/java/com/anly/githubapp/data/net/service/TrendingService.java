@@ -3,6 +3,7 @@ package com.anly.githubapp.data.net.service;
 import com.anly.githubapp.data.net.response.TrendingResultResp;
 
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import rx.Observable;
 
 /**
@@ -10,6 +11,7 @@ import rx.Observable;
  */
 public interface TrendingService {
 
+    @Headers("Cache-Control: public, max-age=180")
     @GET("trending?languages[]=java&languages[]=swift&languages[]=objective-c&languages[]=bash&languages[]=python&languages[]=html")
     Observable<TrendingResultResp> getTrendingRepos();
 

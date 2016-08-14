@@ -14,10 +14,10 @@ public class GithubTrendingRetrofit extends BaseRetrofit {
 
     private static final String END_POINT = "http://githubtrending.herokuapp.com/";
 
-    NormalHttpClient mHttpClient;
+    CacheHttpClient mHttpClient;
 
     @Inject
-    public GithubTrendingRetrofit(NormalHttpClient mHttpClient) {
+    public GithubTrendingRetrofit(CacheHttpClient mHttpClient) {
         this.mHttpClient = mHttpClient;
     }
 

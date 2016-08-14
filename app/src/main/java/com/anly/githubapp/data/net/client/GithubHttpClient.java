@@ -1,14 +1,17 @@
 package com.anly.githubapp.data.net.client;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.anly.githubapp.data.net.client.core.BaseOkHttpClient;
 import com.anly.githubapp.data.pref.AccountPref;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
 
+import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -17,10 +20,10 @@ import okhttp3.Response;
 /**
  * Created by mingjun on 16/7/20.
  */
-public class GithubHttpClient extends BaseOkHttpClient {
+public class GithubHttpClient extends CacheHttpClient {
 
     @Inject
-    Application application;
+    public Application application;
 
     @Inject
     public GithubHttpClient() {
@@ -32,6 +35,8 @@ public class GithubHttpClient extends BaseOkHttpClient {
 
     @Override
     public OkHttpClient.Builder customize(OkHttpClient.Builder builder) {
+        builder = super.customize(builder);
+
         builder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {

@@ -3,6 +3,7 @@ package com.anly.githubapp.ui.module.repo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,14 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
+import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.base.BaseLceFragment;
 import com.anly.githubapp.ui.module.repo.adapter.TrendingRepoRecyclerAdapter;
-import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.anly.mvp.lce.LceView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.clans.fab.FloatingActionMenu;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -33,12 +36,14 @@ import butterknife.OnClick;
 /**
  * Created by mingjun on 16/7/19.
  */
-public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
+public class TrendingFragment extends BaseFragment implements LceView<ArrayList<TrendingRepo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
     @BindView(R.id.menu)
     FloatingActionMenu mFloatMenu;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout mRefreshLayout;
 
     private TrendingRepoRecyclerAdapter mAdapter;
 
@@ -48,15 +53,10 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_trending, null);
         ButterKnife.bind(this, view);
         initViews();
         return view;
-    }
-
-    @Override
-    public int getContentView() {
-        return R.layout.fragment_trending;
     }
 
     @Override
@@ -70,17 +70,7 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
-    }
-
-    @Override
-    public View.OnClickListener getRetryListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.loadTrendingRepo(TrendingApi.LANG_JAVA);
-            }
-        };
+        mPresenter.loadTrendingRepo(mCurrentLang);
     }
 
     @Override
@@ -90,6 +80,8 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
     }
 
     private void initViews() {
+        mRefreshLayout.setOnRefreshListener(mRefreshListener);
+
         mAdapter = new TrendingRepoRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemClickListener);
         mAdapter.setEmptyView(LayoutInflater.from(getContext()).inflate(R.layout.empty_view, null));
@@ -116,9 +108,36 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
     };
 
     @Override
+    public void showLoading() {
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.setRefreshing(true);
+            }
+        });
+    }
+
+    @Override
+    public void dismissLoading() {
+        mRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
     public void showContent(ArrayList<TrendingRepo> data) {
-        super.showContent(data);
-        mAdapter.setNewData(data);
+        AppLog.d("data:" + data);
+        if (data != null) {
+            mAdapter.setNewData(data);
+        }
+    }
+
+    @Override
+    public void showError(Throwable e) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
     @OnClick({R.id.lang_java,
@@ -153,6 +172,17 @@ public class TrendingFragment extends BaseLceFragment<ArrayList<TrendingRepo>> {
                 break;
         }
 
+        mCurrentLang = lang;
         mPresenter.loadTrendingRepo(lang);
     }
+
+    // default is java
+    private int mCurrentLang = TrendingApi.LANG_JAVA;
+    private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            AppLog.d("onRefresh, mCurrentLang:" + mCurrentLang);
+            mPresenter.loadTrendingRepo(mCurrentLang);
+        }
+    };
 }

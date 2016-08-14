@@ -27,7 +27,7 @@ public class MostStarPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
         this.mRepoApi = api;
     }
 
-    public void loadRepoList(String key, String language) {
+    public void loadMostStars(String key, String language) {
         mCompositeSubscription.add(mRepoApi.searchMostStarredRepo(key, language)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -3,6 +3,7 @@ package com.anly.githubapp.ui.module.repo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,11 +14,12 @@ import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.Repo;
+import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
-import com.anly.githubapp.ui.base.BaseLceFragment;
+import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
-import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
+import com.anly.mvp.lce.LceView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.github.clans.fab.FloatingActionMenu;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -33,12 +35,14 @@ import butterknife.OnClick;
 /**
  * Created by mingjun on 16/7/19.
  */
-public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
+public class MostStarFragment extends BaseFragment implements LceView<ArrayList<Repo>> {
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
     @BindView(R.id.menu)
     FloatingActionMenu mFloatMenu;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout mRefreshLayout;
 
     private RepoListRecyclerAdapter mAdapter;
 
@@ -56,21 +60,16 @@ public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.loadRepoList("android", "java");
+        mPresenter.loadMostStars(mCurrentKey, mCurrentLang);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_most_star, null);
         ButterKnife.bind(this, view);
         initViews();
         return view;
-    }
-
-    @Override
-    public int getContentView() {
-        return R.layout.fragment_most_star;
     }
 
     @Override
@@ -80,6 +79,8 @@ public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
     }
 
     private void initViews() {
+        mRefreshLayout.setOnRefreshListener(mRefreshListener);
+
         mAdapter = new RepoListRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
 
@@ -101,15 +102,36 @@ public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
     };
 
     @Override
-    public void showContent(ArrayList<Repo> data) {
-        super.showContent(data);
-        AppLog.d("data size: " + data.size());
-        mAdapter.setNewData(data);
+    public void showLoading() {
+        mRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mRefreshLayout.setRefreshing(true);
+            }
+        });
     }
 
     @Override
-    public View.OnClickListener getRetryListener() {
-        return null;
+    public void dismissLoading() {
+        mRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showContent(ArrayList<Repo> data) {
+        AppLog.d("data:" + data);
+        if (data != null) {
+            mAdapter.setNewData(data);
+        }
+    }
+
+    @Override
+    public void showError(Throwable e) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
     @OnClick({R.id.repo_android,
@@ -145,6 +167,19 @@ public class MostStarFragment extends BaseLceFragment<ArrayList<Repo>> {
                 break;
         }
 
-        mPresenter.loadRepoList(key, lang);
+        mCurrentKey = key;
+        mCurrentLang = lang;
+        mPresenter.loadMostStars(key, lang);
     }
+
+    // default is java
+    private String mCurrentLang = "java";
+    private String mCurrentKey = "android";
+    private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            AppLog.d("onRefresh, mCurrentLang:" + mCurrentLang);
+            mPresenter.loadMostStars(mCurrentKey, mCurrentLang);
+        }
+    };
 }
