@@ -33,6 +33,7 @@ public class CacheHttpClient extends BaseOkHttpClient {
 
     @Override
     public OkHttpClient.Builder customize(OkHttpClient.Builder builder) {
+        // set cache dir
         File cacheFile = new File(mContext.getCacheDir(), "github_repo");
         Cache cache = new Cache(cacheFile, CACHE_SIZE);
         builder.cache(cache);
@@ -45,6 +46,8 @@ public class CacheHttpClient extends BaseOkHttpClient {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
+
+            // Add FORCE_CACHE cache control for each request if network is not available.
             if (!NetworkUtil.isNetworkAvailable(mContext)) {
                 request = request.newBuilder()
                         .cacheControl(CacheControl.FORCE_CACHE)
@@ -57,10 +60,12 @@ public class CacheHttpClient extends BaseOkHttpClient {
 
                 String cacheControl = request.cacheControl().toString();
 
+                // Add cache control header for response same as request's while network is available.
                 return originalResponse.newBuilder()
                         .header("Cache-Control", cacheControl)
                         .build();
             } else {
+                // Add cache control header for response to FORCE_CACHE while network is not available.
                 return originalResponse.newBuilder()
                         .header("Cache-Control", CacheControl.FORCE_CACHE.toString())
                         .build();
