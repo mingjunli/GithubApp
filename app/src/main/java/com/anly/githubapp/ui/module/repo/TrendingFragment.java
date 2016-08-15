@@ -40,8 +40,6 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
 
     @BindView(R.id.repo_list)
     RecyclerView mRepoListView;
-    @BindView(R.id.menu)
-    FloatingActionMenu mFloatMenu;
     @BindView(R.id.refresh_layout)
     SwipeRefreshLayout mRefreshLayout;
 
@@ -49,6 +47,19 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
 
     @Inject
     TrendingRepoPresenter mPresenter;
+
+    private int mCurrentLang;
+
+    private static final String EXTRA_LANG = "extra_lang";
+    public static TrendingFragment newInstance(int lang) {
+
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_LANG, lang);
+
+        TrendingFragment fragment = new TrendingFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -64,6 +75,7 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         super.onCreate(savedInstanceState);
         getComponent(MainComponent.class).inject(this);
 
+        mCurrentLang = getArguments().getInt(EXTRA_LANG, TrendingApi.LANG_JAVA);
         mPresenter.attachView(this);
     }
 
@@ -132,52 +144,14 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
 
     @Override
     public void showError(Throwable e) {
-
+        AppLog.e(e);
     }
 
     @Override
     public void showEmpty() {
-
+        // TODO
     }
 
-    @OnClick({R.id.lang_java,
-            R.id.lang_oc,
-            R.id.lang_swift,
-            R.id.lang_bash,
-            R.id.lang_html,
-            R.id.lang_python})
-    public void onLangMenuClick(View view) {
-        mFloatMenu.close(true);
-
-        int lang = TrendingApi.LANG_JAVA;
-
-        switch (view.getId()) {
-            case R.id.lang_java:
-                lang = TrendingApi.LANG_JAVA;
-                break;
-            case R.id.lang_oc:
-                lang = TrendingApi.LANG_OC;
-                break;
-            case R.id.lang_swift:
-                lang = TrendingApi.LANG_SWIFT;
-                break;
-            case R.id.lang_bash:
-                lang = TrendingApi.LANG_BASH;
-                break;
-            case R.id.lang_html:
-                lang = TrendingApi.LANG_HTML;
-                break;
-            case R.id.lang_python:
-                lang = TrendingApi.LANG_PYTHON;
-                break;
-        }
-
-        mCurrentLang = lang;
-        mPresenter.loadTrendingRepo(lang);
-    }
-
-    // default is java
-    private int mCurrentLang = TrendingApi.LANG_JAVA;
     private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {

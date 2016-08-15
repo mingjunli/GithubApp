@@ -13,12 +13,12 @@ import rx.Observable;
  */
 public interface TrendingApi {
 
-    int LANG_JAVA = 1;
-    int LANG_OC = 2;
-    int LANG_SWIFT = 3;
-    int LANG_HTML = 4;
-    int LANG_PYTHON = 5;
-    int LANG_BASH = 6;
+    public int LANG_JAVA = 1;
+    public int LANG_OC = 2;
+    public int LANG_SWIFT = 3;
+    public int LANG_HTML = 4;
+    public int LANG_PYTHON = 5;
+    public int LANG_BASH = 6;
 
     @IntDef({
             LANG_JAVA,

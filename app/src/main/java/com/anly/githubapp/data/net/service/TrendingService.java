@@ -11,7 +11,7 @@ import rx.Observable;
  */
 public interface TrendingService {
 
-    @Headers("Cache-Control: public, max-age=180")
+    @Headers("Cache-Control: public, max-age=600")
     @GET("trending?languages[]=java&languages[]=swift&languages[]=objective-c&languages[]=bash&languages[]=python&languages[]=html")
     Observable<TrendingResultResp> getTrendingRepos();
 

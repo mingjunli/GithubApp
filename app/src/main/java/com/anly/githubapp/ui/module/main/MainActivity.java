@@ -24,6 +24,7 @@ import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
 import com.anly.githubapp.ui.module.repo.SearchActivity;
+import com.anly.githubapp.ui.module.repo.TrendingContainerFragment;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
@@ -105,7 +106,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private String getFragmentName(int menuId) {
         switch (menuId) {
             case R.id.menu_trending:
-                return TrendingFragment.class.getName();
+                return TrendingContainerFragment.class.getName();
             case R.id.menu_most_stars:
                 return MostStarFragment.class.getName();
             case R.id.menu_account:

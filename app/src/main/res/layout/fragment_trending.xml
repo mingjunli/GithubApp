@@ -1,73 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/repo_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/repo_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:layout_marginRight="@dimen/dimen_10"
-        >
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_java"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="JAVA"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_oc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="Objective-C"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_swift"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="Swift"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_html"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="Html"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_bash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="Shell"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/lang_python"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="Python"
-            />
-
-    </com.github.clans.fab.FloatingActionMenu>
-
-</RelativeLayout>
+        android:layout_height="match_parent"/>
+</android.support.v4.widget.SwipeRefreshLayout>
