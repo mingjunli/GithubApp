@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_48"
         app:pstsUnderlineHeight="1px"
-        app:pstsIndicatorColor="@color/md_purple_400"
+        app:pstsIndicatorColor="@color/md_purple_300"
         app:pstsIndicatorHeight="@dimen/dimen_4"
         app:pstsShouldExpand="true"
         />

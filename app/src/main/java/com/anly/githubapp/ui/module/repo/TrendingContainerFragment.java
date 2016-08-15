@@ -28,7 +28,7 @@ public class TrendingContainerFragment extends BaseFragment {
 
     private TrendingFragmentAdapter mAdapter;
 
-    private Integer[] TRENDING_CATEGORY = {
+    private static final Integer[] TRENDING_CATEGORY = {
             TrendingApi.LANG_JAVA,
             TrendingApi.LANG_PYTHON,
             TrendingApi.LANG_OC,

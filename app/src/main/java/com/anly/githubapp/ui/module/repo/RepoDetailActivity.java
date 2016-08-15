@@ -8,13 +8,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.widget.ImageView;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.common.util.ImageLoader;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -27,13 +25,13 @@ import com.anly.githubapp.ui.base.BaseLoadingActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
+import com.anly.githubapp.ui.widget.RepoItemView;
 import com.zzhoujay.richtext.RichText;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetailView, HasComponent<RepoComponent> {
 
@@ -42,18 +40,6 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     @Inject
     StarActionPresenter mStarPresenter;
 
-    @BindView(R.id.desc)
-    TextView mDesc;
-    @BindView(R.id.image)
-    ImageView mOwnerIcon;
-    @BindView(R.id.owner)
-    TextView mOwnerName;
-    @BindView(R.id.watch)
-    TextView mWatch;
-    @BindView(R.id.star)
-    TextView mStars;
-    @BindView(R.id.fork)
-    TextView mFork;
     @BindView(R.id.forks_count)
     TextView mForksCount;
     @BindView(R.id.contributors_count)
@@ -64,6 +50,8 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     RecyclerView mForkListView;
     @BindView(R.id.contributor_list)
     RecyclerView mContributorListView;
+    @BindView(R.id.repo_item_view)
+    RepoItemView mRepoItemView;
 
     private ForkUserListAdapter mForkUserAdapter;
     private ContributorListAdapter mContributorAdapter;
@@ -87,8 +75,13 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         super.onCreate(savedInstanceState);
         getComponent().inject(this);
         setContentView(R.layout.activity_repo_detail);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ButterKnife.bind(this);
         initViews();
+
         mPresenter.attachView(this);
         mStarPresenter.attachView(this);
     }
@@ -108,6 +101,15 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initViews() {
@@ -142,18 +144,12 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
         setTitle(mRepo);
 
-        mDesc.setText(detail.getBaseRepo().getDescription());
-        ImageLoader.load(this, detail.getBaseRepo().getOwner().getAvatar_url(), mOwnerIcon);
-        mOwnerName.setText(mOwner);
+        mRepoItemView.setRepo(detail.getBaseRepo());
 
-        mStars.setText(String.valueOf(detail.getBaseRepo().getStargazers_count()));
-        mWatch.setText(String.valueOf(detail.getBaseRepo().getWatchers_count()));
-        mFork.setText(String.valueOf(detail.getBaseRepo().getForks_count()));
-
-        mForksCount.setText(String.valueOf(detail.getBaseRepo().getForks_count()));
+        mForksCount.setText(getResources().getString(R.string.forks_count, detail.getBaseRepo().getForks_count()));
         mForkUserAdapter.setNewData(detail.getForks());
 
-        mContributorsCount.setText(String.valueOf(detail.getContributors().size()));
+        mContributorsCount.setText(getResources().getString(R.string.contributors_count, detail.getContributors().size()));
         mContributorAdapter.setNewData(detail.getContributors());
 
         RichText.fromMarkdown(detail.getReadme().content)
@@ -177,17 +173,17 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
     @Override
     public void starSuccess() {
-        Snackbar.make(mStars, "Star Success", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(mRepoItemView, "Star Success", Snackbar.LENGTH_LONG).show();
     }
 
     @Override
     public void starFailed() {
-        Snackbar.make(mStars, "Star Failed", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(mRepoItemView, "Star Failed", Snackbar.LENGTH_LONG).show();
     }
-
-    @OnClick(R.id.star_view)
-    public void onStarViewClicked() {
-        AppLog.d("onStarViewClicked, owner:" + mOwner + ", repo:" + mRepo);
-        mStarPresenter.starRepo(mOwner, mRepo);
-    }
+//
+//    @OnClick(R.id.star_view)
+//    public void onStarViewClicked() {
+//        AppLog.d("onStarViewClicked, owner:" + mOwner + ", repo:" + mRepo);
+//        mStarPresenter.starRepo(mOwner, mRepo);
+//    }
 }

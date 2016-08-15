@@ -14,11 +14,12 @@
     <string name="loading">Loading</string>
     <string name="sign_in">Sign In</string>
     <string name="please_login">Please Login</string>
-    <string name="exit_click_back_again">再按一次退出应用</string>
+    <string name="exit_click_back_again">Press Back again to exit application.</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="repositories">Your Repositories</string>
     <string name="your_stars">Your stars</string>
+
+    <string name="forks_count">Forks ( %1$s )</string>
+    <string name="contributors_count">Contributors ( %1$s )</string>
 
 </resources>
