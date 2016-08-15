@@ -4,7 +4,6 @@ import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
-import com.anly.mvp.BaseMvpPresenter;
 import com.anly.mvp.lce.LceView;
 
 import java.util.ArrayList;
@@ -27,8 +26,8 @@ public class MostStarPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
         this.mRepoApi = api;
     }
 
-    public void loadMostStars(String key, String language) {
-        mCompositeSubscription.add(mRepoApi.searchMostStarredRepo(key, language)
+    public void loadMostStars(@RepoApi.MostStarsType int type) {
+        mCompositeSubscription.add(mRepoApi.getTop30StarsRepo(type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {

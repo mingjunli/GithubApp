@@ -20,7 +20,6 @@ import javax.inject.Inject;
 import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Func1;
-import rx.functions.Func4;
 import rx.functions.Func5;
 
 /**
@@ -39,16 +38,46 @@ public class RepoDataSource implements RepoApi {
     }
 
     @Override
-    public Observable<ArrayList<Repo>> searchMostStarredRepo(String key, String language) {
+    public Observable<ArrayList<Repo>> getTop30StarsRepo(@MostStarsType int type) {
 
         // base on https://developer.github.com/v3/search/#search-repositories
         // build to query params.
-        StringBuilder queryParams = new StringBuilder().append(key);
-        if (!TextUtils.isEmpty(language)) {
-            queryParams.append("+language:");
-            queryParams.append(language);
+        StringBuilder queryParams = new StringBuilder();
+
+        String key = "";
+        String[] lang = null;
+        switch (type) {
+            case TYPE_ANDROID:
+                key = "android";
+                lang = new String[]{"java"};
+                break;
+            case TYPE_IOS:
+                key = "ios";
+                lang = new String[]{"Swift", "Objective-C"};
+                break;
+            case TYPE_PYTHON:
+                key = "python";
+                lang = new String[]{"python"};
+                break;
+            case TYPE_WEB:
+                key = "web";
+                lang = new String[]{"HTML", "CSS", "JavaScript"};
+                break;
+            case TYPE_PHP:
+                key = "php";
+                lang = new String[]{"PHP"};
+                break;
         }
-        AppLog.d("searchMostStarredRepo, q:" + queryParams.toString());
+
+        queryParams.append(key);
+        if (lang != null && lang.length > 0) {
+            for (String language : lang) {
+                queryParams.append("+language:");
+                queryParams.append(language);
+            }
+        }
+
+        AppLog.d("getTop30StarsRepo, q:" + queryParams.toString());
 
         // we get the most starred 30 repos.
         return mRepoService.searchRepo(queryParams.toString(), SORT_BY_STARS, ORDER_BY_DESC, 1, Constants.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
@@ -58,6 +87,28 @@ public class RepoDataSource implements RepoApi {
             }
         });
     }
+
+    @Override
+    public Observable<ArrayList<Repo>> searchRepo(String key, String language) {
+        // base on https://developer.github.com/v3/search/#search-repositories
+        // build to query params.
+        StringBuilder queryParams = new StringBuilder().append(key);
+
+        if (!TextUtils.isEmpty(language)) {
+            queryParams.append("+language:");
+            queryParams.append(language);
+        }
+        AppLog.d("searchRepo, q:" + queryParams.toString());
+
+        // we get the most starred 30 repos.
+        return mRepoService.searchRepo(queryParams.toString(), SORT_BY_STARS, ORDER_BY_DESC, 1, Constants.PAGE_SIZE).map(new Func1<SearchResultResp, ArrayList<Repo>>() {
+            @Override
+            public ArrayList<Repo> call(SearchResultResp searchResultResp) {
+                return searchResultResp.getItems();
+            }
+        });
+    }
+
 
     @Override
     public Observable<Repo> getRepo(String owner, String repo) {

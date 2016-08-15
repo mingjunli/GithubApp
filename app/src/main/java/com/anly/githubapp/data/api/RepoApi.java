@@ -1,5 +1,7 @@
 package com.anly.githubapp.data.api;
 
+import android.support.annotation.IntDef;
+
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 
@@ -12,13 +14,36 @@ import rx.Observable;
  */
 public interface RepoApi {
 
+    public int TYPE_ANDROID = 1;
+    public int TYPE_IOS = 2;
+    public int TYPE_WEB = 3;
+    public int TYPE_PYTHON = 4;
+    public int TYPE_PHP = 5;
+
+    @IntDef({
+            TYPE_ANDROID,
+            TYPE_IOS,
+            TYPE_WEB,
+            TYPE_PYTHON,
+            TYPE_PHP
+    })
+    @interface MostStarsType{
+    }
+
     /**
-     * Query repo by the key,language, sort by starred count desc.
+     * Get the top 30 stars repositories.
+     * @param type
+     * @return
+     */
+    Observable<ArrayList<Repo>> getTop30StarsRepo(@MostStarsType int type);
+
+    /**
+     * Search repository by key & language.
      * @param key
      * @param language
      * @return
      */
-    Observable<ArrayList<Repo>> searchMostStarredRepo(String key, String language);
+    Observable<ArrayList<Repo>> searchRepo(String key, String language);
 
     /**
      * Get repo info by the owner & repo name.

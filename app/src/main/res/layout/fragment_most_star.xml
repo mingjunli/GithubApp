@@ -48,16 +48,16 @@
             />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/repo_html"
+            android:id="@+id/repo_web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="HTML"
+            app:fab_label="Web"
             />
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/repo_js"
+            android:id="@+id/repo_php"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="JavaScript"
+            app:fab_label="PHP"
             />
 
     </com.github.clans.fab.FloatingActionMenu>

@@ -5,7 +5,6 @@ import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
 import com.anly.githubapp.ui.module.repo.view.SearchView;
-import com.anly.mvp.lce.LceView;
 
 import java.util.ArrayList;
 
@@ -28,7 +27,7 @@ public class SearchPresenter extends RxMvpPresenter<SearchView<ArrayList<Repo>>>
     }
 
     public void searchRepo(String key, String language) {
-        mCompositeSubscription.add(mRepoApi.searchMostStarredRepo(key, language)
+        mCompositeSubscription.add(mRepoApi.searchRepo(key, language)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {

@@ -12,9 +12,8 @@ import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.data.api.TrendingApi;
+import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
-import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.MostStarPresenter;
 import com.anly.githubapp.ui.base.BaseFragment;
@@ -60,7 +59,7 @@ public class MostStarFragment extends BaseFragment implements LceView<ArrayList<
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.loadMostStars(mCurrentKey, mCurrentLang);
+        mPresenter.loadMostStars(mCurrentType);
     }
 
     @Nullable
@@ -137,49 +136,39 @@ public class MostStarFragment extends BaseFragment implements LceView<ArrayList<
     @OnClick({R.id.repo_android,
             R.id.repo_ios,
             R.id.repo_python,
-            R.id.repo_html,
-            R.id.repo_js})
+            R.id.repo_web,
+            R.id.repo_php})
     public void onLangMenuClick(View view) {
         mFloatMenu.close(true);
 
-        String key = "";
-        String lang = "";
-
         switch (view.getId()) {
             case R.id.repo_android:
-                key = "android";
-                lang = "java";
+                mCurrentType = RepoApi.TYPE_ANDROID;
                 break;
             case R.id.repo_ios:
-                key = "iOS";
+                mCurrentType = RepoApi.TYPE_IOS;
                 break;
             case R.id.repo_python:
-                key = "python";
-                lang = "python";
+                mCurrentType = RepoApi.TYPE_PYTHON;
                 break;
-            case R.id.repo_html:
-                key = "html";
-                lang = "HTML";
+            case R.id.repo_web:
+                mCurrentType = RepoApi.TYPE_WEB;
                 break;
-            case R.id.repo_js:
-                key = "js";
-                lang = "JavaScript";
+            case R.id.repo_php:
+                mCurrentType = RepoApi.TYPE_PHP;
                 break;
         }
 
-        mCurrentKey = key;
-        mCurrentLang = lang;
-        mPresenter.loadMostStars(key, lang);
+        mPresenter.loadMostStars(mCurrentType);
     }
 
     // default is java
-    private String mCurrentLang = "java";
-    private String mCurrentKey = "android";
+    private int mCurrentType = RepoApi.TYPE_ANDROID;
     private SwipeRefreshLayout.OnRefreshListener mRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
         @Override
         public void onRefresh() {
-            AppLog.d("onRefresh, mCurrentLang:" + mCurrentLang);
-            mPresenter.loadMostStars(mCurrentKey, mCurrentLang);
+            AppLog.d("onRefresh, mCurrentType:" + mCurrentType);
+            mPresenter.loadMostStars(mCurrentType);
         }
     };
 }
