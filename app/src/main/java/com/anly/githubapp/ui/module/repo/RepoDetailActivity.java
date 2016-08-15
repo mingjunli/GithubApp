@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.ImageLoader;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.di.HasComponent;
@@ -21,6 +22,7 @@ import com.anly.githubapp.di.component.RepoComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
+import com.anly.githubapp.presenter.repo.StarActionPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
@@ -31,11 +33,14 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetailView, HasComponent<RepoComponent> {
 
     @Inject
     RepoDetailPresenter mPresenter;
+    @Inject
+    StarActionPresenter mStarPresenter;
 
     @BindView(R.id.desc)
     TextView mDesc;
@@ -66,6 +71,10 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private static final String EXTRA_OWNER = "extra_owner";
     private static final String EXTRA_REPO_NAME = "extra_repo_name";
 
+    private String mOwner;
+    private String mRepo;
+    private RepoDetail mRepoDetail;
+
     public static void launch(Context context, String owner, String repoName) {
         Intent intent = new Intent(context, RepoDetailActivity.class);
         intent.putExtra(EXTRA_OWNER, owner);
@@ -81,6 +90,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         ButterKnife.bind(this);
         initViews();
         mPresenter.attachView(this);
+        mStarPresenter.attachView(this);
     }
 
     @Override
@@ -116,21 +126,25 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private void loadDetailData() {
         Intent intent = getIntent();
         if (intent != null) {
-            String owner = intent.getStringExtra(EXTRA_OWNER);
-            String repo = intent.getStringExtra(EXTRA_REPO_NAME);
+            mOwner = intent.getStringExtra(EXTRA_OWNER);
+            mRepo = intent.getStringExtra(EXTRA_REPO_NAME);
 
-            if (!TextUtils.isEmpty(owner) && !TextUtils.isEmpty(repo)) {
-                mPresenter.loadRepoDetails(owner, repo);
+            if (!TextUtils.isEmpty(mOwner) && !TextUtils.isEmpty(mRepo)) {
+                mPresenter.loadRepoDetails(mOwner, mRepo);
             }
         }
     }
 
     private void updateViews(RepoDetail detail) {
-        setTitle(detail.getBaseRepo().getName());
+        mRepoDetail = detail;
+        mOwner = detail.getBaseRepo().getOwner().getLogin();
+        mRepo = detail.getBaseRepo().getName();
+
+        setTitle(mRepo);
 
         mDesc.setText(detail.getBaseRepo().getDescription());
         ImageLoader.load(this, detail.getBaseRepo().getOwner().getAvatar_url(), mOwnerIcon);
-        mOwnerName.setText(detail.getBaseRepo().getOwner().getLogin());
+        mOwnerName.setText(mOwner);
 
         mStars.setText(String.valueOf(detail.getBaseRepo().getStargazers_count()));
         mWatch.setText(String.valueOf(detail.getBaseRepo().getWatchers_count()));
@@ -159,5 +173,21 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     @Override
     public void showRepoDetail(RepoDetail detail) {
         updateViews(detail);
+    }
+
+    @Override
+    public void starSuccess() {
+        Snackbar.make(mStars, "Star Success", Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void starFailed() {
+        Snackbar.make(mStars, "Star Failed", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.star_view)
+    public void onStarViewClicked() {
+        AppLog.d("onStarViewClicked, owner:" + mOwner + ", repo:" + mRepo);
+        mStarPresenter.starRepo(mOwner, mRepo);
     }
 }

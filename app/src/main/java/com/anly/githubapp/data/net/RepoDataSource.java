@@ -6,19 +6,19 @@ import com.anly.githubapp.common.constant.Constants;
 import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.RepoApi;
+import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.net.response.Content;
 import com.anly.githubapp.data.net.response.SearchResultResp;
 import com.anly.githubapp.data.net.service.RepoService;
-import com.anly.githubapp.data.model.Repo;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import retrofit2.Response;
 import rx.Observable;
-import rx.Subscriber;
 import rx.functions.Func1;
 import rx.functions.Func4;
 
@@ -94,5 +94,17 @@ public class RepoDataSource implements RepoApi {
     @Override
     public Observable<ArrayList<Repo>> getMyStarredRepos() {
         return mRepoService.getMyStarredRepos();
+    }
+
+    @Override
+    public Observable<Boolean> starRepo(String owner, final String repo) {
+        return mRepoService.starRepo(owner, repo)
+                .map(new Func1<Response, Boolean>() {
+                    @Override
+                    public Boolean call(Response response) {
+                        AppLog.d("response:" + response);
+                        return response != null && response.code() == 204;
+                    }
+                });
     }
 }

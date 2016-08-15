@@ -41,6 +41,7 @@ public class AccountDataSource implements AccountApi {
         createAuthorization.note = GithubConfig.NOTE;
         createAuthorization.client_id = GithubConfig.CLIENT_ID;
         createAuthorization.client_secret = GithubConfig.CLIENT_SECRET;
+        createAuthorization.scopes = GithubConfig.SCOPES;
 
         return accountService.createAuthorization(createAuthorization)
                     .flatMap(new Func1<AuthorizationResp, Observable<User>>() {

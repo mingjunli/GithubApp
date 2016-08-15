@@ -36,7 +36,20 @@ public interface RepoApi {
      */
     Observable<RepoDetail> getRepoDetail(String owner, String name);
 
+    /**
+     * Get current user's repositories.
+     * @return
+     */
     Observable<ArrayList<Repo>> getMyRepos();
 
+    /**
+     * Get current user's starred repositories.
+     * @return
+     */
     Observable<ArrayList<Repo>> getMyStarredRepos();
+
+    /**
+     * Star a repository
+     */
+    Observable<Boolean> starRepo(String owner, String repo);
 }
