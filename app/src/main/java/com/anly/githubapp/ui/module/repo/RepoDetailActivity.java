@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -101,6 +102,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     protected void onDestroy() {
         super.onDestroy();
         mPresenter.detachView();
+        mStarPresenter.detachView();
     }
 
     @Override
@@ -145,6 +147,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         setTitle(mRepo);
 
         mRepoItemView.setRepo(detail.getBaseRepo());
+        mRepoItemView.setRepoActionListener(mRepoActionListener);
 
         mForksCount.setText(getResources().getString(R.string.forks_count, detail.getBaseRepo().getForks_count()));
         mForkUserAdapter.setNewData(detail.getForks());
@@ -171,6 +174,18 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         updateViews(detail);
     }
 
+    private RepoItemView.RepoActionListener mRepoActionListener = new RepoItemView.RepoActionListener() {
+        @Override
+        public void onStarAction(Repo repo) {
+            mStarPresenter.starRepo(repo.getOwner().getLogin(), repo.getName());
+        }
+
+        @Override
+        public void onUnstarAction(Repo repo) {
+            mStarPresenter.unstarRepo(repo.getOwner().getLogin(), repo.getName());
+        }
+    };
+
     @Override
     public void starSuccess() {
         Snackbar.make(mRepoItemView, "Star Success", Snackbar.LENGTH_LONG).show();
@@ -180,10 +195,14 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     public void starFailed() {
         Snackbar.make(mRepoItemView, "Star Failed", Snackbar.LENGTH_LONG).show();
     }
-//
-//    @OnClick(R.id.star_view)
-//    public void onStarViewClicked() {
-//        AppLog.d("onStarViewClicked, owner:" + mOwner + ", repo:" + mRepo);
-//        mStarPresenter.starRepo(mOwner, mRepo);
-//    }
+
+    @Override
+    public void unstarSuccess() {
+        Snackbar.make(mRepoItemView, "UnStar Success", Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void unstarFailed() {
+        Snackbar.make(mRepoItemView, "UnStar Failed", Snackbar.LENGTH_LONG).show();
+    }
 }

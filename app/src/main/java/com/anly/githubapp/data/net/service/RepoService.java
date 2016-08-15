@@ -7,8 +7,8 @@ import com.anly.githubapp.data.net.response.SearchResultResp;
 
 import java.util.ArrayList;
 
-import okhttp3.Response;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -55,11 +55,11 @@ public interface RepoService {
 
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
-    Observable<retrofit2.Response<ResponseBody>> starRepo(@Path("owner") String owner, @Path("repo") String repo);
+    Observable<Response<ResponseBody>> starRepo(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("/user/starred/{owner}/{repo}")
-    Observable<ResponseBody> checkIfRepoIsStarred(@Path("owner") String owner, @Path("repo") String repo);
+    Observable<Response<ResponseBody>> checkIfRepoIsStarred(@Path("owner") String owner, @Path("repo") String repo);
 
     @DELETE("/user/starred/{owner}/{repo}")
-    Observable<ResponseBody> unstarRepo(@Path("owner") String owner, @Path("repo") String repo);
+    Observable<Response<ResponseBody>> unstarRepo(@Path("owner") String owner, @Path("repo") String repo);
 }

@@ -39,6 +39,10 @@ public class RepoItemView extends FrameLayout {
     LinearLayout mStarView;
     @BindView(R.id.label_view)
     LabelView mLabelView;
+    @BindView(R.id.star_icon)
+    ImageView mStarIcon;
+
+    private Repo mRepo;
 
     public RepoItemView(Context context) {
         super(context);
@@ -61,6 +65,8 @@ public class RepoItemView extends FrameLayout {
     }
 
     public void setRepo(Repo repo) {
+        mRepo = repo;
+
         mName.setText(repo.getName());
         mDesc.setText(repo.getDescription());
 
@@ -70,15 +76,38 @@ public class RepoItemView extends FrameLayout {
         if (!TextUtils.isEmpty(repo.getLanguage())) {
             mLabelView.setVisibility(VISIBLE);
             mLabelView.setText(repo.getLanguage());
-        }
-        else {
+        } else {
             mLabelView.setVisibility(GONE);
         }
 
+        mUpdateTime.setText(repo.getUpdated_at());
         mStarCount.setText(String.valueOf(repo.getStargazers_count()));
+
+        mStarIcon.setImageResource(repo.isStarred() ?
+                R.drawable.ic_star_selected : R.drawable.ic_star);
     }
 
     @OnClick(R.id.star_view)
     public void onClick() {
+        if (mRepoActionListener != null) {
+            if(mRepo.isStarred()) {
+                mRepoActionListener.onUnstarAction(mRepo);
+            }
+            else {
+                mRepoActionListener.onStarAction(mRepo);
+            }
+        }
+    }
+
+    private RepoActionListener mRepoActionListener;
+
+    public void setRepoActionListener(RepoActionListener listener) {
+        this.mRepoActionListener = listener;
+    }
+
+    public interface RepoActionListener {
+        void onStarAction(Repo repo);
+
+        void onUnstarAction(Repo repo);
     }
 }

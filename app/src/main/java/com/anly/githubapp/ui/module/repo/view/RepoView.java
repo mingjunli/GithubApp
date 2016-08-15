@@ -10,4 +10,8 @@ public interface RepoView extends LoadView {
     void starSuccess();
 
     void starFailed();
+
+    void unstarSuccess();
+
+    void unstarFailed();
 }

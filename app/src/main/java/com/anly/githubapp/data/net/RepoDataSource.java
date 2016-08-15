@@ -21,6 +21,7 @@ import retrofit2.Response;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.functions.Func4;
+import rx.functions.Func5;
 
 /**
  * Created by mingjun on 16/7/15.
@@ -69,10 +70,13 @@ public class RepoDataSource implements RepoApi {
                 mRepoService.contributors(owner, name),
                 mRepoService.listForks(owner, name, "newest"),
                 mRepoService.readme(owner, name),
-                new Func4<Repo, ArrayList<User>, ArrayList<Repo>, Content, RepoDetail>() {
+                isStarred(owner, name),
+                new Func5<Repo, ArrayList<User>, ArrayList<Repo>, Content, Boolean, RepoDetail>() {
                     @Override
-                    public RepoDetail call(Repo repo, ArrayList<User> users, ArrayList<Repo> forks, Content readme) {
+                    public RepoDetail call(Repo repo, ArrayList<User> users, ArrayList<Repo> forks, Content readme, Boolean isStarred) {
                         RepoDetail detail = new RepoDetail();
+
+                        repo.setStarred(isStarred);
                         detail.setBaseRepo(repo);
                         detail.setForks(forks);
 
@@ -103,6 +107,35 @@ public class RepoDataSource implements RepoApi {
                     @Override
                     public Boolean call(Response response) {
                         AppLog.d("response:" + response);
+                        return response != null && response.code() == 204;
+                    }
+                });
+    }
+
+    @Override
+    public Observable<Boolean> unstarRepo(String owner, String repo) {
+        return mRepoService.unstarRepo(owner, repo)
+                .map(new Func1<Response, Boolean>() {
+                    @Override
+                    public Boolean call(Response response) {
+                        AppLog.d("response:" + response);
+                        return response != null && response.code() == 204;
+                    }
+                });
+    }
+
+    @Override
+    public Observable<Boolean> isStarred(String owner, final String repo) {
+        return mRepoService.checkIfRepoIsStarred(owner, repo)
+                .map(new Func1<Response, Boolean>() {
+                    @Override
+                    public Boolean call(Response response) {
+                        /**
+                         * Response if this repository is starred by you
+                         *  Status: 204 No Content
+                         * Response if this repository is not starred by you
+                         *  Status: 404 Not Found
+                         */
                         return response != null && response.code() == 204;
                     }
                 });

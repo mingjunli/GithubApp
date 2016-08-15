@@ -52,4 +52,17 @@ public interface RepoApi {
      * Star a repository
      */
     Observable<Boolean> starRepo(String owner, String repo);
+
+    /**
+     * Star a repository
+     */
+    Observable<Boolean> unstarRepo(String owner, String repo);
+
+    /**
+     * Check if the repository is starred or not.
+     * @param owner
+     * @param repo
+     * @return
+     */
+    Observable<Boolean> isStarred(String owner, String repo);
 }

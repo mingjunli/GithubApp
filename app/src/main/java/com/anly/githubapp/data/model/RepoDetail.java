@@ -49,6 +49,9 @@ public class RepoDetail implements Parcelable {
         this.contributors = contributors;
     }
 
+    public RepoDetail() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -62,9 +65,6 @@ public class RepoDetail implements Parcelable {
         dest.writeTypedList(this.contributors);
     }
 
-    public RepoDetail() {
-    }
-
     protected RepoDetail(Parcel in) {
         this.baseRepo = in.readParcelable(Repo.class.getClassLoader());
         this.readme = in.readParcelable(Content.class.getClassLoader());
@@ -72,7 +72,7 @@ public class RepoDetail implements Parcelable {
         this.contributors = in.createTypedArrayList(User.CREATOR);
     }
 
-    public static final Parcelable.Creator<RepoDetail> CREATOR = new Parcelable.Creator<RepoDetail>() {
+    public static final Creator<RepoDetail> CREATOR = new Creator<RepoDetail>() {
         @Override
         public RepoDetail createFromParcel(Parcel source) {
             return new RepoDetail(source);

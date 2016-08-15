@@ -52,7 +52,42 @@ public class StarActionPresenter extends RxMvpPresenter<RepoView> {
 
                     @Override
                     public void onError(Throwable e) {
-                        getMvpView().error(e);
+                        AppLog.e(e);
+                        getMvpView().starFailed();
+                    }
+                }));
+    }
+
+    public void unstarRepo(String owner, String repo) {
+        mCompositeSubscription.add(mRepoApi.unstarRepo(owner, repo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnTerminate(new Action0() {
+                    @Override
+                    public void call() {
+                        getMvpView().showLoading();
+                    }
+                })
+                .doOnTerminate(new Action0() {
+                    @Override
+                    public void call() {
+                        getMvpView().dismissLoading();
+                    }
+                })
+                .subscribe(new ResponseObserver<Boolean>() {
+                    @Override
+                    public void onSuccess(Boolean aBoolean) {
+                        if (aBoolean) {
+                            getMvpView().unstarSuccess();
+                        } else {
+                            getMvpView().unstarFailed();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        AppLog.e(e);
+                        getMvpView().unstarFailed();
                     }
                 }));
     }

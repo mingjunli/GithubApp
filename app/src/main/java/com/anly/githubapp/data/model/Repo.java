@@ -173,6 +173,16 @@ public class Repo implements Parcelable {
     private String default_branch;
     private double score;
 
+    private boolean isStarred;
+
+    public boolean isStarred() {
+        return isStarred;
+    }
+
+    public void setStarred(boolean starred) {
+        isStarred = starred;
+    }
+
     public int getId() {
         return id;
     }
@@ -725,6 +735,9 @@ public class Repo implements Parcelable {
         this.score = score;
     }
 
+    public Repo() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -801,9 +814,7 @@ public class Repo implements Parcelable {
         dest.writeInt(this.watchers);
         dest.writeString(this.default_branch);
         dest.writeDouble(this.score);
-    }
-
-    public Repo() {
+        dest.writeByte(this.isStarred ? (byte) 1 : (byte) 0);
     }
 
     protected Repo(Parcel in) {
@@ -876,9 +887,10 @@ public class Repo implements Parcelable {
         this.watchers = in.readInt();
         this.default_branch = in.readString();
         this.score = in.readDouble();
+        this.isStarred = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<Repo> CREATOR = new Parcelable.Creator<Repo>() {
+    public static final Creator<Repo> CREATOR = new Creator<Repo>() {
         @Override
         public Repo createFromParcel(Parcel source) {
             return new Repo(source);
