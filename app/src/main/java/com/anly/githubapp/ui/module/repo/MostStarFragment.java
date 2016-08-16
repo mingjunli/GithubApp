@@ -78,6 +78,8 @@ public class MostStarFragment extends BaseFragment implements LceView<ArrayList<
     }
 
     private void initViews() {
+        getActivity().setTitle(R.string.menu_most_star);
+
         mRefreshLayout.setOnRefreshListener(mRefreshListener);
 
         mAdapter = new RepoListRecyclerAdapter(null);

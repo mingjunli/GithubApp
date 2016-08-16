@@ -55,6 +55,8 @@ public class ProfileFragment extends BaseFragment {
         View contentView = inflater.inflate(R.layout.fragment_profile, null);
         ButterKnife.bind(this, contentView);
 
+        getActivity().setTitle(R.string.menu_account);
+
         updateUser(mUser);
         return contentView;
     }
@@ -65,12 +67,45 @@ public class ProfileFragment extends BaseFragment {
         String displayName = TextUtils.isEmpty(user.getName()) ? user.getLogin() : user.getName();
         mUsername.setText(displayName);
 
-        mBio.setText(user.getBio());
+        if (TextUtils.isEmpty(user.getBio())) {
+            mBio.setVisibility(View.GONE);
+        }
+        else {
+            mBio.setVisibility(View.VISIBLE);
+            mBio.setText(user.getBio());
+        }
 
-        mCompany.setText(user.getCompany());
-        mBlog.setText(user.getBlog());
-        mLocation.setText(user.getLocation());
-        mEmail.setText(user.getEmail());
+        if (TextUtils.isEmpty(user.getCompany())) {
+            mCompany.setVisibility(View.GONE);
+        }
+        else {
+            mCompany.setVisibility(View.VISIBLE);
+            mCompany.setText(user.getCompany());
+        }
+
+        if (TextUtils.isEmpty(user.getBlog())) {
+            mBlog.setVisibility(View.GONE);
+        }
+        else {
+            mBlog.setVisibility(View.VISIBLE);
+            mBlog.setText(user.getBlog());
+        }
+
+        if (TextUtils.isEmpty(user.getLocation())) {
+            mLocation.setVisibility(View.GONE);
+        }
+        else {
+            mLocation.setVisibility(View.VISIBLE);
+            mLocation.setText(user.getLocation());
+        }
+
+        if (TextUtils.isEmpty(user.getEmail())) {
+            mEmail.setVisibility(View.GONE);
+        }
+        else {
+            mEmail.setVisibility(View.VISIBLE);
+            mEmail.setText(user.getEmail());
+        }
     }
 
     @OnClick({R.id.my_repo, R.id.my_starred})

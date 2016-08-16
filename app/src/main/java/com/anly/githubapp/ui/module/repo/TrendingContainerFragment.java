@@ -47,6 +47,8 @@ public class TrendingContainerFragment extends BaseFragment {
     }
 
     private void initViews() {
+        getActivity().setTitle(R.string.menu_trending);
+
         mAdapter = new TrendingFragmentAdapter(getChildFragmentManager(), TRENDING_CATEGORY);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOffscreenPageLimit(TRENDING_CATEGORY.length);
