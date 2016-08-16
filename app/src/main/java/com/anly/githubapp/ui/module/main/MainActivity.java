@@ -25,7 +25,6 @@ import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
 import com.anly.githubapp.ui.module.repo.SearchActivity;
 import com.anly.githubapp.ui.module.repo.TrendingContainerFragment;
-import com.anly.githubapp.ui.module.repo.TrendingFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
 

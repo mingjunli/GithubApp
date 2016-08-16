@@ -7,6 +7,7 @@ import android.support.multidex.MultiDexApplication;
 import android.widget.ImageView;
 
 import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.util.CrashHelper;
 import com.anly.githubapp.common.util.ImageLoader;
 import com.anly.githubapp.di.component.ApplicationComponent;
 import com.anly.githubapp.di.component.DaggerApplicationComponent;
@@ -22,6 +23,9 @@ public class GithubApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // init crash helper
+        CrashHelper.init(this);
 
         // init logger.
         AppLog.init();

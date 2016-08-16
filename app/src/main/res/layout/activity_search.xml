@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
+            app:titleTextColor="@color/md_white_1000"
+            android:title="@string/search"
             />
 
         <com.miguelcatalan.materialsearchview.MaterialSearchView

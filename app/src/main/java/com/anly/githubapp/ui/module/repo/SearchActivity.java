@@ -88,7 +88,12 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
         mSearchView.setVoiceSearch(false);
         mSearchView.setSuggestions(getResources().getStringArray(R.array.query_suggestions));
         mSearchView.setOnQueryTextListener(mQueryListener);
-        mSearchView.showSearch(false);
+        mSearchView.post(new Runnable() {
+            @Override
+            public void run() {
+                mSearchView.showSearch(false);
+            }
+        });
 
         mDrawer = new DrawerBuilder()
                 .withActivity(this)

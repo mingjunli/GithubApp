@@ -151,4 +151,8 @@ dependencies {
     // FlycoLabelView
     // https://github.com/H07000223/FlycoLabelView
     compile 'com.flyco.labelview:FlycoLabelView_Lib:1.0.2@aar'
+
+    // Bugly
+    // https://bugly.qq.com/docs/
+    compile 'com.tencent.bugly:crashreport:2.2.0'
 }
