@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.Environment;
 import com.alibaba.sdk.android.callback.InitResultCallback;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
@@ -15,6 +16,10 @@ import com.anly.githubapp.BuildConfig;
 public class PushSDK {
 
     public static void init(final Context context) {
+        if (BuildConfig.DEBUG) {
+            AlibabaSDK.setSecGuardImagePostfix("debug");
+        }
+
         AlibabaSDK.asyncInit(context.getApplicationContext(), new InitResultCallback() {
             @Override
             public void onSuccess() {
