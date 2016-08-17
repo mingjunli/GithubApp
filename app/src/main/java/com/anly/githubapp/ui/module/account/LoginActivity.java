@@ -103,5 +103,6 @@ public class LoginActivity extends BaseLoadingActivity implements LoginView, Has
         Snackbar.make(mLoginBtn, "Login Success", Snackbar.LENGTH_LONG).show();
         AccountPref.saveLogonUser(this, user);
         MainActivity.launch(this);
+        finish();
     }
 }

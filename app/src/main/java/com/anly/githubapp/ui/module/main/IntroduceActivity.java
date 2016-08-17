@@ -63,9 +63,11 @@ public class IntroduceActivity extends AppIntro {
 
         if (AccountPref.isLogon(this)) {
             MainActivity.launch(this);
+            finish();
         }
         else {
             LoginActivity.launch(this);
+            finish();
         }
     }
 }
