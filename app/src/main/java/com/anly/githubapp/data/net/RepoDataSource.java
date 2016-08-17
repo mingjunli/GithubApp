@@ -3,7 +3,7 @@ package com.anly.githubapp.data.net;
 import android.text.TextUtils;
 
 import com.anly.githubapp.common.constant.Constants;
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;

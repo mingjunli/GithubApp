@@ -1,6 +1,6 @@
 package com.anly.githubapp.data.net;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.data.net.response.TrendingResultResp;

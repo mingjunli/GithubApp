@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.component.MainComponent;

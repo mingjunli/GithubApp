@@ -1,4 +1,4 @@
-package com.anly.githubapp.common.util;
+package com.anly.githubapp.common.wrapper;
 
 import com.anly.githubapp.BuildConfig;
 import com.orhanobut.logger.Logger;

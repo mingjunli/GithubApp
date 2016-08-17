@@ -3,8 +3,7 @@ package com.anly.githubapp.ui.module.repo.adapter;
 import android.widget.ImageView;
 
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.ImageLoader;
-import com.anly.githubapp.data.model.Repo;
+import com.anly.githubapp.common.wrapper.ImageLoader;
 import com.anly.githubapp.data.model.User;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

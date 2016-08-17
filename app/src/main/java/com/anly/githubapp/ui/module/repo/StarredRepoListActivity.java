@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;

@@ -3,12 +3,9 @@ package com.anly.githubapp.data.net.client;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.anly.githubapp.common.util.AppLog;
 import com.anly.githubapp.data.net.client.core.ApiEndpoint;
 import com.anly.githubapp.data.net.client.core.BaseOkHttpClient;
 import com.anly.githubapp.data.net.client.core.BaseRetrofit;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 

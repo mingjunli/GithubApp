@@ -11,18 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
 import com.anly.githubapp.ui.base.BaseFragment;
-import com.anly.githubapp.ui.base.BaseLceFragment;
 import com.anly.githubapp.ui.module.repo.adapter.TrendingRepoRecyclerAdapter;
 import com.anly.mvp.lce.LceView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.github.clans.fab.FloatingActionMenu;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by mingjun on 16/7/19.

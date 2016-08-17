@@ -6,9 +6,10 @@ import android.net.Uri;
 import android.support.multidex.MultiDexApplication;
 import android.widget.ImageView;
 
-import com.anly.githubapp.common.util.AppLog;
-import com.anly.githubapp.common.util.CrashHelper;
-import com.anly.githubapp.common.util.ImageLoader;
+import com.anly.githubapp.common.wrapper.AppLog;
+import com.anly.githubapp.common.wrapper.CrashHelper;
+import com.anly.githubapp.common.wrapper.ImageLoader;
+import com.anly.githubapp.common.wrapper.PushSDK;
 import com.anly.githubapp.di.component.ApplicationComponent;
 import com.anly.githubapp.di.component.DaggerApplicationComponent;
 import com.anly.githubapp.di.module.ApplicationModule;
@@ -24,11 +25,14 @@ public class GithubApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
+        // init logger.
+        AppLog.init();
+
         // init crash helper
         CrashHelper.init(this);
 
-        // init logger.
-        AppLog.init();
+        // init Push
+        PushSDK.init(this);
 
         // init Drawer image loader
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {

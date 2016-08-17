@@ -1,6 +1,6 @@
 package com.anly.githubapp.presenter.repo;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;

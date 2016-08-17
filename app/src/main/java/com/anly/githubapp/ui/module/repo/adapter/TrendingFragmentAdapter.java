@@ -3,7 +3,7 @@ package com.anly.githubapp.ui.module.repo.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.ui.base.adapter.ArrayFragmentPagerAdapter;
 import com.anly.githubapp.ui.module.repo.TrendingFragment;

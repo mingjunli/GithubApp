@@ -1,6 +1,6 @@
 package com.anly.githubapp.data.rx;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 
 import rx.Subscriber;
 

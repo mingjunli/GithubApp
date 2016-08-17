@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.ImageLoader;
+import com.anly.githubapp.common.wrapper.ImageLoader;
 import com.anly.githubapp.data.model.Repo;
 import com.flyco.labelview.LabelView;
 

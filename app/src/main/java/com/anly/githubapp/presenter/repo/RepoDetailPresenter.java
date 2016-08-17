@@ -1,21 +1,16 @@
 package com.anly.githubapp.presenter.repo;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.RepoApi;
-import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
-import com.anly.mvp.lce.LceView;
-import com.anly.mvp.lce.LoadView;
 
 import javax.inject.Inject;
 
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**

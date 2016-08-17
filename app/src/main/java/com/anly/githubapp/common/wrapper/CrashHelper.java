@@ -1,4 +1,4 @@
-package com.anly.githubapp.common.util;
+package com.anly.githubapp.common.wrapper;
 
 import android.content.Context;
 

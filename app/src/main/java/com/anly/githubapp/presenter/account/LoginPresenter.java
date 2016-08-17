@@ -1,17 +1,14 @@
 package com.anly.githubapp.presenter.account;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.anly.githubapp.common.util.AppLog;
+import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.data.api.AccountApi;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.data.rx.ResponseObserver;
-import com.anly.githubapp.di.ApplicationContext;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
 import com.anly.githubapp.ui.module.account.view.LoginView;
-import com.anly.mvp.lce.LceView;
 
 import javax.inject.Inject;
 
