@@ -1,8 +1,8 @@
 package com.anly.githubapp.ui.module.repo.adapter;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.StringUtil;
 import com.anly.githubapp.data.model.Repo;
-import com.anly.githubapp.ui.widget.RepoItemView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -19,7 +19,7 @@ public class RepoListRecyclerAdapter extends BaseQuickAdapter<Repo> {
 
     @Override
     protected void convert(BaseViewHolder holder, Repo repo) {
-        RepoItemView itemView = holder.getView(R.id.repo_item_view);
-        itemView.setRepo(repo);
+        holder.setText(R.id.name, StringUtil.replaceAllBlank(repo.getName()));
+        holder.setText(R.id.desc, StringUtil.trimNewLine(repo.getDescription().trim()));
     }
 }

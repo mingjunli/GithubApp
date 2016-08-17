@@ -14,7 +14,7 @@ import java.util.List;
 public class TrendingRepoRecyclerAdapter extends BaseQuickAdapter<TrendingRepo> {
 
     public TrendingRepoRecyclerAdapter(List<TrendingRepo> data) {
-        super(R.layout.item_trending_repo, data);
+        super(R.layout.item_repo, data);
     }
 
     @Override

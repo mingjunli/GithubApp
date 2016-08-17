@@ -13,7 +13,6 @@ public class TrendingRepo implements Parcelable {
      * description :  Cloud Foundry BOSH is an open source tool chain for release engineering, deployment and lifecycle management of large scale distributed services.
      * readme : http://www.github.com/cloudfoundry/bosh
      */
-
     private String title;
     private String description;
     private String readme;
