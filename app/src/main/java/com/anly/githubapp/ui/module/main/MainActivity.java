@@ -21,7 +21,6 @@ import com.anly.githubapp.di.component.DaggerMainComponent;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.ui.base.BaseActivity;
-import com.anly.githubapp.ui.module.account.ProfileFragment;
 import com.anly.githubapp.ui.module.repo.MostStarFragment;
 import com.anly.githubapp.ui.module.repo.SearchActivity;
 import com.anly.githubapp.ui.module.repo.TrendingContainerFragment;
@@ -109,7 +108,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             case R.id.menu_most_stars:
                 return MostStarFragment.class.getName();
             case R.id.menu_account:
-                return ProfileFragment.class.getName();
+                return MineFragment.class.getName();
 
             default:
                 return null;

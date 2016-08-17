@@ -37,20 +37,77 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center_vertical"
         android:background="@color/md_white_1000">
 
         <TextView
+            android:id="@+id/history"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="Browsing History"
             />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_arrow_right"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/md_white_1000">
+
+        <TextView
+            android:id="@+id/share_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="Share this App"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:background="@color/md_grey_300"/>
+
+        <TextView
+            android:id="@+id/feedback"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="Feedback"
+            />
+
     </LinearLayout>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/md_white_1000">
+
+        <TextView
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="Settings"
+            />
+
+    </LinearLayout>
 </LinearLayout>

@@ -40,12 +40,7 @@ public class WelcomeActivity extends AwesomeSplash {
             IntroduceActivity.launch(this);
         }
         else {
-            if (AccountPref.isLogon(this)) {
-                MainActivity.launch(this);
-            }
-            else {
-                LoginActivity.launch(this);
-            }
+            MainActivity.launch(this);
         }
         finish();
     }

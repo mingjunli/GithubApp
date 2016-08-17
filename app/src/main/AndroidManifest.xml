@@ -54,6 +54,9 @@
                   android:windowSoftInputMode="adjustResize"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
+        <activity android:name=".ui.module.account.ProfileActivity"
+                  android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".ui.module.repo.SearchActivity"
                   android:screenOrientation="portrait"
