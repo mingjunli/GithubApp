@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="alisdk_message_10000_name">JS_BRIDGE_MODULE_NOT_FOUND</string>
+    <string name="alisdk_message_10000_message">JS Bridge 载入器未找到名称为 {0} 的模块</string>
+    <string name="alisdk_message_10000_action">请检查对应名称模块的库文件是否包含在当前开发应用的依赖库里面</string>
+    <string name="alisdk_message_10000_type">E</string>
+    <string name="alisdk_message_10003_name">USER_CANCEL</string>
+    <string name="alisdk_message_10003_message">当前操作已经取消</string>
+    <string name="alisdk_message_10003_action"></string>
+    <string name="alisdk_message_10003_type">I</string>
+    <string name="alisdk_message_10004_name">REQUEST_INIT_SERVER_EXCEPTION</string>
+    <string name="alisdk_message_10004_message">请求 INIT 服务器发生错误，错误消息为 {0}</string>
+    <string name="alisdk_message_10004_action">请稍后重试当前操作，若仍然出错，请反馈至论坛，技术支持或 Android SDK 开发咨询群</string>
+    <string name="alisdk_message_10004_type">E</string>
+    <string name="alisdk_message_951_name">JS_BRIDGE_METHOD_NOT_FOUND</string>
+    <string name="alisdk_message_951_message">JS Bridge 载入器在类 {0} 未找到方法 {1}</string>
+    <string name="alisdk_message_951_action">如当前应用使用 ProGuard 混淆代码，请检查 SDK 中相关类在 -keep 列表中</string>
+    <string name="alisdk_message_951_type">E</string>
+    <string name="alisdk_message_952_name">JS_BRIDGE_ANNOTATION_NOT_PRESENT</string>
+    <string name="alisdk_message_952_message">JS Bridge 载入器在类 {0} 中的方法 {1} 上未找到含有 BridgeMethod 标识</string>
+    <string name="alisdk_message_952_action">如当前应用使用 ProGuard 混淆代码，请检查是否添加 -keepattributes *Annotation* 配置项</string>
+    <string name="alisdk_message_952_type">E</string>
+    <string name="alisdk_message_101_name">REFRESH_SID_EXCEPTION</string>
+    <string name="alisdk_message_101_message">会话刷新出错，错误消息为 {0}</string>
+    <string name="alisdk_message_101_action">请稍后重试当前操作，若仍然出错，请反馈至论坛，技术支持或 Android SDK 开发咨询群</string>
+    <string name="alisdk_message_101_type">W</string>
+    <string name="alisdk_message_10005_name">RSA_DECRYPT_EXCEPTION</string>
+    <string name="alisdk_message_10005_message">消息解密发生错误，错误消息为 {0}</string>
+    <string name="alisdk_message_10005_action">请稍后重试当前操作，若仍然出错，请反馈至论坛，技术支持或 Android SDK 开发咨询群</string>
+    <string name="alisdk_message_10005_type">E</string>
+    <string name="alisdk_message_10011_name">USER_ALREADY_LOGOUT</string>
+    <string name="alisdk_message_10011_message">当前用户未登录</string>
+    <string name="alisdk_message_10011_action"></string>
+    <string name="alisdk_message_10011_type">W</string>
+
+</resources>

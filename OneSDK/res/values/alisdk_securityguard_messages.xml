@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="alisdk_message_701_message">当前使用的图片文件 res\\drawable\\yw_1222{0}.jpg 和当前程序的 APK 签名不一致</string>
+    <string name="alisdk_message_701_action">1. 使用同一个 Keystore 签名的 Apk 在 SDK 下载页面重新下载 SDK \n
+        Eclipse 环境下, 使用 Run/Debug As Android Application 在模拟器或者手机中运行时, 默认使用的是 Debug Keystore (默认位置当前用户目录的 ~\\.android\\debug.keystore), IDE 中可以到 Preferences-Android-Build 界面查看.
+          所以如果上传的 apk 是使用 Export Android Application 指定 keystore 生成, 会导致签名校验出错, 参考解决方案是: \n
+          在开发阶段使用 Android 项目 bin 目录的 apk 文件生成 SDK, 已便于开发阶段调试, 开发完毕后使用发布所用 keystore 签名的 apk 到网站重新生成 SDK 并替换 res\\drawable\\yw_1222.jpg 文件\n          
+        2. 调用 AlibabaSDK.setEnvirnoment 指定当前运行环境会导致 SDK 检索特定的图片，例如设置了 AlibabaSDK.setEnvirnoment(Environment.TEST), SDK 会检索 yw_1222_test.jpg，若您是应用开发者，请去除相关代码，此环境设置主要是针对 SDK 组件提供方开发调试使用。\n
+        3. 调用 AlibabaSDK.setSecGuardImagePostfix 会导致 SDK 检索指定后缀的图片，例如设置了 AlibabaSDK.setSecGuardImagePostfix("abc"), SDK 会检索 yw_1222_abc.jpg, 请检查代码中是否有相关调用，若有请做调整，确保当前使用图片与 APK 签名一致。</string>
+    <string name="alisdk_message_701_type">E</string>
+    <string name="alisdk_message_702_message">没有找到图片文件，请确保图片文件 yw_1222{0}.jpg 在 res\\drawable 目录下</string>
+    <string name="alisdk_message_702_action">1. 如果使用项目依赖方式使用 SDK，请检查所依赖的 SDK 项目中 res\\drawable 是否存在图片文件，如果是将 SDK 拷贝至当前开发应用中，请检查是否漏拷贝。\n 
+        2. 调用 AlibabaSDK.setEnvirnoment 指定当前运行环境会导致 SDK 检索特定的图片，例如设置了 AlibabaSDK.setEnvirnoment(Environment.TEST), SDK 会检索 yw_1222_test.jpg，若您是应用开发者，请去除相关代码，此环境设置主要是针对 SDK 组件提供方开发调试使用。\n
+        3. 调用 AlibabaSDK.setSecGuardImagePostfix 会导致 SDK 检索指定后缀的图片，例如设置了 AlibabaSDK.setSecGuardImagePostfix("abc"), SDK 会检索 yw_1222_abc.jpg, 请检查代码中是否有相关调用，若有请做调整，确保与实际存在的图片保持一致。 </string>
+    <string name="alisdk_message_702_type">E</string>
+    <string name="alisdk_message_703_message">SDK 中图片文件 (res\\drawable\\yw_1222.jpg) 的内容不正确</string>
+    <string name="alisdk_message_703_action">使用同一 Keystore 签名的 Apk 在 SDK 下载页面重新下载 SDK</string>
+    <string name="alisdk_message_703_type">E</string>
+    <string name="alisdk_message_704_message">在 APK 中找不到对应的 securityguard***.so 文件或者 so 文件载入出错</string>
+    <string name="alisdk_message_704_action">1. 如果使用项目依赖方式使用 SDK，请检查所依赖的 SDK 项目中 libs 目录下 securityguard***.jar 和 armeabi/armeabi-v7a/x86 下 securityguard***.so 是否存在，大小正常并版本是否一致，如果是将 SDK 拷贝至当前开发应用中，请在当前应用中检查。如文件存在而生成的 apk 中不存在，请检查 IDE 设置，例如 Android Studio 项目的 build.gradle 中 jniLibs.srcDirs。\n
+        2. 因为 Android 部分版本系统中载入不同架构原生库 (so 文件) 的限制，请确保项目运行所需的原生库文件在当前手机 CPU 对应架构目录下都存在。例如，安全模块暂时未提供 arm64 架构的原生库，若当前 apk 依赖的其他组件包含 arm64 原生库，会导致载入错误，解决方法是移除依赖组件中相关原生库，确保最终 apk 中不存在 arm64-v8a。 \n
+        从 Android 架构兼容性角度, 去除 arm64 架构的原生库不会影响应用在对应手机上运行, 具体介绍可使用关键字 [Android so 兼容] 至搜索网站检索\n
+           Android Studio 参考配置, 目的是确保最终的 apk 中只包含指定 CPU 架构的文件 :\n
+           productFlavors {\n
+            afterABI {\n
+              ndk {\n
+                abiFilters “armeabi”, “armeabi-v7a”, “x86"\n
+              }\n
+            }\n
+          }</string>
+    <string name="alisdk_message_704_type">E</string>
+    <string name="alisdk_message_705_message">当前使用的 res\\drawable\\yw_1222{0}.jpg 与 SDK 中 securityguard***.jar 版本不匹配</string>
+    <string name="alisdk_message_705_action">请到百川官方网站重新下载 SDK 并使用其包含最新的图片文件</string>
+    <string name="alisdk_message_705_type">E</string>
+    <string name="alisdk_message_10016_message">安全模块初始化失败，错误消息为 {0}</string>
+    <string name="alisdk_message_10016_action">请初始化之前调用 AlibabaSDK.turnOnDebug()，并运行应用和检查 logcat 输出的异常信息</string>
+    <string name="alisdk_message_10016_type">E</string>
+</resources>

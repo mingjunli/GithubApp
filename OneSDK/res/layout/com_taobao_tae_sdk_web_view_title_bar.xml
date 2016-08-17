@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/com_taobao_tae_sdk_web_view_title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="#f8f8f8" >
+
+    <ImageView
+        android:id="@+id/com_taobao_tae_sdk_web_view_title_bar_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:scaleType="center"
+        android:src="@drawable/com_taobao_tae_sdk_web_view_title_bar_back"
+        android:contentDescription="@string/com_taobao_tae_sdk_back_message" />
+    
+    <TextView
+        android:id="@+id/com_taobao_tae_sdk_web_view_title_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="160dp"
+        android:layout_centerInParent="true"
+        android:singleLine="true"
+        android:textColor="#3d4245"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/com_taobao_tae_sdk_web_view_title_bar_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/com_taobao_tae_sdk_web_view_title_bar_more_button"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:contentDescription="@string/com_taobao_tae_sdk_close_message"
+        android:scaleType="center"
+        android:src="@drawable/com_taobao_tae_sdk_web_view_title_bar_close" />
+
+    <ImageView
+        android:id="@+id/com_taobao_tae_sdk_web_view_title_bar_more_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/com_taobao_tae_sdk_more_message"
+        android:scaleType="center"
+        android:src="@drawable/com_taobao_tae_sdk_web_view_title_bar_more" />
+
+</RelativeLayout>

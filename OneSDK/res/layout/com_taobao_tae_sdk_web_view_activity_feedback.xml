@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:background="#FFFFFF"
+             android:layout_height="match_parent">
+
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <LinearLayout
+            android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_handwriter_layout"
+            android:layout_above="@+id/com_taobao_tae_sdk_web_view_activity_feedback_bottom_layout"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.alibaba.sdk.android.webview.views.HandWriter
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_handwriter"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_bottom_layout"
+            android:layout_alignParentBottom="true"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp">
+
+            <Button
+                android:text="刷新"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"
+                android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_refresh_button"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+            <ImageView
+                android:background="#707070"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                />
+
+            <Button
+                android:text="下一步"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"
+                android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_forward_button"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+            <!--<ImageButton-->
+                <!--android:background="#00000000"-->
+                <!--android:scaleType="center"-->
+                <!--android:src="@drawable/com_taobao_tae_sdk_web_view_activity_feedback_refresh"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_refresh_button"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"/>-->
+
+            <!--<ImageButton-->
+                <!--android:scaleType="center"-->
+                <!--android:background="#00000000"-->
+                <!--android:src="@drawable/com_taobao_tae_sdk_web_view_activity_feedback_forward"-->
+                <!--android:layout_weight="1"-->
+                <!--android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_forward_button"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"/>-->
+        </LinearLayout>
+
+</RelativeLayout>

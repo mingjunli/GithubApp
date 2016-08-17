@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="alisdk_message_1_name">MESSAGE_NOT_FOUND_ERROR</string>
+    <string name="alisdk_message_1_message">未在消息文件中找到 id 为 {0} 的消息</string>
+    <string name="alisdk_message_1_action">请检查所依赖的 SDK 项目，或若是手动拷贝 SDK 至当前开发应用所在项目，请检查是否漏拷文件 res/values 下文件</string>
+    <string name="alisdk_message_1_type">E</string>
+    <string name="alisdk_message_2_name">MESSAGE_UNKNOWN_ERROR</string>
+    <string name="alisdk_message_2_message">检索消息时发生如下错误 {0}</string>
+    <string name="alisdk_message_2_action">请检查所依赖的 SDK 项目，或若是手动拷贝 SDK 至当前开发应用所在项目，请检查是否漏拷文件 res/values 下文件</string>
+    <string name="alisdk_message_2_type">E</string>
+    <string name="alisdk_message_10010_name">GENERIC_SYSTEM_ERROR</string>
+    <string name="alisdk_message_10010_message">发生错误，消息为 {0}, 请使用 LogCat 查看更多细节</string>
+    <string name="alisdk_message_10010_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
+    <string name="alisdk_message_10010_type">E</string>
+    <string name="alisdk_message_100_name">ACTION_SUCCESS</string>
+    <string name="alisdk_message_100_message">操作成功</string>
+    <string name="alisdk_message_100_action"></string>
+    <string name="alisdk_message_100_type">I</string>
+    <string name="alisdk_message_10002_name">INIT_EXCEPTION</string>
+    <string name="alisdk_message_10002_message">SDK 初始化出错，错误信息为 {0}</string>
+    <string name="alisdk_message_10002_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
+    <string name="alisdk_message_10002_type">E</string>
+    <string name="alisdk_message_10022_name">PLUGIN_INIT_FAILED</string>
+    <string name="alisdk_message_10022_message">SDK 组件 {0} 启动出错，错误消息为 {1}</string>
+    <string name="alisdk_message_10022_action">请使用默认的 androiddebugkey 对当前开发应用签名或在应用初始化之前调用 AlibabaSDK.turnOnDebug(), 运行程序查看 logcat 输出以获取更多错误细节，并采取对应操作</string>
+    <string name="alisdk_message_10022_type">E</string>
+    <string name="alisdk_message_10012_name">SDK_NOT_INIT</string>
+    <string name="alisdk_message_10012_message">SDK 尚未被初始化</string>
+    <string name="alisdk_message_10012_action">请在使用 SDK 业务功能之前确保已经调用 AlibabaSDK.asyncInit 方法并接收到初始化成功的回调</string>
+    <string name="alisdk_message_10012_type">E</string>
+    <string name="alisdk_message_12_name">RESOURCE_NOT_FOUND</string>
+    <string name="alisdk_message_12_message">在目录 {0} 未找到文件 {1}</string>
+    <string name="alisdk_message_12_action">请检查所依赖的 SDK 项目，或若是手动拷贝 SDK 至当前开发应用所在项目，请检查是否漏拷文件</string>
+    <string name="alisdk_message_12_type">E</string>
+    <string name="alisdk_message_13_name">PLUGIN_NOT_FOUND</string>
+    <string name="alisdk_message_13_message">未能在下载 SDK 中找到指定插件 {0}</string>
+    <string name="alisdk_message_13_action">请检查所依赖的 SDK 项目，或若是手动拷贝 SDK 至当前开发应用所在项目，请检查是否漏拷文件，或重新至官方网站下载 SDK</string>
+    <string name="alisdk_message_13_type">E</string>
+    <string name="alisdk_message_14_name">NULL_OR_EMPTY_PARAMETER</string>
+    <string name="alisdk_message_14_message">输入参数 {0} 为 null 或者为空</string>
+    <string name="alisdk_message_14_action">当前输入参数不应为 null 或者空，请调整输入参数</string>
+    <string name="alisdk_message_14_type">E</string>
+    <string name="alisdk_message_15_name">SERVER_REQUEST_FAILED</string>
+    <string name="alisdk_message_15_message">{0} 模块 请求服务端出错，错误消息为 {1}</string>
+    <string name="alisdk_message_15_action"></string>
+    <string name="alisdk_message_15_type">E</string>
+    <string name="alisdk_message_16_name">CLASS_NOT_FOUND_ERROR</string>
+    <string name="alisdk_message_16_message">运行时不能载入类 {0}</string>
+    <string name="alisdk_message_16_action">请在 IDE 中检查类是否存在，或者是否因为代码混淆没有配置 SDK 对应的 -keep 选项，具体配置请参照在线网站</string>
+    <string name="alisdk_message_16_type">E</string>
+    <string name="alisdk_message_17_name">SERVICE_NOT_AVAILABLE_ERROR</string>
+    <string name="alisdk_message_17_message">不能获取类名为 {0}，过滤条件为 {1} 的服务</string>
+    <string name="alisdk_message_17_action">1.请检查 SDK 是否初始化成功，或者如果 APK 采取特定的打包方式 (e.g. multi-dex), 确保百川 SDK 的包含的 jar 文件中的 assets/ 文件包含在最终的 APK 中
+        2. OneSDK 使用异步初始化, 即调用完 AlibabaSDK.asyncInit() 后立即返回, 所以如果立即调用 AlibabaSDK.getService() 并调用其中相关方法, 会导致该错误.
+        3. 请确保在 OneSDK 初始化是在 Application.onCreate 中调用, 否则在如下场景会导致该错误. a) 在非应用主进程获取服务 b) 应用从后台被唤起到前台.         
+        </string>
+    <string name="alisdk_message_17_type">E</string>
+    <string name="alisdk_message_18_name">SERVER_BUSY_ERROR</string>
+    <string name="alisdk_message_18_message">系统繁忙，请稍后再试</string>
+    <string name="alisdk_message_18_action"></string>
+    <string name="alisdk_message_18_type">E</string>
+    <string name="alisdk_message_10014_name">NETWORK_NOT_AVAILABLE</string>
+    <string name="alisdk_message_10014_message">当前网络不可用</string>
+    <string name="alisdk_message_10014_action">请检查网络设置后，并重试当前操作</string>
+    <string name="alisdk_message_10014_type">E</string>
+
+</resources>

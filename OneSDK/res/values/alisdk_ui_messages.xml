@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="com_taobao_tae_sdk_back_message">返回</string>
+    <string name="com_taobao_tae_sdk_close_message">关闭</string>
+    <string name="com_taobao_tae_sdk_more_message">更多</string>
+</resources>

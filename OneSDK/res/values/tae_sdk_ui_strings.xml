@@ -1,0 +1,14 @@
+<resources>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_email_edit">请输入您的邮件地址或者手机号......</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_edit">在这里输入您的反馈......</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_feedback_strings_titlebar_title">报告问题</string>
+
+    <string name="com_taobao_tae_sdk_web_view_activity_basewebviewactivity_strings_menulist_copy">已复制到剪贴板</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_maximages">最多上传5张图片</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_nowifi">为了您的流量考虑，请连接Wifi网络后再进行反馈</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_nocontent">请输入您的反馈内容</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_invalidcontent">反馈内容长度应大于3</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_nocontact">请输入您的邮件地址或者手机号</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_invalidcontact">您输入的邮箱或手机格式不对</string>
+    <string name="com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_feedbackcomplete">感谢您的反馈，我们会尽快处理</string>
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/layoutOfNewImageWithDelete"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:scaleType="fitCenter"
+        android:layout_gravity="center|center_vertical"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_newimagewithdelete_newimage_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_newimagewithdelete_delete_imageview"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/com_taobao_tae_sdk_web_view_activity_sendfeedback_newimagewithdelete_delete_drawable"/>
+    </RelativeLayout>
+
+</FrameLayout>

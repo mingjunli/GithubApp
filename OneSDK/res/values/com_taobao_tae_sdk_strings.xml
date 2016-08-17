@@ -1,0 +1,6 @@
+<resources>
+    <string name="com_taobao_tae_sdk_loading_progress_message">加载中</string>    
+    <string name="com_taobao_tae_sdk_system_exception">系统异常</string>
+    <string name="com_taobao_tae_sdk_alert_message">您离开太久了，请重新操作</string>
+    <string name="com_taobao_tae_sdk_network_not_available_message">网络无法连接</string>
+</resources>

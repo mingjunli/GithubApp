@@ -1,0 +1,53 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="#bfbfbf"
+                tools:context="com.example.benxs.feedbackmodule.SelectPicturePopWindows">
+    <LinearLayout
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_selectpicturepopwindow_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+    <Button
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="10dip"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_selectpicturepopwindow_album_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="从相册选择"/>
+
+    <Button
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="5dip"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_selectpicturepopwindow_photograph_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拍照"/>
+
+    <Button
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="5dip"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_selectpicturepopwindow_cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="取消"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

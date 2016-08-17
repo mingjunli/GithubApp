@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 651-700 -->
+    <string name="alisdk_message_651_name">INVALID_OPEN_ITEM_ID</string>
+    <string name="alisdk_message_651_message">未能使用当前应用的信息对参数进行解密</string>
+    <string name="alisdk_message_651_action">请使用相关工具 (e.g.taobao.openiid.get API) 对原始参数进行加密</string>
+    <string name="alisdk_message_651_type">E</string>
+
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:background="#FFFFFF"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+        <TextView
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:gravity="center_horizontal|center"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/com_taobao_tae_sdk_web_view_activity_feedback_strings_titlebar_title"/>
+
+        <Button
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/com_taobao_tae_sdk_web_view_title_bar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="返回"
+            android:textColor="#000000"
+            android:gravity="center|center_vertical"
+            android:textSize="18sp"
+            android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_titlebar_back_button"/>
+
+    <!--<ImageButton-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:src="@drawable/com_taobao_tae_sdk_web_view_title_bar_back"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:gravity="center|center_vertical"-->
+        <!--android:textSize="18sp"-->
+        <!--android:id="@+id/com_taobao_tae_sdk_web_view_activity_feedback_titlebar_back_button"/>-->
+
+
+</FrameLayout >

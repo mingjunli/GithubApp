@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_main"
+    tools:context="com.alibaba.sdk.android.webview.feedback.SendFeedbackActivity">
+
+    <!--android:background="@drawable/com_taobao_tae_sdk_web_view_activity_sendfeedback_rounded_edittext"-->
+    <EditText
+        android:gravity="start"
+        android:maxLines="8"
+        android:maxLength="200"
+        android:paddingLeft="4dp"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:inputType="textMultiLine"
+        android:minLines="5"
+        android:hint="@string/com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_feedback_edit"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_feedback_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <EditText
+        android:maxLength="30"
+        android:inputType="textEmailAddress"
+        android:maxLines="3"
+        android:paddingLeft="4dp"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#000000"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:hint="@string/com_taobao_tae_sdk_web_view_activity_sendfeedback_strings_email_edit"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_email_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_images_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:scaleType="fitCenter"
+            android:background="#00000000"
+            android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_choosepicture_button"
+            android:src="@drawable/com_taobao_tae_sdk_web_view_activity_sendfeedback_addpicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:textSize="18sp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:id="@+id/com_taobao_tae_sdk_web_view_activity_sendfeedback_send_button"
+        android:text="发送"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
