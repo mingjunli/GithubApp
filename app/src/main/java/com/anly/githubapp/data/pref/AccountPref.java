@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.anly.githubapp.data.model.User;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.google.gson.Gson;
 
 /**
@@ -48,5 +49,14 @@ public class AccountPref {
 
     public static boolean isLogon(Context context) {
         return !TextUtils.isEmpty(getLogonToken(context)) && getLogonUser(context) != null;
+    }
+
+    public static boolean checkLogon(Context context) {
+        if (!isLogon(context)) {
+            LoginActivity.launch(context);
+            return false;
+        }
+
+        return true;
     }
 }

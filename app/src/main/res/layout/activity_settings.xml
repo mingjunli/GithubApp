@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/md_grey_300">
+
+    <LinearLayout
+        android:id="@+id/night_mode"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"
+        android:background="@color/md_white_1000">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_60"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/text_size_14"
+            android:text="@string/night_mode"
+            />
+
+        <ToggleButton
+            android:id="@+id/night_mode_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/md_white_1000">
+
+        <LinearLayout
+            android:id="@+id/clear_cache"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:orientation="horizontal">
+            
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_60"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_14"
+                android:text="@string/clear_cache"
+                />
+            
+            <TextView
+                android:id="@+id/current_cache"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/md_grey_400"/>
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/md_grey_300"/>
+
+        <LinearLayout
+            android:id="@+id/upgrade"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dimen_60"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_14"
+                android:text="@string/upgrade"
+                />
+
+            <TextView
+                android:id="@+id/current_version"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_14"
+                android:textColor="@color/md_grey_400"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/md_white_1000">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="@string/about"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

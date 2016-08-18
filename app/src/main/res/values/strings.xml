@@ -21,5 +21,13 @@
 
     <string name="forks_count">Forks ( %1$s )</string>
     <string name="contributors_count">Contributors ( %1$s )</string>
+    <string name="source_link">Source Link \n https://github.com/mingjunli/GithubApp</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="about">About</string>
+    <string name="github_com_v3">Api from Github Document \nhttps://developer.github.com/v3/</string>
+    <string name="no_copyright">There\'s no any copyright of this App</string>
+    <string name="make_it_better">Welcome to fork/star/pull request to make it better</string>
 
 </resources>

@@ -15,6 +15,7 @@ import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
 import com.anly.githubapp.di.component.RepoComponent;
@@ -23,6 +24,7 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
 import com.anly.githubapp.presenter.repo.StarActionPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
+import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
@@ -177,12 +179,16 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private RepoItemView.RepoActionListener mRepoActionListener = new RepoItemView.RepoActionListener() {
         @Override
         public void onStarAction(Repo repo) {
-            mStarPresenter.starRepo(repo.getOwner().getLogin(), repo.getName());
+            if (AccountPref.checkLogon(RepoDetailActivity.this)) {
+                mStarPresenter.starRepo(repo.getOwner().getLogin(), repo.getName());
+            }
         }
 
         @Override
         public void onUnstarAction(Repo repo) {
-            mStarPresenter.unstarRepo(repo.getOwner().getLogin(), repo.getName());
+            if (AccountPref.checkLogon(RepoDetailActivity.this)) {
+                mStarPresenter.unstarRepo(repo.getOwner().getLogin(), repo.getName());
+            }
         }
     };
 

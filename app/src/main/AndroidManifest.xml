@@ -74,6 +74,12 @@
         <activity android:name=".ui.module.repo.RepoDetailActivity"
                   android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.module.setting.SettingsActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".ui.module.setting.AboutActivity"
+                  android:screenOrientation="portrait">
+        </activity>
 
         <!-- ali yun push -->
         <!-- 通道保持服务（幽灵进程自动保活该服务） -->
