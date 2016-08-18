@@ -18,7 +18,6 @@ public class PushPlatform {
     public static void init(final Context context) {
         if (BuildConfig.DEBUG) {
             AlibabaSDK.turnOnDebug();
-            AlibabaSDK.setSecGuardImagePostfix("debug");
         }
 
         AlibabaSDK.asyncInit(context.getApplicationContext(), new InitResultCallback() {
