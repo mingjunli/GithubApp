@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/values/ali_feedback_colors.xml -->
+    <eat-comment/>
+    <color name="ali_feedback_black">#ff000000</color>
+    <color name="ali_feedback_color_white">#ffffff</color>
+    <color name="ali_feedback_grey_btn_default">#cccccc</color>
+    <color name="ali_feedback_halftransparentwhite">#7FFFFFFF</color>
+    <color name="ali_feedback_normal_title_bg">#00b4ff</color>
+    <color name="ali_feedback_white">#ffffffff</color>
+    <color name="ali_feedback_wxtribe_title_color">#333333</color>
+    <!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/values/ali_feedback_dimens.xml -->
+    <eat-comment/>
+    <dimen name="ali_feedback_column_up_unit_margin">10dip</dimen>
+    <dimen name="ali_feedback_common_text_size">15sp</dimen>
+    <dimen name="ali_feedback_title_bar_height">45dip</dimen>
+    <dimen name="ali_feedback_title_middle_margin">60dip</dimen>
+    <!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/values/ali_feedback_styles.xml -->
+    <eat-comment/>
+    <style name="ali_feedback_common_title_left_btn_shadow">
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/ali_feedback_commont_title_btn_text</item>
+        <item name="android:textSize">@dimen/ali_feedback_common_text_size</item>
+        <item name="android:drawableLeft">@null</item>
+        <item name="android:layout_marginLeft">5dip</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@drawable/ali_feedback_icon_back_white</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+    <style name="ali_feedback_common_title_style">
+        <item name="android:background">@color/ali_feedback_normal_title_bg</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/ali_feedback_title_bar_height</item>
+    </style>
+    <style name="ali_feedback_common_title_text_shadow">
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">middle</item>
+        <item name="android:textColor">@color/ali_feedback_white</item>
+        <item name="android:textSize">@dimen/ali_feedback_common_text_size</item>
+        <item name="android:paddingLeft">@dimen/ali_feedback_title_middle_margin</item>
+        <item name="android:paddingRight">@dimen/ali_feedback_title_middle_margin</item>
+    </style>
+    <style name="ali_feedback_commont_title_right_btn_shadow">
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/ali_feedback_commont_title_btn_text</item>
+        <item name="android:textSize">@dimen/ali_feedback_common_text_size</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:layout_marginRight">@dimen/ali_feedback_column_up_unit_margin</item>
+        <item name="android:background">@drawable/ali_feedback_icon_more</item>
+    </style>
+    <style name="ali_feedback_contentoverlay" parent="@android:style/Theme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+</resources>

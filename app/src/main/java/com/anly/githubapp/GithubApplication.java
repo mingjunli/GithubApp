@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.common.wrapper.CrashHelper;
+import com.anly.githubapp.common.wrapper.FeedbackPlatform;
 import com.anly.githubapp.common.wrapper.ImageLoader;
 import com.anly.githubapp.common.wrapper.PushPlatform;
 import com.anly.githubapp.common.wrapper.SharePlatform;
@@ -34,6 +35,9 @@ public class GithubApplication extends MultiDexApplication {
 
         // init Push
         PushPlatform.init(this);
+
+        // init Feedback
+        FeedbackPlatform.init(this);
 
         // init Share
         SharePlatform.init(this);

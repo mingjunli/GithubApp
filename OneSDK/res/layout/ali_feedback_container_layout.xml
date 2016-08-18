@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff">
+
+    <RelativeLayout
+        android:id="@+id/hybird_container"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="45dip"></RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title"
+        style="@style/ali_feedback_common_title_style">
+
+        <ImageView
+            android:id="@+id/title_back"
+            style="@style/ali_feedback_common_title_left_btn_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:background="@null"
+            android:src="@drawable/ali_feedback_icon_back_white"
+            android:layout_centerVertical="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/title_button"
+            style="@style/ali_feedback_commont_title_right_btn_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="更多"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/title_text"
+            style="@style/ali_feedback_common_title_text_shadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/title_button"
+            android:layout_toRightOf="@+id/title_back"
+            android:includeFontPadding="false"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/webview_icon_back"
+        style="@style/ali_feedback_common_title_left_btn_shadow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="5dp"
+        android:drawableLeft="@drawable/ali_feedback_icon_back_white"
+        android:paddingBottom="10dp"
+        android:paddingRight="50dp"
+        android:paddingTop="5dp"
+        android:textColor="#ffffffff"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/title_bar_shadow_view"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="45dip"
+        android:background="#cccccc"></View>
+
+</RelativeLayout><!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/layout/ali_feedback_container_layout.xml -->

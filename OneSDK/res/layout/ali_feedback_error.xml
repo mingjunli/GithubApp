@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/ali_feedback_white"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ali_feedback_ic_element_noresult" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dip"
+        android:text="加载失败"
+        android:textColor="@color/ali_feedback_grey_btn_default"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/error_view_refresh_btn"
+        android:layout_width="95dip"
+        android:layout_height="40dip"
+        android:layout_marginTop="25dip"
+        android:background="@drawable/ali_feedback_pub_btn_white_nor"
+        android:text="刷新"
+        android:textColor="@color/ali_feedback_wxtribe_title_color"
+        android:textSize="16sp" />
+
+</LinearLayout><!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/layout/ali_feedback_error.xml -->

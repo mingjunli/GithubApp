@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.wrapper.FeedbackPlatform;
 import com.anly.githubapp.common.wrapper.ImageLoader;
 import com.anly.githubapp.common.wrapper.SharePlatform;
 import com.anly.githubapp.data.model.User;
@@ -82,7 +83,7 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.feedback:
-                // TODO
+                FeedbackPlatform.openFeedback(getActivity());
                 break;
 
             case R.id.settings:

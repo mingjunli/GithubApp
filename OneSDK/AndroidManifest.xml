@@ -26,6 +26,12 @@
         <action android:name="anetwork.channel.intent.action.COMMAND"/> 
       </intent-filter> 
     </receiver>
+
+    <activity android:configChanges="keyboardHidden|orientation"
+              android:name="com.alibaba.sdk.android.feedback.windvane.CustomHybirdActivity"
+              android:screenOrientation="portrait"
+              android:theme="@style/ali_feedback_contentoverlay"/>
+
         <activity android:name="com.alibaba.sdk.android.webview.BaseWebViewActivity"/>
         <activity android:name="com.alibaba.sdk.android.webview.feedback.FeedbackActivity" android:theme="@style/feedback_title">
         </activity>

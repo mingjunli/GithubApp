@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
+
+    <corners
+        android:bottomLeftRadius="15sp"
+        android:bottomRightRadius="15sp"
+        android:topLeftRadius="15sp"
+        android:topRightRadius="15sp" />
+
+    <solid android:color="#f5f5f5" />
+
+</shape><!-- From: file:/home/admin/.jenkins/jobs/MUPP_1398478/workspace/res/drawable/ali_feedback_popup_bg.xml -->
