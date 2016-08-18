@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.wrapper.ImageLoader;
+import com.anly.githubapp.common.wrapper.SharePlatform;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.ui.base.BaseFragment;
@@ -77,7 +78,7 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.share_app:
-                // TODO
+                SharePlatform.share(getActivity());
                 break;
 
             case R.id.feedback:

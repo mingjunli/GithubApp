@@ -13,7 +13,7 @@ import com.anly.githubapp.BuildConfig;
 /**
  * Created by mingjun on 16/8/17.
  */
-public class PushSDK {
+public class PushPlatform {
 
     public static void init(final Context context) {
         if (BuildConfig.DEBUG) {

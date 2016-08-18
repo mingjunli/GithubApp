@@ -9,7 +9,8 @@ import android.widget.ImageView;
 import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.common.wrapper.CrashHelper;
 import com.anly.githubapp.common.wrapper.ImageLoader;
-import com.anly.githubapp.common.wrapper.PushSDK;
+import com.anly.githubapp.common.wrapper.PushPlatform;
+import com.anly.githubapp.common.wrapper.SharePlatform;
 import com.anly.githubapp.di.component.ApplicationComponent;
 import com.anly.githubapp.di.component.DaggerApplicationComponent;
 import com.anly.githubapp.di.module.ApplicationModule;
@@ -32,7 +33,10 @@ public class GithubApplication extends MultiDexApplication {
         CrashHelper.init(this);
 
         // init Push
-        PushSDK.init(this);
+        PushPlatform.init(this);
+
+        // init Share
+        SharePlatform.init(this);
 
         // init Drawer image loader
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
