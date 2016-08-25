@@ -3,6 +3,7 @@ package com.anly.githubapp;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Debug;
 import android.support.multidex.MultiDexApplication;
 import android.widget.ImageView;
 
@@ -18,6 +19,10 @@ import com.anly.githubapp.di.module.ApplicationModule;
 import com.mikepenz.materialdrawer.util.AbstractDrawerImageLoader;
 import com.mikepenz.materialdrawer.util.DrawerImageLoader;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by mingjun on 16/7/15.
  */
@@ -25,22 +30,54 @@ public class GithubApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
+        AppLog.d("trace===GithubApplication before onCreate");
         super.onCreate();
+        Debug.startMethodTracing("GithubApp-1");
+        AppLog.d("trace===GithubApplication onCreate");
 
-        // init logger.
-        AppLog.init();
+        Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
+                // init logger.
+                AppLog.init();
+            }
+        }).subscribeOn(Schedulers.newThread());
 
-        // init crash helper
-        CrashHelper.init(this);
+        Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
 
-        // init Push
-        PushPlatform.init(this);
+                // init crash helper
+                CrashHelper.init(GithubApplication.this);
+            }
+        }).subscribeOn(Schedulers.newThread());
 
-        // init Feedback
-        FeedbackPlatform.init(this);
+        Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
 
-        // init Share
-        SharePlatform.init(this);
+                // init Push
+                PushPlatform.init(GithubApplication.this);
+            }
+        }).subscribeOn(Schedulers.newThread());
+
+        Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
+
+                // init Feedback
+                FeedbackPlatform.init(GithubApplication.this);
+            }
+        }).subscribeOn(Schedulers.newThread());
+
+        Observable.create(new Observable.OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
+
+                // init Share
+                SharePlatform.init(GithubApplication.this);
+            }
+        }).subscribeOn(Schedulers.newThread());
 
         // init Drawer image loader
         DrawerImageLoader.init(new AbstractDrawerImageLoader() {
@@ -49,6 +86,8 @@ public class GithubApplication extends MultiDexApplication {
                 ImageLoader.loadWithCircle(GithubApplication.this, uri, imageView);
             }
         });
+        AppLog.d("trace===GithubApplication onCreate end");
+        Debug.stopMethodTracing();
     }
 
     public static GithubApplication get(Context context) {

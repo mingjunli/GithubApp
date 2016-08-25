@@ -3,6 +3,7 @@ package com.anly.githubapp.ui.module.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Debug;
 import android.os.PersistableBundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -52,11 +53,20 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppLog.d("trace===MainActivity onCreate");
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mBottomBar = BottomBar.attach(this, savedInstanceState);
 
         initViews();
+
+        AppLog.d("trace===MainActivity onCreate, end");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AppLog.d("trace===MainActivity onResume");
     }
 
     private void initViews() {

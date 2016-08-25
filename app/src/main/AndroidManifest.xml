@@ -34,9 +34,9 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.module.main.WelcomeActivity"
+            android:name=".ui.module.main.LogoSplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
