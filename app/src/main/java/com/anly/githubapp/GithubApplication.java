@@ -13,6 +13,7 @@ import com.anly.githubapp.common.wrapper.FeedbackPlatform;
 import com.anly.githubapp.common.wrapper.ImageLoader;
 import com.anly.githubapp.common.wrapper.PushPlatform;
 import com.anly.githubapp.common.wrapper.SharePlatform;
+import com.anly.githubapp.compz.service.InitializeService;
 import com.anly.githubapp.di.component.ApplicationComponent;
 import com.anly.githubapp.di.component.DaggerApplicationComponent;
 import com.anly.githubapp.di.module.ApplicationModule;
@@ -30,64 +31,12 @@ public class GithubApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
-        AppLog.d("trace===GithubApplication before onCreate");
         super.onCreate();
-        Debug.startMethodTracing("GithubApp-1");
-        AppLog.d("trace===GithubApplication onCreate");
 
-        Observable.create(new Observable.OnSubscribe<Void>() {
-            @Override
-            public void call(Subscriber<? super Void> subscriber) {
-                // init logger.
-                AppLog.init();
-            }
-        }).subscribeOn(Schedulers.newThread());
+        // init logger.
+        AppLog.init();
 
-        Observable.create(new Observable.OnSubscribe<Void>() {
-            @Override
-            public void call(Subscriber<? super Void> subscriber) {
-
-                // init crash helper
-                CrashHelper.init(GithubApplication.this);
-            }
-        }).subscribeOn(Schedulers.newThread());
-
-        Observable.create(new Observable.OnSubscribe<Void>() {
-            @Override
-            public void call(Subscriber<? super Void> subscriber) {
-
-                // init Push
-                PushPlatform.init(GithubApplication.this);
-            }
-        }).subscribeOn(Schedulers.newThread());
-
-        Observable.create(new Observable.OnSubscribe<Void>() {
-            @Override
-            public void call(Subscriber<? super Void> subscriber) {
-
-                // init Feedback
-                FeedbackPlatform.init(GithubApplication.this);
-            }
-        }).subscribeOn(Schedulers.newThread());
-
-        Observable.create(new Observable.OnSubscribe<Void>() {
-            @Override
-            public void call(Subscriber<? super Void> subscriber) {
-
-                // init Share
-                SharePlatform.init(GithubApplication.this);
-            }
-        }).subscribeOn(Schedulers.newThread());
-
-        // init Drawer image loader
-        DrawerImageLoader.init(new AbstractDrawerImageLoader() {
-            @Override
-            public void set(ImageView imageView, Uri uri, Drawable placeholder) {
-                ImageLoader.loadWithCircle(GithubApplication.this, uri, imageView);
-            }
-        });
-        AppLog.d("trace===GithubApplication onCreate end");
-        Debug.stopMethodTracing();
+        InitializeService.start(this);
     }
 
     public static GithubApplication get(Context context) {

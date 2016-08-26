@@ -152,6 +152,8 @@
             </intent-filter>
         </receiver>
 
+        <service android:name=".compz.service.InitializeService"/>
+
     </application>
 
 </manifest>
