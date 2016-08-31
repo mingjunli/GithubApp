@@ -80,6 +80,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         @Override
         public void onMenuTabSelected(@IdRes int menuItemId) {
             AppLog.d("onMenuTabSelected");
+            changeTitle(menuItemId);
             switchMenu(getFragmentName(menuItemId));
         }
 
@@ -122,6 +123,25 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
             default:
                 return null;
+        }
+    }
+
+    private void changeTitle(int menuId) {
+        switch (menuId) {
+            case R.id.menu_trending:
+                setTitle(R.string.menu_trending);
+                break;
+
+            case R.id.menu_most_stars:
+                setTitle(R.string.menu_most_star);
+                break;
+
+            case R.id.menu_account:
+                setTitle(R.string.menu_account);
+                break;
+
+            default:
+                break;
         }
     }
 
