@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.AppUtil;
 import com.anly.githubapp.ui.base.BaseActivity;
 
 import butterknife.BindView;
@@ -21,11 +22,11 @@ import butterknife.OnClick;
 public class SettingsActivity extends BaseActivity {
 
     @BindView(R.id.night_mode_toggle)
-    ToggleButton nightModeToggle;
+    ToggleButton mNightModeToggle;
     @BindView(R.id.current_cache)
-    TextView currentCache;
+    TextView mCurrentCache;
     @BindView(R.id.current_version)
-    TextView currentVersion;
+    TextView mCurrentVersion;
 
     public static void launch(Context context) {
         context.startActivity(new Intent(context, SettingsActivity.class));
@@ -40,6 +41,12 @@ public class SettingsActivity extends BaseActivity {
         setTitle(R.string.settings);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initViews();
+    }
+
+    private void initViews() {
+        mCurrentVersion.setText(AppUtil.getVersionName(this));
     }
 
     @Override

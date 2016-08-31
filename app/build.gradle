@@ -11,7 +11,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "V0.1"
 
         multiDexEnabled true
     }
@@ -29,6 +29,8 @@ android {
         debug {
             // use release keystore to simplify push debug.
             signingConfig signingConfigs.release
+
+            versionNameSuffix "_debug"
         }
 
         release {
