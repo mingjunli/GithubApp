@@ -14,6 +14,7 @@ import android.view.View;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.IconicUtil;
 import com.anly.githubapp.common.wrapper.AppLog;
 import com.anly.githubapp.common.util.InputMethodUtils;
 import com.anly.githubapp.data.model.Repo;
@@ -28,6 +29,7 @@ import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
 import com.anly.githubapp.ui.module.repo.view.SearchView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.mikepenz.devicon_typeface_library.DevIcon;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -101,17 +103,17 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
                 .withTranslucentStatusBar(false)
                 .withDisplayBelowStatusBar(true)
                 .withActionBarDrawerToggleAnimated(true)
-                .withDrawerWidthRes(R.dimen.dimen_160)
+                .withDrawerWidthRes(R.dimen.dimen_180)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Java").withIcon(R.drawable.ic_java),
-                        new PrimaryDrawerItem().withName("Objective-C").withIcon(R.drawable.ic_ios),
-                        new PrimaryDrawerItem().withName("Swift").withIcon(R.drawable.ic_ios),
-                        new PrimaryDrawerItem().withName("JavaScript").withIcon(R.drawable.ic_js),
-                        new PrimaryDrawerItem().withName("Python").withIcon(R.drawable.ic_python),
-                        new PrimaryDrawerItem().withName("HTML").withIcon(R.drawable.ic_html),
-                        new PrimaryDrawerItem().withName("C#").withIcon(R.drawable.ic_cshap),
-                        new PrimaryDrawerItem().withName("C++").withIcon(R.drawable.ic_cpp),
-                        new PrimaryDrawerItem().withName("Ruby").withIcon(R.drawable.ic_ruby)
+                        new PrimaryDrawerItem().withName("Java").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_java_plain)),
+                        new PrimaryDrawerItem().withName("Objective-C").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_apple_plain)),
+                        new PrimaryDrawerItem().withName("Swift").withIcon(R.drawable.ic_swift),
+                        new PrimaryDrawerItem().withName("JavaScript").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_javascript_plain)),
+                        new PrimaryDrawerItem().withName("Python").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_python_plain)),
+                        new PrimaryDrawerItem().withName("HTML").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_html5_plain)),
+                        new PrimaryDrawerItem().withName("C#").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_csharp_plain_wordmark)),
+                        new PrimaryDrawerItem().withName("C++").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_cplusplus_plain_wordmark)),
+                        new PrimaryDrawerItem().withName("Ruby").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_ruby_plain))
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override

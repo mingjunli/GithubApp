@@ -174,4 +174,9 @@ dependencies {
     // Bugly
     // https://bugly.qq.com/docs/
     compile 'com.tencent.bugly:crashreport:2.2.0'
+
+    // Android-Iconics
+    // https://github.com/mikepenz/Android-Iconics
+    compile "com.mikepenz:iconics-core:2.8.1@aar"
+    compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
 }
