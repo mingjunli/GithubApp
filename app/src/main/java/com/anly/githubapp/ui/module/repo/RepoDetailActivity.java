@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.util.IconicUtil;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.data.pref.AccountPref;
@@ -29,6 +30,7 @@ import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.anly.githubapp.ui.widget.RepoItemView;
+import com.mikepenz.octicons_typeface_library.Octicons;
 import com.zzhoujay.richtext.RichText;
 
 import javax.inject.Inject;
@@ -117,7 +119,6 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     }
 
     private void initViews() {
-
         mForkListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));
         mForkUserAdapter = new ForkUserListAdapter(null);

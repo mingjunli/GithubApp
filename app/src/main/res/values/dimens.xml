@@ -29,4 +29,5 @@
     <dimen name="dimen_230">230dp</dimen>
     <dimen name="dimen_64">64dp</dimen>
     <dimen name="dimen_80">80dp</dimen>
+    <dimen name="dimen_24">24dp</dimen>
 </resources>

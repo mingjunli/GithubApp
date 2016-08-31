@@ -58,7 +58,7 @@ public class InitializeService extends IntentService {
         CrashHelper.init(this.getApplicationContext());
 
         // init Push
-        PushPlatform.init(this.getApplicationContext());
+        // PushPlatform.init(this.getApplicationContext());
 
         // init Feedback
         FeedbackPlatform.init(this.getApplication());

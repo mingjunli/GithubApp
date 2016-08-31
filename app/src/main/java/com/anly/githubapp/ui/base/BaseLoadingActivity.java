@@ -2,9 +2,11 @@ package com.anly.githubapp.ui.base;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.LayoutInflaterCompat;
 
 import com.anly.githubapp.ui.widget.loading.LoadingView;
 import com.anly.mvp.lce.LoadView;
+import com.mikepenz.iconics.context.IconicsLayoutInflater;
 
 /**
  * Created by mingjun on 16/8/9.

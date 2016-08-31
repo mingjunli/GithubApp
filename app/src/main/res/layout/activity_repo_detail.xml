@@ -27,12 +27,25 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/forks_count"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    app:iiv_icon="oct-oct_gist_fork" />
+
+                <TextView
+                    android:id="@+id/forks_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/fork_list"
@@ -40,25 +53,50 @@
                 android:layout_height="@dimen/dimen_60"
                 />
 
-            <TextView
-                android:id="@+id/contributors_count"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    app:iiv_icon="oct-oct_organization" />
+
+                <TextView
+                    android:id="@+id/contributors_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:gravity="center_vertical"/>
+
+            </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/contributor_list"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_60"/>
 
-            <TextView
-                android:id="@+id/readme_label"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"
-                android:text="README"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.mikepenz.iconics.view.IconicsImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    app:iiv_icon="oct-oct_repo" />
+
+                <TextView
+                    android:id="@+id/readme_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:text="README"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/readme"
