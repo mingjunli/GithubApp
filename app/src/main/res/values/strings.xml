@@ -19,8 +19,8 @@
     <string name="repositories">Your Repositories</string>
     <string name="your_stars">Your stars</string>
 
-    <string name="forks_count">Forks ( %1$s )</string>
-    <string name="contributors_count">Contributors ( %1$s )</string>
+    <string name="forks_count">( %1$d )</string>
+    <string name="contributors_count">( %1$d )</string>
     <string name="source_link">Source Link \n https://github.com/mingjunli/GithubApp</string>
     <string name="night_mode">Night Mode</string>
     <string name="clear_cache">Clear Cache</string>

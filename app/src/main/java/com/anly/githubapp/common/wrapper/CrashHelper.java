@@ -11,6 +11,7 @@ import com.tencent.bugly.crashreport.CrashReport;
 public class CrashHelper {
 
     public static void init(Context context) {
+        AppLog.d("CrashHelper init");
         CrashReport.initCrashReport(context.getApplicationContext(), "daf1967bd3", BuildConfig.DEBUG);
     }
 

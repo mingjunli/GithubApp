@@ -16,6 +16,8 @@ import com.anly.githubapp.BuildConfig;
 public class PushPlatform {
 
     public static void init(final Context context) {
+        AppLog.d("PushPlatform init");
+
         if (BuildConfig.DEBUG) {
             AlibabaSDK.turnOnDebug();
         }

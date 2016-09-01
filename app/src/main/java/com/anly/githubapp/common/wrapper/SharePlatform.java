@@ -11,6 +11,7 @@ import cn.sharesdk.onekeyshare.OnekeyShare;
 public class SharePlatform {
 
     public static void init(Context context) {
+        AppLog.d("SharePlatform init");
         ShareSDK.initSDK(context.getApplicationContext());
     }
 

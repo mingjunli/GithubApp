@@ -7,14 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/md_white_1000"
     android:orientation="vertical"
-    android:padding="@dimen/dimen_10">
-
-    <com.anly.githubapp.ui.widget.RepoItemView
-        android:id="@+id/repo_item_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/md_grey_300"
-        android:elevation="@dimen/dimen_2"/>
+    android:padding="@dimen/dimen_16">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,82 +20,127 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.anly.githubapp.ui.widget.RepoItemView
+                android:id="@+id/repo_item_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:background="@color/md_grey_300"
+                android:elevation="@dimen/dimen_2"/>
 
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:layout_width="@dimen/dimen_24"
-                    android:layout_height="@dimen/dimen_24"
-                    app:iiv_icon="oct-oct_gist_fork" />
+            <LinearLayout
+                android:id="@+id/contributor_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:orientation="vertical"
+                >
 
-                <TextView
-                    android:id="@+id/forks_count"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_40"
-                    android:layout_marginLeft="@dimen/dimen_10"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_bg"
+                    android:paddingLeft="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="{oct-organization} Contributors"/>
+
+                    <TextView
+                        android:id="@+id/contributors_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/contributor_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"/>
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fork_list"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_60"
-                />
-
             <LinearLayout
+                android:id="@+id/fork_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:orientation="vertical"
+                >
 
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:layout_width="@dimen/dimen_24"
-                    android:layout_height="@dimen/dimen_24"
-                    app:iiv_icon="oct-oct_organization" />
 
-                <TextView
-                    android:id="@+id/contributors_count"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_40"
-                    android:layout_marginLeft="@dimen/dimen_10"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_bg"
+                    android:paddingLeft="@dimen/dimen_10"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="{oct-gist_fork} Forks"/>
+
+                    <TextView
+                        android:id="@+id/forks_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fork_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"
+                    />
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/contributor_list"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_60"/>
-
             <LinearLayout
+                android:id="@+id/code_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/button_bg"
+                android:paddingLeft="@dimen/dimen_10">
 
-                <com.mikepenz.iconics.view.IconicsImageView
-                    android:layout_width="@dimen/dimen_24"
-                    android:layout_height="@dimen/dimen_24"
-                    app:iiv_icon="oct-oct_repo" />
+                <TextView
+                    android:id="@+id/code_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:text="{oct-file_code} Code"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/readme_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/button_bg"
+                android:paddingLeft="@dimen/dimen_10">
 
                 <TextView
                     android:id="@+id/readme_label"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_40"
                     android:gravity="center_vertical"
-                    android:text="README"/>
+                    android:text="{faw-adjust} README"/>
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/readme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
 
         </LinearLayout>
 

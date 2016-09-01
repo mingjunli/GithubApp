@@ -9,11 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
-import com.anly.githubapp.common.util.IconicUtil;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
 import com.anly.githubapp.data.pref.AccountPref;
@@ -25,18 +26,16 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
 import com.anly.githubapp.presenter.repo.StarActionPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
-import com.anly.githubapp.ui.module.account.LoginActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.anly.githubapp.ui.widget.RepoItemView;
-import com.mikepenz.octicons_typeface_library.Octicons;
-import com.zzhoujay.richtext.RichText;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetailView, HasComponent<RepoComponent> {
 
@@ -49,14 +48,16 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     TextView mForksCount;
     @BindView(R.id.contributors_count)
     TextView mContributorsCount;
-    @BindView(R.id.readme)
-    TextView mReadme;
     @BindView(R.id.fork_list)
     RecyclerView mForkListView;
     @BindView(R.id.contributor_list)
     RecyclerView mContributorListView;
     @BindView(R.id.repo_item_view)
     RepoItemView mRepoItemView;
+    @BindView(R.id.contributor_layout)
+    LinearLayout mContributorLayout;
+    @BindView(R.id.fork_layout)
+    LinearLayout mForkLayout;
 
     private ForkUserListAdapter mForkUserAdapter;
     private ContributorListAdapter mContributorAdapter;
@@ -89,17 +90,13 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
         mPresenter.attachView(this);
         mStarPresenter.attachView(this);
+
+        loadDetailData();
     }
 
     @Override
     public String getLoadingMessage() {
         return null;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        loadDetailData();
     }
 
     @Override
@@ -157,10 +154,6 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
         mContributorsCount.setText(getResources().getString(R.string.contributors_count, detail.getContributors().size()));
         mContributorAdapter.setNewData(detail.getContributors());
-
-        RichText.fromMarkdown(detail.getReadme().content)
-                .async(true)
-                .into(mReadme);
     }
 
     @Override
@@ -211,5 +204,16 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     @Override
     public void unstarFailed() {
         Snackbar.make(mRepoItemView, "UnStar Failed", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick({R.id.code_layout, R.id.readme_layout})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.code_layout:
+                break;
+            case R.id.readme_layout:
+                ReadmeActivity.launch(this, mRepoDetail.getReadme());
+                break;
+        }
     }
 }

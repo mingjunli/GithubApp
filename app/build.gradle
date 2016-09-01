@@ -133,7 +133,7 @@ dependencies {
 
     // RichText to support markdown file.
     // https://github.com/zzhoujay/RichText
-    compile 'com.zzhoujay.richtext:richtext:2.0.0'
+    compile 'com.zzhoujay.richtext:richtext:2.0.9'
 
     // material
     // https://github.com/rey5137/material

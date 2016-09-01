@@ -11,6 +11,7 @@ import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 public class FeedbackPlatform {
 
     public static void init(Application application) {
+        AppLog.d("FeedbackPlatform init");
         FeedbackAPI.initAnnoy(application, "23436013");
     }
 

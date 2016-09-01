@@ -74,6 +74,9 @@
         <activity android:name=".ui.module.repo.RepoDetailActivity"
                   android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.module.repo.ReadmeActivity"
+                  android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".ui.module.setting.SettingsActivity"
                   android:screenOrientation="portrait">
         </activity>
