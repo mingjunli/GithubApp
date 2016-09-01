@@ -105,15 +105,15 @@ public class SearchActivity extends BaseLoadingActivity implements SearchView<Ar
                 .withActionBarDrawerToggleAnimated(true)
                 .withDrawerWidthRes(R.dimen.dimen_180)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName("Java").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_java_plain)),
-                        new PrimaryDrawerItem().withName("Objective-C").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_apple_plain)),
+                        new PrimaryDrawerItem().withName("Java").withIcon(DevIcon.Icon.dev_java_plain),
+                        new PrimaryDrawerItem().withName("Objective-C").withIcon(DevIcon.Icon.dev_apple_plain),
                         new PrimaryDrawerItem().withName("Swift").withIcon(R.drawable.ic_swift),
-                        new PrimaryDrawerItem().withName("JavaScript").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_javascript_plain)),
-                        new PrimaryDrawerItem().withName("Python").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_python_plain)),
-                        new PrimaryDrawerItem().withName("HTML").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_html5_plain)),
-                        new PrimaryDrawerItem().withName("C#").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_csharp_plain_wordmark)),
-                        new PrimaryDrawerItem().withName("C++").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_cplusplus_plain_wordmark)),
-                        new PrimaryDrawerItem().withName("Ruby").withIcon(IconicUtil.getSmallIcon(this, DevIcon.Icon.dev_ruby_plain))
+                        new PrimaryDrawerItem().withName("JavaScript").withIcon(DevIcon.Icon.dev_javascript_plain),
+                        new PrimaryDrawerItem().withName("Python").withIcon(DevIcon.Icon.dev_python_plain),
+                        new PrimaryDrawerItem().withName("HTML").withIcon(DevIcon.Icon.dev_html5_plain),
+                        new PrimaryDrawerItem().withName("C#").withIcon(DevIcon.Icon.dev_csharp_plain_wordmark),
+                        new PrimaryDrawerItem().withName("C++").withIcon(DevIcon.Icon.dev_cplusplus_plain_wordmark),
+                        new PrimaryDrawerItem().withName("Ruby").withIcon(DevIcon.Icon.dev_ruby_plain)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
