@@ -66,7 +66,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private static final String EXTRA_REPO_NAME = "extra_repo_name";
 
     private String mOwner;
-    private String mRepo;
+    private String mRepoName;
     private RepoDetail mRepoDetail;
 
     public static void launch(Context context, String owner, String repoName) {
@@ -131,10 +131,10 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         Intent intent = getIntent();
         if (intent != null) {
             mOwner = intent.getStringExtra(EXTRA_OWNER);
-            mRepo = intent.getStringExtra(EXTRA_REPO_NAME);
+            mRepoName = intent.getStringExtra(EXTRA_REPO_NAME);
 
-            if (!TextUtils.isEmpty(mOwner) && !TextUtils.isEmpty(mRepo)) {
-                mPresenter.loadRepoDetails(mOwner, mRepo);
+            if (!TextUtils.isEmpty(mOwner) && !TextUtils.isEmpty(mRepoName)) {
+                mPresenter.loadRepoDetails(mOwner, mRepoName);
             }
         }
     }
@@ -142,9 +142,9 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private void updateViews(RepoDetail detail) {
         mRepoDetail = detail;
         mOwner = detail.getBaseRepo().getOwner().getLogin();
-        mRepo = detail.getBaseRepo().getName();
+        mRepoName = detail.getBaseRepo().getName();
 
-        setTitle(mRepo);
+        setTitle(mRepoName);
 
         mRepoItemView.setRepo(detail.getBaseRepo());
         mRepoItemView.setRepoActionListener(mRepoActionListener);
@@ -210,7 +210,9 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.code_layout:
+                RepoTreeActivity.launch(this, mOwner, mRepoName);
                 break;
+
             case R.id.readme_layout:
                 ReadmeActivity.launch(this, mRepoDetail.getReadme());
                 break;

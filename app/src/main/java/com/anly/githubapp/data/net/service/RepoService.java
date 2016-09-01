@@ -66,22 +66,22 @@ public interface RepoService {
 
 
     @Headers("Cache-Control: public, max-age=3600")
-    @GET("/repos/{owner}/{name}/contents")
+    @GET("/repos/{owner}/{repo}/contents")
     Observable<ArrayList<Content>> contents(@Path("owner") String owner, @Path("repo") String repo);
 
     @Headers("Cache-Control: public, max-age=3600")
-    @GET("/repos/{owner}/{name}/contents")
+    @GET("/repos/{owner}/{repo}/contents")
     Observable<ArrayList<Content>> contentsByRef(@Path("owner") String owner, @Path("repo") String repo,
                                                  @Query("ref") String ref);
 
     @Headers("Cache-Control: public, max-age=3600")
-    @GET("/repos/{owner}/{name}/contents/{path}")
-    Observable<ArrayList<Content>> contentsWithPath(@Path("owner") String owner, @Path("name") String repo,
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPath(@Path("owner") String owner, @Path("repo") String repo,
                                             @Path("path") String path);
 
     @Headers("Cache-Control: public, max-age=3600")
-    @GET("/repos/{owner}/{name}/contents/{path}")
-    Observable<ArrayList<Content>> contentsWithPathByRef(@Path("owner") String owner, @Path("name") String repo,
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPathByRef(@Path("owner") String owner, @Path("repo") String repo,
                        @Path("path") String path, @Query("ref") String ref);
 
 }
