@@ -51,6 +51,7 @@ dependencies {
     compile project(':mvp')
     compile project(':OneSDK')
     compile project(':sharesdk')
+    compile project(':breadcrumb')
 
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:cardview-v7:24.0.0'
