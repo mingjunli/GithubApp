@@ -191,4 +191,19 @@ public class RepoDataSource implements RepoApi {
                     }
                 });
     }
+
+    @Override
+    public Observable<Content> getRepoReadme(String owner, String repo) {
+        return mRepoService.readme(owner, repo);
+    }
+
+    @Override
+    public Observable<ArrayList<Content>> getRepoContents(String owner, String repo, String path) {
+        if (TextUtils.isEmpty(path)) {
+            return mRepoService.contents(owner, repo);
+        }
+        else {
+            return mRepoService.contentsWithPath(owner, repo, path);
+        }
+    }
 }

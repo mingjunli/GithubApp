@@ -6,6 +6,7 @@ import com.anly.githubapp.data.net.response.Content;
 import com.anly.githubapp.data.net.response.SearchResultResp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -62,4 +63,25 @@ public interface RepoService {
 
     @DELETE("/user/starred/{owner}/{repo}")
     Observable<Response<ResponseBody>> unstarRepo(@Path("owner") String owner, @Path("repo") String repo);
+
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{name}/contents")
+    Observable<ArrayList<Content>> contents(@Path("owner") String owner, @Path("repo") String repo);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{name}/contents")
+    Observable<ArrayList<Content>> contentsByRef(@Path("owner") String owner, @Path("repo") String repo,
+                                                 @Query("ref") String ref);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{name}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPath(@Path("owner") String owner, @Path("name") String repo,
+                                            @Path("path") String path);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{name}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPathByRef(@Path("owner") String owner, @Path("name") String repo,
+                       @Path("path") String path, @Query("ref") String ref);
+
 }
