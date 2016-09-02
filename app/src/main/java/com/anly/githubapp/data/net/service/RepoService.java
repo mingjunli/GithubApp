@@ -84,4 +84,14 @@ public interface RepoService {
     Observable<ArrayList<Content>> contentsWithPathByRef(@Path("owner") String owner, @Path("repo") String repo,
                        @Path("path") String path, @Query("ref") String ref);
 
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<Content> contentDetail(@Path("owner") String owner, @Path("repo") String repo,
+                                            @Path("path") String path);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<Content> contentDetailByRef(@Path("owner") String owner, @Path("repo") String repo,
+                       @Path("path") String path, @Query("ref") String ref);
+
 }

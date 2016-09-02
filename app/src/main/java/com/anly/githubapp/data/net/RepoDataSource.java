@@ -206,4 +206,9 @@ public class RepoDataSource implements RepoApi {
             return mRepoService.contentsWithPath(owner, repo, path);
         }
     }
+
+    @Override
+    public Observable<Content> getContentDetail(String owner, String repo, String path) {
+        return mRepoService.contentDetail(owner, repo, path);
+    }
 }

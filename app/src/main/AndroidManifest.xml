@@ -80,6 +80,10 @@
         <activity android:name=".ui.module.repo.RepoTreeActivity"
                   android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".ui.module.repo.CodeActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".ui.module.setting.SettingsActivity"
                   android:screenOrientation="portrait">
         </activity>

@@ -107,4 +107,13 @@ public interface RepoApi {
      * @return
      */
     Observable<ArrayList<Content>> getRepoContents(String owner, String repo, String path);
+
+    /**
+     * Get file content's details, which contain a "content".
+     * @param owner
+     * @param repo
+     * @param path
+     * @return
+     */
+    Observable<Content> getContentDetail(String owner, String repo, String path);
 }

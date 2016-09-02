@@ -159,6 +159,7 @@ public class RepoTreeActivity extends BaseLoadingActivity implements LceView<Arr
             }
             else if (content.isFile()) {
                 // TODO
+                CodeActivity.launch(RepoTreeActivity.this, mOwner, mRepoName, content.path);
             }
         }
     };

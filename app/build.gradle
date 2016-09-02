@@ -184,4 +184,8 @@ dependencies {
     compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
     compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
+
+    // Code View
+    // https://github.com/PDDStudio/highlightjs-android
+    compile 'com.pddstudio:highlightjs-android:1.2.0'
 }
