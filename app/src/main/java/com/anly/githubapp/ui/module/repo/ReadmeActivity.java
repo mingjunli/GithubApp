@@ -4,12 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.net.response.Content;
 import com.anly.githubapp.ui.base.BaseActivity;
-import com.zzhoujay.richtext.RichText;
+import com.mukesh.MarkdownView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,7 +21,7 @@ public class ReadmeActivity extends BaseActivity {
     private static final String EXTRA_README = "extra_readme";
 
     @BindView(R.id.readme_content)
-    TextView mReadmeContent;
+    MarkdownView mReadmeContent;
 
     public static void launch(Context context, Content readme) {
         Intent intent = new Intent(context, ReadmeActivity.class);
@@ -45,9 +44,7 @@ public class ReadmeActivity extends BaseActivity {
 
     private void initViews() {
         Content readmeContent = getIntent().getParcelableExtra(EXTRA_README);
-        RichText.fromMarkdown(readmeContent.content)
-                .async(true)
-                .into(mReadmeContent);
+        mReadmeContent.setMarkDownText(readmeContent.content);
     }
 
     @Override

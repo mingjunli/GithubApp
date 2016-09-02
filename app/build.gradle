@@ -131,10 +131,6 @@ dependencies {
         transitive = true
     }
 
-    // RichText to support markdown file.
-    // https://github.com/zzhoujay/RichText
-    compile 'com.zzhoujay.richtext:richtext:2.0.9'
-
     // material
     // https://github.com/rey5137/material
     compile 'com.github.rey5137:material:1.2.4'
@@ -188,4 +184,8 @@ dependencies {
     // Code View
     // https://github.com/PDDStudio/highlightjs-android
     compile 'com.pddstudio:highlightjs-android:1.2.0'
+
+    // Markdown View
+    // https://github.com/mukeshsolanki/MarkdownView-Android
+    compile 'com.mukesh:markdownview:1.0.0'
 }
