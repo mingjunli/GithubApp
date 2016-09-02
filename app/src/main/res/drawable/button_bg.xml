@@ -4,7 +4,7 @@
         android:state_selected="true">
         <shape>
             <solid
-                android:color="@color/md_amber_500"/>
+                android:color="@color/colorPrimary"/>
             <corners
                 android:radius="0dp"/>
         </shape>
@@ -14,7 +14,7 @@
         android:state_pressed="true">
         <shape>
             <solid
-                android:color="@color/md_amber_500"/>
+                android:color="@color/colorPrimary"/>
             <corners
                 android:radius="0dp"/>
         </shape>
