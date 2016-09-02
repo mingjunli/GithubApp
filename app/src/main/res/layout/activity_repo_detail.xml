@@ -2,12 +2,11 @@
 <LinearLayout
     android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_white_1000"
     android:orientation="vertical"
-    android:padding="@dimen/dimen_16">
+    android:padding="@dimen/dimen_10">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -60,7 +59,9 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/contributor_list"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_60"/>
+                    android:layout_height="@dimen/dimen_60"
+                    android:layout_marginTop="@dimen/dimen_2"
+                    />
 
             </LinearLayout>
 
@@ -100,6 +101,7 @@
                     android:id="@+id/fork_list"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_60"
+                    android:layout_marginTop="@dimen/dimen_2"
                     />
 
             </LinearLayout>
@@ -138,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_40"
                     android:gravity="center_vertical"
-                    android:text="{faw-adjust} README"/>
+                    android:text="{oct-info} README"/>
 
             </LinearLayout>
 

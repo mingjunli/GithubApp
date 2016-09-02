@@ -149,8 +149,15 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         mRepoItemView.setRepo(detail.getBaseRepo());
         mRepoItemView.setRepoActionListener(mRepoActionListener);
 
-        mForksCount.setText(getResources().getString(R.string.forks_count, detail.getBaseRepo().getForks_count()));
-        mForkUserAdapter.setNewData(detail.getForks());
+        int forks = detail.getBaseRepo().getForks_count();
+        if (forks == 0) {
+            mForkLayout.setVisibility(View.GONE);
+        }
+        else {
+            mForkLayout.setVisibility(View.VISIBLE);
+            mForksCount.setText(getResources().getString(R.string.forks_count, forks));
+            mForkUserAdapter.setNewData(detail.getForks());
+        }
 
         mContributorsCount.setText(getResources().getString(R.string.contributors_count, detail.getContributors().size()));
         mContributorAdapter.setNewData(detail.getContributors());
