@@ -28,7 +28,7 @@ public class User implements Parcelable {
      * site_admin : false
      * name : mingjun
      * company : null
-     * blog : www.lmj.wiki
+     * blog : blog.lmj.wiki
      * location : Beijing China
      * email : xx
      * hireable : null

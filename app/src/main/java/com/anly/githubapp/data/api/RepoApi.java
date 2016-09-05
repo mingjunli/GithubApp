@@ -4,6 +4,7 @@ import android.support.annotation.IntDef;
 
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.net.response.Content;
 
 import java.util.ArrayList;
@@ -116,4 +117,11 @@ public interface RepoApi {
      * @return
      */
     Observable<Content> getContentDetail(String owner, String repo, String path);
+
+    /**
+     * Get a single user by name.
+     * @param name
+     * @return
+     */
+    Observable<User> getSingleUser(String name);
 }

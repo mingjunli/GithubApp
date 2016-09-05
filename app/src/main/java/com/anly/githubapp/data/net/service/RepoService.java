@@ -94,4 +94,7 @@ public interface RepoService {
     Observable<Content> contentDetailByRef(@Path("owner") String owner, @Path("repo") String repo,
                        @Path("path") String path, @Query("ref") String ref);
 
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}")
+    Observable<User> getSingleUser(@Path("user") String user);
 }

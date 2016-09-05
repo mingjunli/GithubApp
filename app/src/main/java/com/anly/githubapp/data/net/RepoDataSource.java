@@ -211,4 +211,9 @@ public class RepoDataSource implements RepoApi {
     public Observable<Content> getContentDetail(String owner, String repo, String path) {
         return mRepoService.contentDetail(owner, repo, path);
     }
+
+    @Override
+    public Observable<User> getSingleUser(String name) {
+        return mRepoService.getSingleUser(name);
+    }
 }

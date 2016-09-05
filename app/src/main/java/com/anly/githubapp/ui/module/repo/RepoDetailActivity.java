@@ -17,6 +17,7 @@ import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -26,10 +27,12 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
 import com.anly.githubapp.presenter.repo.StarActionPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
+import com.anly.githubapp.ui.module.account.UserActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.anly.githubapp.ui.widget.RepoItemView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import javax.inject.Inject;
 
@@ -119,11 +122,27 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         mForkListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));
         mForkUserAdapter = new ForkUserListAdapter(null);
+        mForkUserAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Repo repo = mForkUserAdapter.getItem(i);
+                UserActivity.launch(RepoDetailActivity.this, repo.getOwner().getLogin());
+            }
+        });
+
         mForkListView.setAdapter(mForkUserAdapter);
 
         mContributorListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));
         mContributorAdapter = new ContributorListAdapter(null);
+        mContributorAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                User user = mContributorAdapter.getItem(i);
+                UserActivity.launch(RepoDetailActivity.this, user.getLogin());
+            }
+        });
+
         mContributorListView.setAdapter(mContributorAdapter);
     }
 
@@ -190,6 +209,11 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
             if (AccountPref.checkLogon(RepoDetailActivity.this)) {
                 mStarPresenter.unstarRepo(repo.getOwner().getLogin(), repo.getName());
             }
+        }
+
+        @Override
+        public void onUserAction(String username) {
+            UserActivity.launch(RepoDetailActivity.this, username);
         }
     };
 

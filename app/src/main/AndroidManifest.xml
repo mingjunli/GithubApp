@@ -84,6 +84,10 @@
                   android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".ui.module.account.UserActivity"
+                  android:screenOrientation="portrait">
+        </activity>
+
         <activity android:name=".ui.module.setting.SettingsActivity"
                   android:screenOrientation="portrait">
         </activity>

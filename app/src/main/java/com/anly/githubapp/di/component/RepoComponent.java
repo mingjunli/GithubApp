@@ -3,6 +3,7 @@ package com.anly.githubapp.di.component;
 import com.anly.githubapp.di.PerActivity;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
+import com.anly.githubapp.ui.module.account.UserActivity;
 import com.anly.githubapp.ui.module.repo.CodeActivity;
 import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
@@ -29,4 +30,6 @@ public interface RepoComponent extends ActivityComponent {
     void inject(CodeActivity codeActivity);
 
     void inject(StarredRepoListActivity starredRepoListActivity);
+
+    void inject(UserActivity userActivity);
 }
