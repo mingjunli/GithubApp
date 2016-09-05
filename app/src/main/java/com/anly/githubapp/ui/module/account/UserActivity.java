@@ -39,9 +39,16 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
     UserPresenter mPresenter;
 
     private static final String EXTRA_USER_NAME = "extra_user_name";
+    private static final String EXTRA_USER = "extra_user";
     public static void launch(Context context, String name) {
         Intent intent = new Intent(context, UserActivity.class);
         intent.putExtra(EXTRA_USER_NAME, name);
+        context.startActivity(intent);
+    }
+
+    public static void launch(Context context, User user) {
+        Intent intent = new Intent(context, UserActivity.class);
+        intent.putExtra(EXTRA_USER, user);
         context.startActivity(intent);
     }
 
@@ -57,9 +64,20 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
 
         mPresenter.attachView(this);
 
-        String name = getIntent().getStringExtra(EXTRA_USER_NAME);
-        setTitle(name);
-        mPresenter.getSingleUser(name);
+        loadUser();
+    }
+
+    private void loadUser() {
+        User user = getIntent().getParcelableExtra(EXTRA_USER);
+        if (user != null) {
+            setTitle(user.getLogin());
+            mUserCard.setUser(user);
+        }
+        else {
+            String name = getIntent().getStringExtra(EXTRA_USER_NAME);
+            setTitle(name);
+            mPresenter.getSingleUser(name);
+        }
     }
 
     @Override
