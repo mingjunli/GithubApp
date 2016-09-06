@@ -151,10 +151,6 @@ dependencies {
     // https://github.com/PaoloRotolo/AppIntro
     compile 'com.github.paolorotolo:appintro:4.0.0'
 
-    // AwesomeSplash
-    // https://github.com/ViksaaSkool/AwesomeSplash
-    compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
-
     // Animation
     // https://github.com/daimajia/AndroidViewAnimations
     compile 'com.nineoldandroids:library:2.4.0'
