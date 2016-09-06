@@ -143,7 +143,7 @@ public class RepoDataSource implements RepoApi {
 
     @Override
     public Observable<ArrayList<Repo>> getMyRepos() {
-        return mRepoService.getMyRepos("updated");
+        return mRepoService.getMyRepos("updated", "all");
     }
 
     @Override

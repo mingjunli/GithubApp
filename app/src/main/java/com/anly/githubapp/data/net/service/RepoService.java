@@ -48,7 +48,7 @@ public interface RepoService {
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("user/repos")
-    Observable<ArrayList<Repo>> getMyRepos(@Query("sort") String sort);
+    Observable<ArrayList<Repo>> getMyRepos(@Query("sort") String sort, @Query("type") String type);
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("users/{name}/repos")
