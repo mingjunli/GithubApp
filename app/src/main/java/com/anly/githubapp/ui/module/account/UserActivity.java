@@ -18,6 +18,7 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.account.UserPresenter;
 import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
+import com.anly.githubapp.ui.module.repo.RepoListActivity;
 import com.anly.githubapp.ui.widget.UserCard;
 import com.anly.mvp.lce.LceView;
 
@@ -104,11 +105,15 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.repo_layout:
+                RepoListActivity.launch(this, getTitle().toString());
                 break;
+
             case R.id.starred_layout:
                 break;
+
             case R.id.following_layout:
                 break;
+
             case R.id.followers_layout:
                 break;
         }

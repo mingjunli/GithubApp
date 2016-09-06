@@ -147,6 +147,11 @@ public class RepoDataSource implements RepoApi {
     }
 
     @Override
+    public Observable<ArrayList<Repo>> getUserRepos(String username) {
+        return mRepoService.getUserRepos(username);
+    }
+
+    @Override
     public Observable<ArrayList<Repo>> getMyStarredRepos() {
         return mRepoService.getMyStarredRepos();
     }

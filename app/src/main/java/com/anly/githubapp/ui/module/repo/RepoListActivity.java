@@ -44,8 +44,11 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
 
     private RepoListRecyclerAdapter mAdapter;
 
-    public static void launch(Context context) {
-        context.startActivity(new Intent(context, RepoListActivity.class));
+    private static final String EXTRA_USER_NAME = "extra_user_name";
+    public static void launch(Context context, String username) {
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtra(EXTRA_USER_NAME, username);
+        context.startActivity(intent);
     }
 
     @Override
@@ -57,10 +60,12 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
 
         initViews();
 
-        setTitle(R.string.repositories);
+        String username = getIntent().getStringExtra(EXTRA_USER_NAME);
+
+        setTitle(getString(R.string.repositories, username));
 
         mPresenter.attachView(this);
-        mPresenter.loadMyRepos();
+        mPresenter.loadRepos(this, username);
     }
 
     @Override

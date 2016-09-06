@@ -20,6 +20,6 @@ public class RepoListRecyclerAdapter extends BaseQuickAdapter<Repo> {
     @Override
     protected void convert(BaseViewHolder holder, Repo repo) {
         holder.setText(R.id.name, StringUtil.replaceAllBlank(repo.getName()));
-        holder.setText(R.id.desc, StringUtil.trimNewLine(repo.getDescription().trim()));
+        holder.setText(R.id.desc, StringUtil.trimNewLine(repo.getDescription()));
     }
 }

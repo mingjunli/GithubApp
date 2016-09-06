@@ -112,7 +112,7 @@ public class ProfileFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.my_repo:
-                RepoListActivity.launch(getActivity());
+//                RepoListActivity.launch(getActivity());
                 break;
             case R.id.my_starred:
                 StarredRepoListActivity.launch(getActivity());

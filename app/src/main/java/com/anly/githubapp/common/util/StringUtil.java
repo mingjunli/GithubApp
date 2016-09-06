@@ -12,27 +12,27 @@ import java.util.regex.Pattern;
 public class StringUtil {
 
     public static String replaceAllBlank(String str) {
-        String dest = "";
-        if (str!=null) {
-            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
-            Matcher m = p.matcher(str);
-            dest = m.replaceAll("");
-        }
+        if (TextUtils.isEmpty(str)) return "";
+
+        Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+        Matcher m = p.matcher(str);
+        String dest = m.replaceAll("");
         return dest;
     }
-    
+
     public static String trimNewLine(String str) {
-        String dest = "";
-        if (str!=null) {
-            Pattern p = Pattern.compile("\t|\r|\n");
-            Matcher m = p.matcher(str);
-            dest = m.replaceAll("");
-        }
+        if (TextUtils.isEmpty(str)) return "";
+
+        str = str.trim();
+        Pattern p = Pattern.compile("\t|\r|\n");
+        Matcher m = p.matcher(str);
+        String dest = m.replaceAll("");
         return dest;
     }
 
     public static String base64Decode(String originalString) {
         if (TextUtils.isEmpty(originalString)) return "";
+
         return new String(Base64.decode(originalString, 0));
     }
 }

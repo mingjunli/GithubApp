@@ -70,6 +70,12 @@ public interface RepoApi {
     Observable<ArrayList<Repo>> getMyRepos();
 
     /**
+     * Get user's repositories.
+     * @return
+     */
+    Observable<ArrayList<Repo>> getUserRepos(String username);
+
+    /**
      * Get current user's starred repositories.
      * @return
      */

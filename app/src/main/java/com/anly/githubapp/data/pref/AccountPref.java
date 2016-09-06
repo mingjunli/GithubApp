@@ -59,4 +59,11 @@ public class AccountPref {
 
         return true;
     }
+
+    public static boolean isSelf(Context context, String username) {
+        User user = getLogonUser(context);
+        return user != null
+                && !TextUtils.isEmpty(username)
+                && username.equals(user.getLogin());
+    }
 }
