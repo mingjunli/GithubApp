@@ -48,19 +48,19 @@ public interface RepoService {
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("user/repos")
-    Observable<ArrayList<Repo>> getMyRepos();
+    Observable<ArrayList<Repo>> getMyRepos(@Query("sort") String sort);
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("users/{name}/repos")
-    Observable<ArrayList<Repo>> getUserRepos(@Path("name") String user);
+    Observable<ArrayList<Repo>> getUserRepos(@Path("name") String user, @Query("sort") String sort);
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("user/starred")
-    Observable<ArrayList<Repo>> getMyStarredRepos();
+    Observable<ArrayList<Repo>> getMyStarredRepos(@Query("sort") String sort);
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("users/{name}/starred")
-    Observable<ArrayList<Repo>> getUserStarredRepos(@Path("name") String user);
+    Observable<ArrayList<Repo>> getUserStarredRepos(@Path("name") String user, @Query("sort") String sort);
 
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
