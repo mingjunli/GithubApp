@@ -6,10 +6,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
+import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -45,9 +47,20 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
     private RepoListRecyclerAdapter mAdapter;
 
     private static final String EXTRA_USER_NAME = "extra_user_name";
-    public static void launch(Context context, String username) {
+    private static final String ACTION_REPOS = "com.anly.githubapp.ACTION_REPOS";
+    private static final String ACTION_STARRED_REPOS = "com.anly.githubapp.ACTION_STARRED_REPOS";
+
+    public static void launchToShowRepos(Context context, String username) {
         Intent intent = new Intent(context, RepoListActivity.class);
         intent.putExtra(EXTRA_USER_NAME, username);
+        intent.setAction(ACTION_REPOS);
+        context.startActivity(intent);
+    }
+
+    public static void launchToShowStars(Context context, String username) {
+        Intent intent = new Intent(context, RepoListActivity.class);
+        intent.putExtra(EXTRA_USER_NAME, username);
+        intent.setAction(ACTION_STARRED_REPOS);
         context.startActivity(intent);
     }
 
@@ -58,14 +71,36 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
         setContentView(R.layout.activity_repo_list);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         initViews();
+        mPresenter.attachView(this);
+        loadData();
+    }
+
+    private void loadData() {
+        String action = getIntent().getAction();
 
         String username = getIntent().getStringExtra(EXTRA_USER_NAME);
 
-        setTitle(getString(R.string.repositories, username));
+        if (ACTION_REPOS.equals(action)) {
+            setTitle(getString(R.string.repositories, username));
+            mPresenter.loadRepos(this, username, RepoApi.OWNER_REPOS);
+        }
+        else if (ACTION_STARRED_REPOS.equals(action)) {
+            setTitle(getString(R.string.your_stars, username));
+            mPresenter.loadRepos(this, username, RepoApi.STARRED_REPOS);
+        }
+    }
 
-        mPresenter.attachView(this);
-        mPresenter.loadRepos(this, username);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

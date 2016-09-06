@@ -16,8 +16,8 @@
     <string name="please_login">Please Login</string>
     <string name="exit_click_back_again">Press Back again to exit application.</string>
 
-    <string name="repositories">%1$s Repositories</string>
-    <string name="your_stars">Your stars</string>
+    <string name="repositories">%1$s \'s repositories</string>
+    <string name="your_stars">%1$s \'s stars</string>
 
     <string name="forks_count">( %1$d )</string>
     <string name="contributors_count">( %1$d )</string>

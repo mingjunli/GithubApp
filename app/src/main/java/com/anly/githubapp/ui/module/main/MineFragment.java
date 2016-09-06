@@ -17,7 +17,6 @@ import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.ui.base.BaseFragment;
 import com.anly.githubapp.ui.module.account.LoginActivity;
-import com.anly.githubapp.ui.module.account.ProfileActivity;
 import com.anly.githubapp.ui.module.account.UserActivity;
 import com.anly.githubapp.ui.module.setting.SettingsActivity;
 

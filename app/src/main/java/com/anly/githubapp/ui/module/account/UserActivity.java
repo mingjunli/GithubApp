@@ -16,7 +16,6 @@ import com.anly.githubapp.di.component.RepoComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.account.UserPresenter;
-import com.anly.githubapp.ui.base.BaseActivity;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
 import com.anly.githubapp.ui.widget.UserCard;
@@ -38,6 +37,8 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
 
     @Inject
     UserPresenter mPresenter;
+
+    private String mUsername;
 
     private static final String EXTRA_USER_NAME = "extra_user_name";
     private static final String EXTRA_USER = "extra_user";
@@ -71,13 +72,14 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
     private void loadUser() {
         User user = getIntent().getParcelableExtra(EXTRA_USER);
         if (user != null) {
-            setTitle(user.getLogin());
+            mUsername = user.getLogin();
+            setTitle(mUsername);
             mUserCard.setUser(user);
         }
         else {
-            String name = getIntent().getStringExtra(EXTRA_USER_NAME);
-            setTitle(name);
-            mPresenter.getSingleUser(name);
+            mUsername = getIntent().getStringExtra(EXTRA_USER_NAME);
+            setTitle(mUsername);
+            mPresenter.getSingleUser(mUsername);
         }
     }
 
@@ -105,10 +107,11 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.repo_layout:
-                RepoListActivity.launch(this, getTitle().toString());
+                RepoListActivity.launchToShowRepos(this, mUsername);
                 break;
 
             case R.id.starred_layout:
+                RepoListActivity.launchToShowStars(this, mUsername);
                 break;
 
             case R.id.following_layout:

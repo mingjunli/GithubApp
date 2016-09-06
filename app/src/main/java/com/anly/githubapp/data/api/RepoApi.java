@@ -32,6 +32,18 @@ public interface RepoApi {
     @interface MostStarsType{
     }
 
+    public int OWNER_REPOS = 1;
+    public int STARRED_REPOS = 2;
+    public int ORG_REPOS = 3;
+
+    @IntDef({
+            OWNER_REPOS,
+            STARRED_REPOS,
+            ORG_REPOS
+    })
+    @interface RepoType{
+    }
+
     /**
      * Get the top 30 stars repositories.
      * @param type
@@ -80,6 +92,12 @@ public interface RepoApi {
      * @return
      */
     Observable<ArrayList<Repo>> getMyStarredRepos();
+
+    /**
+     * Get user's starred repositories.
+     * @return
+     */
+    Observable<ArrayList<Repo>> getUserStarredRepos(String username);
 
     /**
      * Star a repository

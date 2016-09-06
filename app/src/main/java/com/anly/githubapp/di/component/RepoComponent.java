@@ -9,7 +9,6 @@ import com.anly.githubapp.ui.module.repo.RepoDetailActivity;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
 import com.anly.githubapp.ui.module.repo.RepoTreeActivity;
 import com.anly.githubapp.ui.module.repo.SearchActivity;
-import com.anly.githubapp.ui.module.repo.StarredRepoListActivity;
 
 import dagger.Component;
 
@@ -28,8 +27,6 @@ public interface RepoComponent extends ActivityComponent {
     void inject(RepoDetailActivity detailActivity);
     void inject(RepoTreeActivity treeActivity);
     void inject(CodeActivity codeActivity);
-
-    void inject(StarredRepoListActivity starredRepoListActivity);
 
     void inject(UserActivity userActivity);
 }

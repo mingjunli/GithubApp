@@ -30,47 +30,39 @@ public class RepoListPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
         this.mRepoApi = api;
     }
 
-    public void loadRepos(Context context, String username) {
+    public void loadRepos(Context context, String username, @RepoApi.RepoType int type) {
+        Observable<ArrayList<Repo>> observable = null;
 
-        Observable<ArrayList<Repo>> observable;
-        if (AccountPref.isSelf(context, username)) {
-            observable = mRepoApi.getMyRepos();
+        switch (type) {
+            case RepoApi.OWNER_REPOS:
+                if (AccountPref.isSelf(context, username)) {
+                    observable = mRepoApi.getMyRepos();
+                }
+                else {
+                    observable = mRepoApi.getUserRepos(username);
+                }
+                break;
+
+            case RepoApi.STARRED_REPOS:
+                if (AccountPref.isSelf(context, username)) {
+                    observable = mRepoApi.getMyStarredRepos();
+                }
+                else {
+                    observable = mRepoApi.getUserStarredRepos(username);
+                }
+                break;
+
+            case RepoApi.ORG_REPOS:
+                // TODO, not support now.
+                break;
+
+            default:
+                break;
         }
-        else {
-            observable = mRepoApi.getUserRepos(username);
-        }
+
+        if (observable == null) return;
 
         mCompositeSubscription.add(observable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0() {
-                    @Override
-                    public void call() {
-                        getMvpView().showLoading();
-                    }
-                })
-                .doOnTerminate(new Action0() {
-                    @Override
-                    public void call() {
-                        getMvpView().dismissLoading();
-                    }
-                })
-                .subscribe(new ResponseObserver<ArrayList<Repo>>() {
-
-                    @Override
-                    public void onError(Throwable e) {
-                        getMvpView().showError(e);
-                    }
-
-                    @Override
-                    public void onSuccess(ArrayList<Repo> repos) {
-                        getMvpView().showContent(repos);
-                    }
-                }));
-    }
-
-    public void loadMyRepos() {
-        mCompositeSubscription.add(mRepoApi.getMyRepos()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {

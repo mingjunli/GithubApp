@@ -58,6 +58,10 @@ public interface RepoService {
     @GET("user/starred")
     Observable<ArrayList<Repo>> getMyStarredRepos();
 
+    @Headers("Cache-Control: public, max-age=600")
+    @GET("users/{name}/starred")
+    Observable<ArrayList<Repo>> getUserStarredRepos(@Path("name") String user);
+
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
     Observable<Response<ResponseBody>> starRepo(@Path("owner") String owner, @Path("repo") String repo);
