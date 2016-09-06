@@ -1,1 +1,1 @@
-include ':app', ':mvp', ':sharesdk', ':breadcrumb'
+include ':app', ':mvp', ':sharesdk', ':breadcrumb', ':appintro'

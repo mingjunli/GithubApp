@@ -50,6 +50,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile project(':mvp')
     compile project(':sharesdk')
+    compile project(':appintro')
     compile project(':breadcrumb')
 
     compile 'com.android.support:recyclerview-v7:24.0.0'
@@ -146,10 +147,6 @@ dependencies {
     // FloatingActionButton
     // https://github.com/Clans/FloatingActionButton
     compile 'com.github.clans:fab:1.6.4'
-
-    // AppIntro
-    // https://github.com/PaoloRotolo/AppIntro
-    compile 'com.github.paolorotolo:appintro:4.0.0'
 
     // Animation
     // https://github.com/daimajia/AndroidViewAnimations
