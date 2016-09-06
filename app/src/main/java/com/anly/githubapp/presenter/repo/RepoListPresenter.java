@@ -1,10 +1,7 @@
 package com.anly.githubapp.presenter.repo;
 
-import android.content.Context;
-
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
-import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.data.rx.ResponseObserver;
 import com.anly.githubapp.presenter.base.RxMvpPresenter;
 import com.anly.mvp.lce.LceView;
@@ -30,12 +27,12 @@ public class RepoListPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
         this.mRepoApi = api;
     }
 
-    public void loadRepos(Context context, String username, @RepoApi.RepoType int type) {
+    public void loadRepos(String username, boolean isSelf, @RepoApi.RepoType int type) {
         Observable<ArrayList<Repo>> observable = null;
 
         switch (type) {
             case RepoApi.OWNER_REPOS:
-                if (AccountPref.isSelf(context, username)) {
+                if (isSelf) {
                     observable = mRepoApi.getMyRepos();
                 }
                 else {
@@ -44,7 +41,7 @@ public class RepoListPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
                 break;
 
             case RepoApi.STARRED_REPOS:
-                if (AccountPref.isSelf(context, username)) {
+                if (isSelf) {
                     observable = mRepoApi.getMyStarredRepos();
                 }
                 else {

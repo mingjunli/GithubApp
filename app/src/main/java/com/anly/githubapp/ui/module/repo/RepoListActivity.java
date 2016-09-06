@@ -13,6 +13,7 @@ import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
+import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
 import com.anly.githubapp.di.component.RepoComponent;
@@ -83,14 +84,15 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
         String action = getIntent().getAction();
 
         String username = getIntent().getStringExtra(EXTRA_USER_NAME);
+        boolean isSelf = AccountPref.isSelf(this, username);
 
         if (ACTION_REPOS.equals(action)) {
-            setTitle(getString(R.string.repositories, username));
-            mPresenter.loadRepos(this, username, RepoApi.OWNER_REPOS);
+            setTitle(isSelf ? getString(R.string.my_repositories) : getString(R.string.repositories, username));
+            mPresenter.loadRepos(username, isSelf, RepoApi.OWNER_REPOS);
         }
         else if (ACTION_STARRED_REPOS.equals(action)) {
-            setTitle(getString(R.string.your_stars, username));
-            mPresenter.loadRepos(this, username, RepoApi.STARRED_REPOS);
+            setTitle(isSelf ? getString(R.string.my_stars) : getString(R.string.your_stars, username));
+            mPresenter.loadRepos(username, isSelf, RepoApi.STARRED_REPOS);
         }
     }
 

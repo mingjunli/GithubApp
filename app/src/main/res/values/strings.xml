@@ -37,5 +37,7 @@
     <string name="desc_2">Read the fucking source code.</string>
     <string name="title_3">Let\'s coding</string>
     <string name="desc_3">Talk is cheap, show me the code</string>
+    <string name="my_repositories">my repositories</string>
+    <string name="my_stars">my stars</string>
 
 </resources>
