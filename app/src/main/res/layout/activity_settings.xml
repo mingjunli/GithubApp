@@ -111,6 +111,23 @@
         android:background="@color/md_white_1000">
 
         <TextView
+            android:id="@+id/about_author"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dimen_10"
+            android:textSize="@dimen/text_size_14"
+            android:text="@string/about_author"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:background="@color/md_grey_300"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_60"
             android:gravity="center_vertical"

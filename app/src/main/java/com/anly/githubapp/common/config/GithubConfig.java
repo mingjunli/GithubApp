@@ -13,4 +13,6 @@ public class GithubConfig {
     public static final String[] SCOPES = {"user", "repo", "notifications", "gist", "admin:org"};
 
     public static final String NOTE = "GithubApp";
+
+    public static final String AUTHOR_NAME = "mingjunli";
 }

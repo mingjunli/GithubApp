@@ -26,8 +26,8 @@
     <string name="source_link">Source Link \n https://github.com/mingjunli/GithubApp</string>
     <string name="night_mode">Night Mode</string>
     <string name="clear_cache">Clear Cache</string>
-    <string name="upgrade">Upgrade</string>
-    <string name="about">About</string>
+    <string name="upgrade">Check the Newest Version</string>
+    <string name="about">About This App</string>
     <string name="github_com_v3">Api from Github Document \nhttps://developer.github.com/v3/</string>
     <string name="no_copyright">\@copyright anly_jun</string>
     <string name="make_it_better">Welcome to fork/star/pull request to make it better</string>
@@ -43,5 +43,6 @@
     <string name="my_stars">my stars</string>
     <string name="my_following">my following</string>
     <string name="my_followers">my followers</string>
+    <string name="about_author">About Author</string>
 
 </resources>
