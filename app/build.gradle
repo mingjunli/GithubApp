@@ -25,6 +25,10 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         debug {
             // use release keystore to simplify push debug.
@@ -38,6 +42,15 @@ android {
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def fileName = "GithubApp_${variant.buildType.name}_${variant.versionName}.apk";
+            output.outputFile = new File(
+                    output.outputFile.parent, fileName
+            )
         }
     }
 }
