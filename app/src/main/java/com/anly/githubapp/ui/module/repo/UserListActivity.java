@@ -13,6 +13,7 @@ import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.api.RepoApi;
 import com.anly.githubapp.data.model.Repo;
+import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -20,8 +21,11 @@ import com.anly.githubapp.di.component.RepoComponent;
 import com.anly.githubapp.di.module.ActivityModule;
 import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoListPresenter;
+import com.anly.githubapp.presenter.repo.UserListPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
+import com.anly.githubapp.ui.module.account.UserActivity;
 import com.anly.githubapp.ui.module.repo.adapter.RepoListRecyclerAdapter;
+import com.anly.githubapp.ui.module.repo.adapter.UserListRecyclerAdapter;
 import com.anly.mvp.lce.LceView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
@@ -36,32 +40,32 @@ import butterknife.ButterKnife;
 /**
  * Created by mingjun on 16/8/10.
  */
-public class RepoListActivity extends BaseLoadingActivity implements LceView<ArrayList<Repo>>, HasComponent<RepoComponent> {
+public class UserListActivity extends BaseLoadingActivity implements LceView<ArrayList<User>>, HasComponent<RepoComponent> {
 
 
-    @BindView(R.id.repo_list)
-    RecyclerView mRepoListView;
+    @BindView(R.id.user_list)
+    RecyclerView mUserListView;
 
     @Inject
-    RepoListPresenter mPresenter;
+    UserListPresenter mPresenter;
 
-    private RepoListRecyclerAdapter mAdapter;
+    private UserListRecyclerAdapter mAdapter;
 
     private static final String EXTRA_USER_NAME = "extra_user_name";
-    private static final String ACTION_REPOS = "com.anly.githubapp.ACTION_REPOS";
-    private static final String ACTION_STARRED_REPOS = "com.anly.githubapp.ACTION_STARRED_REPOS";
+    private static final String ACTION_FOLLOWING = "com.anly.githubapp.ACTION_FOLLOWING";
+    private static final String ACTION_FOLLOWERS = "com.anly.githubapp.ACTION_FOLLOWERS";
 
-    public static void launchToShowRepos(Context context, String username) {
-        Intent intent = new Intent(context, RepoListActivity.class);
+    public static void launchToShowFollowing(Context context, String username) {
+        Intent intent = new Intent(context, UserListActivity.class);
         intent.putExtra(EXTRA_USER_NAME, username);
-        intent.setAction(ACTION_REPOS);
+        intent.setAction(ACTION_FOLLOWING);
         context.startActivity(intent);
     }
 
-    public static void launchToShowStars(Context context, String username) {
-        Intent intent = new Intent(context, RepoListActivity.class);
+    public static void launchToShowFollowers(Context context, String username) {
+        Intent intent = new Intent(context, UserListActivity.class);
         intent.putExtra(EXTRA_USER_NAME, username);
-        intent.setAction(ACTION_STARRED_REPOS);
+        intent.setAction(ACTION_FOLLOWERS);
         context.startActivity(intent);
     }
 
@@ -69,7 +73,7 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getComponent().inject(this);
-        setContentView(R.layout.activity_repo_list);
+        setContentView(R.layout.activity_user_list);
         ButterKnife.bind(this);
 
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -86,13 +90,13 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
         String username = getIntent().getStringExtra(EXTRA_USER_NAME);
         boolean isSelf = AccountPref.isSelf(this, username);
 
-        if (ACTION_REPOS.equals(action)) {
-            setTitle(isSelf ? getString(R.string.my_repositories) : getString(R.string.repositories, username));
-            mPresenter.loadRepos(username, isSelf, RepoApi.OWNER_REPOS);
+        if (ACTION_FOLLOWING.equals(action)) {
+            setTitle(isSelf ? getString(R.string.my_following) : getString(R.string.following, username));
+            mPresenter.loadUsers(username, isSelf, RepoApi.FOLLOWING);
         }
-        else if (ACTION_STARRED_REPOS.equals(action)) {
-            setTitle(isSelf ? getString(R.string.my_stars) : getString(R.string.your_stars, username));
-            mPresenter.loadRepos(username, isSelf, RepoApi.STARRED_REPOS);
+        else if (ACTION_FOLLOWERS.equals(action)) {
+            setTitle(isSelf ? getString(R.string.my_followers) : getString(R.string.followers, username));
+            mPresenter.loadUsers(username, isSelf, RepoApi.FOLLOWER);
         }
     }
 
@@ -112,24 +116,24 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
     }
 
     private void initViews() {
-        mAdapter = new RepoListRecyclerAdapter(null);
+        mAdapter = new UserListRecyclerAdapter(null);
         mAdapter.setOnRecyclerViewItemClickListener(mItemtClickListener);
 
-        mRepoListView.setLayoutManager(new LinearLayoutManager(this));
-        mRepoListView.addItemDecoration(new HorizontalDividerItemDecoration
+        mUserListView.setLayoutManager(new LinearLayoutManager(this));
+        mUserListView.addItemDecoration(new HorizontalDividerItemDecoration
                 .Builder(this)
-                .color(Color.TRANSPARENT)
-                .size(getResources().getDimensionPixelSize(R.dimen.divider_height))
+                .color(Color.GRAY)
+                .size(1)
                 .build());
 
-        mRepoListView.setAdapter(mAdapter);
+        mUserListView.setAdapter(mAdapter);
     }
 
     private BaseQuickAdapter.OnRecyclerViewItemClickListener mItemtClickListener = new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            Repo repo = mAdapter.getItem(position);
-            RepoDetailActivity.launch(RepoListActivity.this, repo.getOwner().getLogin(), repo.getName());
+            User user = mAdapter.getItem(position);
+            UserActivity.launch(UserListActivity.this, user.getLogin());
         }
     };
 
@@ -139,7 +143,7 @@ public class RepoListActivity extends BaseLoadingActivity implements LceView<Arr
     }
 
     @Override
-    public void showContent(ArrayList<Repo> data) {
+    public void showContent(ArrayList<User> data) {
         mAdapter.setNewData(data);
     }
 

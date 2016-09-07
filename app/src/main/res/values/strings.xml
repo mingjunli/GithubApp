@@ -18,6 +18,8 @@
 
     <string name="repositories">%1$s \'s repositories</string>
     <string name="your_stars">%1$s \'s stars</string>
+    <string name="following">%1$s \'s following</string>
+    <string name="followers">%1$s \'s followers</string>
 
     <string name="forks_count">( %1$d )</string>
     <string name="contributors_count">( %1$d )</string>
@@ -39,5 +41,7 @@
     <string name="desc_3">Talk is cheap, show me the code</string>
     <string name="my_repositories">my repositories</string>
     <string name="my_stars">my stars</string>
+    <string name="my_following">my following</string>
+    <string name="my_followers">my followers</string>
 
 </resources>

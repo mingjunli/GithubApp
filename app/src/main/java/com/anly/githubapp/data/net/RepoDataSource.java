@@ -226,4 +226,24 @@ public class RepoDataSource implements RepoApi {
     public Observable<User> getSingleUser(String name) {
         return mRepoService.getSingleUser(name);
     }
+
+    @Override
+    public Observable<ArrayList<User>> getUserFollowing(String user) {
+        return mRepoService.getUserFollowing(user);
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getMyFollowing() {
+        return mRepoService.getMyFollowing();
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getUserFollowers(String user) {
+        return mRepoService.getUserFollowers(user);
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getMyFollowers() {
+        return mRepoService.getMyFollowers();
+    }
 }

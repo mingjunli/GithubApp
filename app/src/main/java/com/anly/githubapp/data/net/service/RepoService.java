@@ -105,4 +105,20 @@ public interface RepoService {
     @Headers("Cache-Control: public, max-age=3600")
     @GET("/users/{user}")
     Observable<User> getSingleUser(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}/following")
+    Observable<ArrayList<User>> getUserFollowing(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/user/following")
+    Observable<ArrayList<User>> getMyFollowing();
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}/followers")
+    Observable<ArrayList<User>> getUserFollowers(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/user/followers")
+    Observable<ArrayList<User>> getMyFollowers();
 }

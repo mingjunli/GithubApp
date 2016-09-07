@@ -44,6 +44,16 @@ public interface RepoApi {
     @interface RepoType{
     }
 
+    public int FOLLOWING = 1;
+    public int FOLLOWER = 2;
+
+    @IntDef({
+            FOLLOWING,
+            FOLLOWER
+    })
+    @interface UserType{
+    }
+
     /**
      * Get the top 30 stars repositories.
      * @param type
@@ -148,4 +158,30 @@ public interface RepoApi {
      * @return
      */
     Observable<User> getSingleUser(String name);
+
+    /**
+     * get user's following user list.
+     * @param user
+     * @return
+     */
+    Observable<ArrayList<User>> getUserFollowing(String user);
+
+    /**
+     * get my following list.
+     * @return
+     */
+    Observable<ArrayList<User>> getMyFollowing();
+
+    /**
+     * get user's followers.
+     * @param user
+     * @return
+     */
+    Observable<ArrayList<User>> getUserFollowers(String user);
+
+    /**
+     * get my followers.
+     * @return
+     */
+    Observable<ArrayList<User>> getMyFollowers();
 }

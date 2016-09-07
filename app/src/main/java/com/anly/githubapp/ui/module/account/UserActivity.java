@@ -18,6 +18,7 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.account.UserPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
 import com.anly.githubapp.ui.module.repo.RepoListActivity;
+import com.anly.githubapp.ui.module.repo.UserListActivity;
 import com.anly.githubapp.ui.widget.UserCard;
 import com.anly.mvp.lce.LceView;
 
@@ -115,9 +116,11 @@ public class UserActivity extends BaseLoadingActivity implements LceView<User>, 
                 break;
 
             case R.id.following_layout:
+                UserListActivity.launchToShowFollowing(this, mUsername);
                 break;
 
             case R.id.followers_layout:
+                UserListActivity.launchToShowFollowers(this, mUsername);
                 break;
         }
     }
