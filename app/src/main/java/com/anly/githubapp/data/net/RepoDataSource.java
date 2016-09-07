@@ -143,12 +143,22 @@ public class RepoDataSource implements RepoApi {
 
     @Override
     public Observable<ArrayList<Repo>> getMyRepos() {
-        return mRepoService.getMyRepos();
+        return mRepoService.getMyRepos("updated", "all");
+    }
+
+    @Override
+    public Observable<ArrayList<Repo>> getUserRepos(String username) {
+        return mRepoService.getUserRepos(username, "updated");
     }
 
     @Override
     public Observable<ArrayList<Repo>> getMyStarredRepos() {
-        return mRepoService.getMyStarredRepos();
+        return mRepoService.getMyStarredRepos("updated");
+    }
+
+    @Override
+    public Observable<ArrayList<Repo>> getUserStarredRepos(String username) {
+        return mRepoService.getUserStarredRepos(username, "updated");
     }
 
     @Override
@@ -190,5 +200,50 @@ public class RepoDataSource implements RepoApi {
                         return response != null && response.code() == 204;
                     }
                 });
+    }
+
+    @Override
+    public Observable<Content> getRepoReadme(String owner, String repo) {
+        return mRepoService.readme(owner, repo);
+    }
+
+    @Override
+    public Observable<ArrayList<Content>> getRepoContents(String owner, String repo, String path) {
+        if (TextUtils.isEmpty(path)) {
+            return mRepoService.contents(owner, repo);
+        }
+        else {
+            return mRepoService.contentsWithPath(owner, repo, path);
+        }
+    }
+
+    @Override
+    public Observable<Content> getContentDetail(String owner, String repo, String path) {
+        return mRepoService.contentDetail(owner, repo, path);
+    }
+
+    @Override
+    public Observable<User> getSingleUser(String name) {
+        return mRepoService.getSingleUser(name);
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getUserFollowing(String user) {
+        return mRepoService.getUserFollowing(user);
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getMyFollowing() {
+        return mRepoService.getMyFollowing();
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getUserFollowers(String user) {
+        return mRepoService.getUserFollowers(user);
+    }
+
+    @Override
+    public Observable<ArrayList<User>> getMyFollowers() {
+        return mRepoService.getMyFollowers();
     }
 }

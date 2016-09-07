@@ -2,19 +2,11 @@
 <LinearLayout
     android:id="@+id/root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_white_1000"
     android:orientation="vertical"
     android:padding="@dimen/dimen_10">
-
-    <com.anly.githubapp.ui.widget.RepoItemView
-        android:id="@+id/repo_item_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/md_grey_300"
-        android:elevation="@dimen/dimen_2"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,44 +19,130 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/forks_count"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fork_list"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_60"
-                />
-
-            <TextView
-                android:id="@+id/contributors_count"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/contributor_list"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_60"/>
-
-            <TextView
-                android:id="@+id/readme_label"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_40"
-                android:paddingLeft="@dimen/dimen_10"
-                android:gravity="center_vertical"
-                android:text="README"/>
-
-            <TextView
-                android:id="@+id/readme"
+            <com.anly.githubapp.ui.widget.RepoItemView
+                android:id="@+id/repo_item_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:background="@color/md_grey_300"
+                android:elevation="@dimen/dimen_2"/>
+
+            <LinearLayout
+                android:id="@+id/contributor_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_bg"
+                    android:paddingLeft="@dimen/dimen_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="{oct-organization} Contributors"/>
+
+                    <TextView
+                        android:id="@+id/contributors_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/contributor_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"
+                    android:layout_marginTop="@dimen/dimen_2"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fork_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:orientation="vertical"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_bg"
+                    android:paddingLeft="@dimen/dimen_10"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:text="{oct-gist_fork} Forks"/>
+
+                    <TextView
+                        android:id="@+id/forks_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_40"
+                        android:gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fork_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_60"
+                    android:layout_marginTop="@dimen/dimen_2"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/code_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/button_bg"
+                android:paddingLeft="@dimen/dimen_10">
+
+                <TextView
+                    android:id="@+id/code_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:text="{oct-file_code} Code"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/readme_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/button_bg"
+                android:paddingLeft="@dimen/dimen_10">
+
+                <TextView
+                    android:id="@+id/readme_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:text="{oct-info} README"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

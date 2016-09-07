@@ -9,12 +9,13 @@ import android.support.v4.app.Fragment;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.pref.AppPref;
 import com.github.paolorotolo.appintro.AppIntro;
+import com.github.paolorotolo.appintro.AppIntro2;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
 /**
  * Created by mingjun on 16/8/9.
  */
-public class IntroduceActivity extends AppIntro {
+public class IntroduceActivity extends AppIntro2 {
 
     public static void launch(Context context) {
         context.startActivity(new Intent(context, IntroduceActivity.class));
@@ -25,38 +26,46 @@ public class IntroduceActivity extends AppIntro {
         super.onCreate(savedInstanceState);
 
         addSlide(AppIntroFragment.newInstance(
-                "Code is everything",
-                "Read the fucking source code.",
-                R.drawable.ic_github,
-                getResources().getColor(R.color.md_lime_500),
-                getResources().getColor(R.color.md_pink_900),
-                getResources().getColor(R.color.md_pink_400)
+                getString(R.string.title_1),
+                getString(R.string.title_font),
+                getString(R.string.desc_1),
+                getString(R.string.desc_font),
+                R.drawable.ic_slide1,
+                getResources().getColor(R.color.md_indigo_400)
         ));
 
         addSlide(AppIntroFragment.newInstance(
-                "Let's coding",
-                "Talk is cheap, show me the code",
-                R.drawable.ic_github,
-                getResources().getColor(R.color.md_yellow_700),
-                getResources().getColor(R.color.md_pink_900),
-                getResources().getColor(R.color.md_pink_400)
-        ));
-        addSlide(AppIntroFragment.newInstance(
-                "Well, well",
-                "Find the best code on the Github.",
-                R.drawable.ic_github,
-                getResources().getColor(R.color.md_teal_A100),
-                getResources().getColor(R.color.md_pink_900),
-                getResources().getColor(R.color.md_pink_400)
+                getString(R.string.title_2),
+                getString(R.string.title_font),
+                getString(R.string.desc_2),
+                getString(R.string.desc_font),
+                R.drawable.ic_slide2,
+                getResources().getColor(R.color.md_cyan_500)
         ));
 
-        showSkipButton(false);
+        addSlide(AppIntroFragment.newInstance(
+                getString(R.string.title_3),
+                getString(R.string.title_font),
+                getString(R.string.desc_3),
+                getString(R.string.desc_font),
+                R.drawable.ic_slide3,
+                getResources().getColor(R.color.md_green_500)
+        ));
+    }
+
+    @Override
+    public void onSkipPressed(Fragment currentFragment) {
+        super.onSkipPressed(currentFragment);
+        goMain();
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+        goMain();
+    }
 
+    private void goMain() {
         AppPref.setAlreadyRun(this);
 
         MainActivity.launch(this);

@@ -90,10 +90,9 @@ public class RepoItemView extends FrameLayout {
     @OnClick(R.id.star_view)
     public void onClick() {
         if (mRepoActionListener != null) {
-            if(mRepo.isStarred()) {
+            if (mRepo.isStarred()) {
                 mRepoActionListener.onUnstarAction(mRepo);
-            }
-            else {
+            } else {
                 mRepoActionListener.onStarAction(mRepo);
             }
         }
@@ -105,9 +104,18 @@ public class RepoItemView extends FrameLayout {
         this.mRepoActionListener = listener;
     }
 
+    @OnClick(R.id.image)
+    public void onUserIconClick() {
+        if (mRepoActionListener != null) {
+            mRepoActionListener.onUserAction(mRepo.getOwner().getLogin());
+        }
+    }
+
     public interface RepoActionListener {
         void onStarAction(Repo repo);
 
         void onUnstarAction(Repo repo);
+
+        void onUserAction(String username);
     }
 }

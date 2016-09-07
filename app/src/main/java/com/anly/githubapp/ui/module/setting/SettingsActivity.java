@@ -9,7 +9,10 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.anly.githubapp.R;
+import com.anly.githubapp.common.config.GithubConfig;
+import com.anly.githubapp.common.util.AppUtil;
 import com.anly.githubapp.ui.base.BaseActivity;
+import com.anly.githubapp.ui.module.account.UserActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,11 +24,11 @@ import butterknife.OnClick;
 public class SettingsActivity extends BaseActivity {
 
     @BindView(R.id.night_mode_toggle)
-    ToggleButton nightModeToggle;
+    ToggleButton mNightModeToggle;
     @BindView(R.id.current_cache)
-    TextView currentCache;
+    TextView mCurrentCache;
     @BindView(R.id.current_version)
-    TextView currentVersion;
+    TextView mCurrentVersion;
 
     public static void launch(Context context) {
         context.startActivity(new Intent(context, SettingsActivity.class));
@@ -40,6 +43,12 @@ public class SettingsActivity extends BaseActivity {
         setTitle(R.string.settings);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initViews();
+    }
+
+    private void initViews() {
+        mCurrentVersion.setText(AppUtil.getVersionName(this));
     }
 
     @Override
@@ -52,7 +61,7 @@ public class SettingsActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.night_mode, R.id.clear_cache, R.id.upgrade, R.id.about})
+    @OnClick({R.id.night_mode, R.id.clear_cache, R.id.upgrade, R.id.about, R.id.about_author})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.night_mode:
@@ -69,6 +78,10 @@ public class SettingsActivity extends BaseActivity {
 
             case R.id.about:
                 AboutActivity.launch(this);
+                break;
+
+            case R.id.about_author:
+                UserActivity.launch(this, GithubConfig.AUTHOR_NAME);
                 break;
         }
     }

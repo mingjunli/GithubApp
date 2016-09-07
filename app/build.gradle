@@ -11,7 +11,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "1.0"
+        versionName "V0.1"
 
         multiDexEnabled true
     }
@@ -25,10 +25,16 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     buildTypes {
         debug {
             // use release keystore to simplify push debug.
             signingConfig signingConfigs.release
+
+            versionNameSuffix "_debug"
         }
 
         release {
@@ -36,6 +42,15 @@ android {
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def fileName = "GithubApp_${variant.buildType.name}_${variant.versionName}.apk";
+            output.outputFile = new File(
+                    output.outputFile.parent, fileName
+            )
         }
     }
 }
@@ -47,8 +62,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile project(':mvp')
-    compile project(':OneSDK')
     compile project(':sharesdk')
+    compile project(':appintro')
+    compile project(':breadcrumb')
 
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.android.support:cardview-v7:24.0.0'
@@ -129,10 +145,6 @@ dependencies {
         transitive = true
     }
 
-    // RichText to support markdown file.
-    // https://github.com/zzhoujay/RichText
-    compile 'com.zzhoujay.richtext:richtext:2.0.0'
-
     // material
     // https://github.com/rey5137/material
     compile 'com.github.rey5137:material:1.2.4'
@@ -148,14 +160,6 @@ dependencies {
     // FloatingActionButton
     // https://github.com/Clans/FloatingActionButton
     compile 'com.github.clans:fab:1.6.4'
-
-    // AppIntro
-    // https://github.com/PaoloRotolo/AppIntro
-    compile 'com.github.paolorotolo:appintro:4.0.0'
-
-    // AwesomeSplash
-    // https://github.com/ViksaaSkool/AwesomeSplash
-    compile 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
 
     // Animation
     // https://github.com/daimajia/AndroidViewAnimations
@@ -174,4 +178,20 @@ dependencies {
     // Bugly
     // https://bugly.qq.com/docs/
     compile 'com.tencent.bugly:crashreport:2.2.0'
+
+    // Android-Iconics
+    // https://github.com/mikepenz/Android-Iconics
+    // iconics-core already integrate by MaterialDrawer
+    // compile "com.mikepenz:iconics-core:2.8.1@aar"
+    compile 'com.mikepenz:devicon-typeface:2.0.0.2@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.6.0.3@aar'
+    compile 'com.mikepenz:octicons-typeface:3.2.0.2@aar'
+
+    // Code View
+    // https://github.com/PDDStudio/highlightjs-android
+    compile 'com.pddstudio:highlightjs-android:1.2.0'
+
+    // Markdown View
+    // https://github.com/mukeshsolanki/MarkdownView-Android
+    compile 'com.mukesh:markdownview:1.0.0'
 }

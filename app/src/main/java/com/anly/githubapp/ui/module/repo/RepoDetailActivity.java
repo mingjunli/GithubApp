@@ -9,12 +9,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.anly.githubapp.GithubApplication;
 import com.anly.githubapp.R;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.pref.AccountPref;
 import com.anly.githubapp.di.HasComponent;
 import com.anly.githubapp.di.component.DaggerRepoComponent;
@@ -24,17 +27,18 @@ import com.anly.githubapp.di.module.RepoModule;
 import com.anly.githubapp.presenter.repo.RepoDetailPresenter;
 import com.anly.githubapp.presenter.repo.StarActionPresenter;
 import com.anly.githubapp.ui.base.BaseLoadingActivity;
-import com.anly.githubapp.ui.module.account.LoginActivity;
+import com.anly.githubapp.ui.module.account.UserActivity;
 import com.anly.githubapp.ui.module.repo.adapter.ContributorListAdapter;
 import com.anly.githubapp.ui.module.repo.adapter.ForkUserListAdapter;
 import com.anly.githubapp.ui.module.repo.view.RepoDetailView;
 import com.anly.githubapp.ui.widget.RepoItemView;
-import com.zzhoujay.richtext.RichText;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetailView, HasComponent<RepoComponent> {
 
@@ -47,14 +51,16 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     TextView mForksCount;
     @BindView(R.id.contributors_count)
     TextView mContributorsCount;
-    @BindView(R.id.readme)
-    TextView mReadme;
     @BindView(R.id.fork_list)
     RecyclerView mForkListView;
     @BindView(R.id.contributor_list)
     RecyclerView mContributorListView;
     @BindView(R.id.repo_item_view)
     RepoItemView mRepoItemView;
+    @BindView(R.id.contributor_layout)
+    LinearLayout mContributorLayout;
+    @BindView(R.id.fork_layout)
+    LinearLayout mForkLayout;
 
     private ForkUserListAdapter mForkUserAdapter;
     private ContributorListAdapter mContributorAdapter;
@@ -63,7 +69,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private static final String EXTRA_REPO_NAME = "extra_repo_name";
 
     private String mOwner;
-    private String mRepo;
+    private String mRepoName;
     private RepoDetail mRepoDetail;
 
     public static void launch(Context context, String owner, String repoName) {
@@ -87,17 +93,13 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
         mPresenter.attachView(this);
         mStarPresenter.attachView(this);
+
+        loadDetailData();
     }
 
     @Override
     public String getLoadingMessage() {
         return null;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        loadDetailData();
     }
 
     @Override
@@ -117,15 +119,30 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     }
 
     private void initViews() {
-
         mForkListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));
         mForkUserAdapter = new ForkUserListAdapter(null);
+        mForkUserAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                Repo repo = mForkUserAdapter.getItem(i);
+                UserActivity.launch(RepoDetailActivity.this, repo.getOwner().getLogin());
+            }
+        });
+
         mForkListView.setAdapter(mForkUserAdapter);
 
         mContributorListView.setLayoutManager(
                 new GridLayoutManager(this, 1, LinearLayoutManager.HORIZONTAL, false));
         mContributorAdapter = new ContributorListAdapter(null);
+        mContributorAdapter.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                User user = mContributorAdapter.getItem(i);
+                UserActivity.launch(RepoDetailActivity.this, user.getLogin());
+            }
+        });
+
         mContributorListView.setAdapter(mContributorAdapter);
     }
 
@@ -133,10 +150,10 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         Intent intent = getIntent();
         if (intent != null) {
             mOwner = intent.getStringExtra(EXTRA_OWNER);
-            mRepo = intent.getStringExtra(EXTRA_REPO_NAME);
+            mRepoName = intent.getStringExtra(EXTRA_REPO_NAME);
 
-            if (!TextUtils.isEmpty(mOwner) && !TextUtils.isEmpty(mRepo)) {
-                mPresenter.loadRepoDetails(mOwner, mRepo);
+            if (!TextUtils.isEmpty(mOwner) && !TextUtils.isEmpty(mRepoName)) {
+                mPresenter.loadRepoDetails(mOwner, mRepoName);
             }
         }
     }
@@ -144,22 +161,25 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     private void updateViews(RepoDetail detail) {
         mRepoDetail = detail;
         mOwner = detail.getBaseRepo().getOwner().getLogin();
-        mRepo = detail.getBaseRepo().getName();
+        mRepoName = detail.getBaseRepo().getName();
 
-        setTitle(mRepo);
+        setTitle(mRepoName);
 
         mRepoItemView.setRepo(detail.getBaseRepo());
         mRepoItemView.setRepoActionListener(mRepoActionListener);
 
-        mForksCount.setText(getResources().getString(R.string.forks_count, detail.getBaseRepo().getForks_count()));
-        mForkUserAdapter.setNewData(detail.getForks());
+        int forks = detail.getBaseRepo().getForks_count();
+        if (forks == 0) {
+            mForkLayout.setVisibility(View.GONE);
+        }
+        else {
+            mForkLayout.setVisibility(View.VISIBLE);
+            mForksCount.setText(getResources().getString(R.string.forks_count, forks));
+            mForkUserAdapter.setNewData(detail.getForks());
+        }
 
         mContributorsCount.setText(getResources().getString(R.string.contributors_count, detail.getContributors().size()));
         mContributorAdapter.setNewData(detail.getContributors());
-
-        RichText.fromMarkdown(detail.getReadme().content)
-                .async(true)
-                .into(mReadme);
     }
 
     @Override
@@ -190,6 +210,11 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
                 mStarPresenter.unstarRepo(repo.getOwner().getLogin(), repo.getName());
             }
         }
+
+        @Override
+        public void onUserAction(String username) {
+            UserActivity.launch(RepoDetailActivity.this, username);
+        }
     };
 
     @Override
@@ -210,5 +235,18 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
     @Override
     public void unstarFailed() {
         Snackbar.make(mRepoItemView, "UnStar Failed", Snackbar.LENGTH_LONG).show();
+    }
+
+    @OnClick({R.id.code_layout, R.id.readme_layout})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.code_layout:
+                RepoTreeActivity.launch(this, mOwner, mRepoName);
+                break;
+
+            case R.id.readme_layout:
+                ReadmeActivity.launch(this, mRepoDetail.getReadme());
+                break;
+        }
     }
 }

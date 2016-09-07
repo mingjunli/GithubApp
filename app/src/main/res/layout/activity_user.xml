@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_10"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.anly.githubapp.ui.widget.UserCard
+            android:id="@+id/user_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/repo_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/button_bg"
+            android:paddingLeft="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:text="{oct-repo}  Repositories"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/starred_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/button_bg"
+            android:paddingLeft="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:text="{oct-star}  Starred Repositories"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/following_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/button_bg"
+            android:paddingLeft="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:text="{faw-users}  Following"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/followers_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:background="@drawable/button_bg"
+            android:paddingLeft="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:text="{faw-user_md}  Followers"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

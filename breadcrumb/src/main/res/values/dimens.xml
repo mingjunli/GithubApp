@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="breadcrumb_height">42dp</dimen>
+    <dimen name="breadcrumb_padding_side">4dp</dimen>
+    <dimen name="breadcrumb_fontsize">14sp</dimen>
+    <dimen name="breadcrumb_arrow_size">18dp</dimen>
+    <dimen name="breadcrumb_arrow_margin">8dp</dimen>
+    <dimen name="breadcrumb_layout_margin">68dp</dimen>
+</resources>

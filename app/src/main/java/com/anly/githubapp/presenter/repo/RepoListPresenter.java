@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
@@ -26,8 +27,39 @@ public class RepoListPresenter extends RxMvpPresenter<LceView<ArrayList<Repo>>> 
         this.mRepoApi = api;
     }
 
-    public void loadMyRepos() {
-        mCompositeSubscription.add(mRepoApi.getMyRepos()
+    public void loadRepos(String username, boolean isSelf, @RepoApi.RepoType int type) {
+        Observable<ArrayList<Repo>> observable = null;
+
+        switch (type) {
+            case RepoApi.OWNER_REPOS:
+                if (isSelf) {
+                    observable = mRepoApi.getMyRepos();
+                }
+                else {
+                    observable = mRepoApi.getUserRepos(username);
+                }
+                break;
+
+            case RepoApi.STARRED_REPOS:
+                if (isSelf) {
+                    observable = mRepoApi.getMyStarredRepos();
+                }
+                else {
+                    observable = mRepoApi.getUserStarredRepos(username);
+                }
+                break;
+
+            case RepoApi.ORG_REPOS:
+                // TODO, not support now.
+                break;
+
+            default:
+                break;
+        }
+
+        if (observable == null) return;
+
+        mCompositeSubscription.add(observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {

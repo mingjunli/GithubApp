@@ -6,6 +6,7 @@ import com.anly.githubapp.data.net.response.Content;
 import com.anly.githubapp.data.net.response.SearchResultResp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -47,11 +48,19 @@ public interface RepoService {
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("user/repos")
-    Observable<ArrayList<Repo>> getMyRepos();
+    Observable<ArrayList<Repo>> getMyRepos(@Query("sort") String sort, @Query("type") String type);
+
+    @Headers("Cache-Control: public, max-age=600")
+    @GET("users/{name}/repos")
+    Observable<ArrayList<Repo>> getUserRepos(@Path("name") String user, @Query("sort") String sort);
 
     @Headers("Cache-Control: public, max-age=600")
     @GET("user/starred")
-    Observable<ArrayList<Repo>> getMyStarredRepos();
+    Observable<ArrayList<Repo>> getMyStarredRepos(@Query("sort") String sort);
+
+    @Headers("Cache-Control: public, max-age=600")
+    @GET("users/{name}/starred")
+    Observable<ArrayList<Repo>> getUserStarredRepos(@Path("name") String user, @Query("sort") String sort);
 
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
@@ -62,4 +71,54 @@ public interface RepoService {
 
     @DELETE("/user/starred/{owner}/{repo}")
     Observable<Response<ResponseBody>> unstarRepo(@Path("owner") String owner, @Path("repo") String repo);
+
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents")
+    Observable<ArrayList<Content>> contents(@Path("owner") String owner, @Path("repo") String repo);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents")
+    Observable<ArrayList<Content>> contentsByRef(@Path("owner") String owner, @Path("repo") String repo,
+                                                 @Query("ref") String ref);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPath(@Path("owner") String owner, @Path("repo") String repo,
+                                            @Path("path") String path);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<ArrayList<Content>> contentsWithPathByRef(@Path("owner") String owner, @Path("repo") String repo,
+                       @Path("path") String path, @Query("ref") String ref);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<Content> contentDetail(@Path("owner") String owner, @Path("repo") String repo,
+                                            @Path("path") String path);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{repo}/contents/{path}")
+    Observable<Content> contentDetailByRef(@Path("owner") String owner, @Path("repo") String repo,
+                       @Path("path") String path, @Query("ref") String ref);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}")
+    Observable<User> getSingleUser(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}/following")
+    Observable<ArrayList<User>> getUserFollowing(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/user/following")
+    Observable<ArrayList<User>> getMyFollowing();
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/users/{user}/followers")
+    Observable<ArrayList<User>> getUserFollowers(@Path("user") String user);
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/user/followers")
+    Observable<ArrayList<User>> getMyFollowers();
 }

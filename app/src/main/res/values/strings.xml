@@ -16,18 +16,33 @@
     <string name="please_login">Please Login</string>
     <string name="exit_click_back_again">Press Back again to exit application.</string>
 
-    <string name="repositories">Your Repositories</string>
-    <string name="your_stars">Your stars</string>
+    <string name="repositories">%1$s \'s repositories</string>
+    <string name="your_stars">%1$s \'s stars</string>
+    <string name="following">%1$s \'s following</string>
+    <string name="followers">%1$s \'s followers</string>
 
-    <string name="forks_count">Forks ( %1$s )</string>
-    <string name="contributors_count">Contributors ( %1$s )</string>
+    <string name="forks_count">( %1$d )</string>
+    <string name="contributors_count">( %1$d )</string>
     <string name="source_link">Source Link \n https://github.com/mingjunli/GithubApp</string>
     <string name="night_mode">Night Mode</string>
     <string name="clear_cache">Clear Cache</string>
-    <string name="upgrade">Upgrade</string>
-    <string name="about">About</string>
+    <string name="upgrade">Check the Newest Version</string>
+    <string name="about">About This App</string>
     <string name="github_com_v3">Api from Github Document \nhttps://developer.github.com/v3/</string>
-    <string name="no_copyright">There\'s no any copyright of this App</string>
+    <string name="no_copyright">\@copyright anly_jun</string>
     <string name="make_it_better">Welcome to fork/star/pull request to make it better</string>
+    <string name="title_1">Welcome, Programmer</string>
+    <string name="title_font">CaviarDreams_Bold.ttf</string>
+    <string name="desc_1">Github is the programmer\'s facebook.</string>
+    <string name="desc_font">aller_It.ttf</string>
+    <string name="title_2">Here, Code is everything</string>
+    <string name="desc_2">Read the fucking source code.</string>
+    <string name="title_3">Let\'s coding</string>
+    <string name="desc_3">Talk is cheap, show me the code</string>
+    <string name="my_repositories">my repositories</string>
+    <string name="my_stars">my stars</string>
+    <string name="my_following">my following</string>
+    <string name="my_followers">my followers</string>
+    <string name="about_author">About Author</string>
 
 </resources>

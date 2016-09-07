@@ -4,6 +4,8 @@ import android.support.annotation.IntDef;
 
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.RepoDetail;
+import com.anly.githubapp.data.model.User;
+import com.anly.githubapp.data.net.response.Content;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,28 @@ public interface RepoApi {
             TYPE_PHP
     })
     @interface MostStarsType{
+    }
+
+    public int OWNER_REPOS = 1;
+    public int STARRED_REPOS = 2;
+    public int ORG_REPOS = 3;
+
+    @IntDef({
+            OWNER_REPOS,
+            STARRED_REPOS,
+            ORG_REPOS
+    })
+    @interface RepoType{
+    }
+
+    public int FOLLOWING = 1;
+    public int FOLLOWER = 2;
+
+    @IntDef({
+            FOLLOWING,
+            FOLLOWER
+    })
+    @interface UserType{
     }
 
     /**
@@ -68,10 +92,22 @@ public interface RepoApi {
     Observable<ArrayList<Repo>> getMyRepos();
 
     /**
+     * Get user's repositories.
+     * @return
+     */
+    Observable<ArrayList<Repo>> getUserRepos(String username);
+
+    /**
      * Get current user's starred repositories.
      * @return
      */
     Observable<ArrayList<Repo>> getMyStarredRepos();
+
+    /**
+     * Get user's starred repositories.
+     * @return
+     */
+    Observable<ArrayList<Repo>> getUserStarredRepos(String username);
 
     /**
      * Star a repository
@@ -90,4 +126,62 @@ public interface RepoApi {
      * @return
      */
     Observable<Boolean> isStarred(String owner, String repo);
+
+    /**
+     * Get repo's readme content.
+     * @param owner
+     * @param repo
+     * @return
+     */
+    Observable<Content> getRepoReadme(String owner, String repo);
+
+    /**
+     * Get repo's content by path. set path to null to get first level contents.
+     * @param owner
+     * @param repo
+     * @return
+     */
+    Observable<ArrayList<Content>> getRepoContents(String owner, String repo, String path);
+
+    /**
+     * Get file content's details, which contain a "content".
+     * @param owner
+     * @param repo
+     * @param path
+     * @return
+     */
+    Observable<Content> getContentDetail(String owner, String repo, String path);
+
+    /**
+     * Get a single user by name.
+     * @param name
+     * @return
+     */
+    Observable<User> getSingleUser(String name);
+
+    /**
+     * get user's following user list.
+     * @param user
+     * @return
+     */
+    Observable<ArrayList<User>> getUserFollowing(String user);
+
+    /**
+     * get my following list.
+     * @return
+     */
+    Observable<ArrayList<User>> getMyFollowing();
+
+    /**
+     * get user's followers.
+     * @param user
+     * @return
+     */
+    Observable<ArrayList<User>> getUserFollowers(String user);
+
+    /**
+     * get my followers.
+     * @return
+     */
+    Observable<ArrayList<User>> getMyFollowers();
 }
