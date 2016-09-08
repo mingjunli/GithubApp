@@ -7,7 +7,7 @@ This is an **unofficial**, **open source**, **base on Github API** Github Client
 
 ## Preview
 
-![githubapp](http://oat9lzupi.bkt.clouddn.com/githubapp.gif)
+![githubapp](githubapp.gif)
 
 
 ## Technology
