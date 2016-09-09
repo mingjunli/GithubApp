@@ -1,9 +1,9 @@
 # CoderPub
 
-> Notice: Rename this repository & this App to CoderPub.
-> Means:
-> 1. Github is the Coder's Pub.
-> 2. Coder **Pub**lish his code at Github.
+**Named this App to CoderPub**
+
+1. Github is programmer's facebook, **Coder's Pub**.
+2. **Coder Pub**lish his code/mind at Github.
 
 This is an **unofficial**, **open source**, **base on Github API** Github Client on Android platform, with MVP architecture use Dagger2, RxJava, Retrofit, Okhttp...
 
