@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Github</string>
+    <string name="app_name">CoderPub</string>
 
     <!-- main menu labels -->
     <string name="menu_trending">Trending</string>

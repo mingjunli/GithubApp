@@ -1,8 +1,13 @@
-# GithubApp
+# CoderPub
+
+> Notice: Rename this repository & this App to CoderPub.
+> Means:
+> 1. Github is the Coder's Pub.
+> 2. Coder **Pub**lish his code at Github.
 
 This is an **unofficial**, **open source**, **base on Github API** Github Client on Android platform, with MVP architecture use Dagger2, RxJava, Retrofit, Okhttp...
 
-[GithubApp](https://github.com/mingjunli/GithubApp)
+[CoderPub](https://github.com/mingjunli/GithubApp)
 [中文说明](http://blog.lmj.wiki/GithubApp/)
 
 ## Preview
@@ -94,5 +99,5 @@ This is an **unofficial**, **open source**, **base on Github API** Github Client
 * [MarkdownView-Android](https://github.com/mukeshsolanki/MarkdownView-Android)
 
 ## Contact me
-[Blog](http://blog.lmj.wiki/) [Github](https://github.com/mingjunli) [jianshu](http://www.jianshu.com/users/bc1dacc65fae) [Gmail:anly.pear@gmail.com]
+[Blog](http://blog.lmj.wiki/) [Github](https://github.com/mingjunli) [jianshu](http://www.jianshu.com/users/bc1dacc65fae) [Gmail:anly.pear@gmail.com] [weibo @anly-jun]
 
