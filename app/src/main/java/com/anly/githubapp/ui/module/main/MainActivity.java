@@ -56,6 +56,9 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         AppLog.d("trace===MainActivity onCreate");
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        getWindow().setBackgroundDrawable(null);
+
         mBottomBar = BottomBar.attach(this, savedInstanceState);
 
         initViews();
