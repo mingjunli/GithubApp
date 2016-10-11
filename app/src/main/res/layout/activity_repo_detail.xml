@@ -144,6 +144,25 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/issues_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:background="@drawable/button_bg"
+                android:paddingLeft="@dimen/dimen_10">
+
+                <TextView
+                    android:id="@+id/issues_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center_vertical"
+                    android:text="{oct-issue_opened} Issues"/>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>

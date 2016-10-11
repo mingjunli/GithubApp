@@ -1,5 +1,6 @@
 package com.anly.githubapp.data.net.service;
 
+import com.anly.githubapp.data.model.Issue;
 import com.anly.githubapp.data.model.Repo;
 import com.anly.githubapp.data.model.User;
 import com.anly.githubapp.data.net.response.Content;
@@ -7,6 +8,7 @@ import com.anly.githubapp.data.net.response.SearchResultResp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import retrofit2.Response;
@@ -16,6 +18,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import rx.Observable;
 
 /**
@@ -121,4 +124,9 @@ public interface RepoService {
     @Headers("Cache-Control: public, max-age=3600")
     @GET("/user/followers")
     Observable<ArrayList<User>> getMyFollowers();
+
+    @Headers("Cache-Control: public, max-age=3600")
+    @GET("/repos/{owner}/{name}/issues?sort=updated")
+    Observable<List<Issue>> issues(@Path("owner") String owner, @Path("name") String repo,
+                                 @QueryMap Map<String, String> filter, @Query("page") int page);
 }

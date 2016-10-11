@@ -237,7 +237,7 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
         Snackbar.make(mRepoItemView, "UnStar Failed", Snackbar.LENGTH_LONG).show();
     }
 
-    @OnClick({R.id.code_layout, R.id.readme_layout})
+    @OnClick({R.id.code_layout, R.id.readme_layout, R.id.issues_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.code_layout:
@@ -246,6 +246,9 @@ public class RepoDetailActivity extends BaseLoadingActivity implements RepoDetai
 
             case R.id.readme_layout:
                 ReadmeActivity.launch(this, mRepoDetail.getReadme());
+                break;
+
+            case R.id.issues_layout:
                 break;
         }
     }
