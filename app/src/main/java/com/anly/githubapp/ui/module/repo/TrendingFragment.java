@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 
 import com.anly.githubapp.R;
 import com.anly.githubapp.common.wrapper.AppLog;
-import com.anly.githubapp.common.util.StringUtil;
-import com.anly.githubapp.data.api.TrendingApi;
 import com.anly.githubapp.data.model.TrendingRepo;
 import com.anly.githubapp.di.component.MainComponent;
 import com.anly.githubapp.presenter.main.TrendingRepoPresenter;
@@ -45,13 +43,13 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
     @Inject
     TrendingRepoPresenter mPresenter;
 
-    private int mCurrentLang;
+    private String mCurrentLang = "java";
 
     private static final String EXTRA_LANG = "extra_lang";
-    public static TrendingFragment newInstance(int lang) {
+    public static TrendingFragment newInstance(String lang) {
 
         Bundle args = new Bundle();
-        args.putInt(EXTRA_LANG, lang);
+        args.putString(EXTRA_LANG, lang);
 
         TrendingFragment fragment = new TrendingFragment();
         fragment.setArguments(args);
@@ -72,14 +70,16 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         super.onCreate(savedInstanceState);
         getComponent(MainComponent.class).inject(this);
 
-        mCurrentLang = getArguments().getInt(EXTRA_LANG, TrendingApi.LANG_JAVA);
+        mCurrentLang = getArguments().getString(EXTRA_LANG);
         mPresenter.attachView(this);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPresenter.loadTrendingRepo(mCurrentLang);
+        // default daily
+        // TODO
+        mPresenter.loadTrendingRepo(mCurrentLang, "daily");
     }
 
     @Override
@@ -109,10 +109,7 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         @Override
         public void onItemClick(View view, int i) {
             TrendingRepo trendingRepo = mAdapter.getItem(i);
-
-            String fullName = StringUtil.replaceAllBlank(trendingRepo.getTitle());
-            String[] array = fullName.split("\\/");
-            RepoDetailActivity.launch(getActivity(), array[0], array[1]);
+            RepoDetailActivity.launch(getActivity(), trendingRepo.owner, trendingRepo.name);
         }
     };
 
@@ -153,7 +150,7 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         @Override
         public void onRefresh() {
             AppLog.d("onRefresh, mCurrentLang:" + mCurrentLang);
-            mPresenter.loadTrendingRepo(mCurrentLang);
+            mPresenter.loadTrendingRepo(mCurrentLang, "daily");
         }
     };
 }

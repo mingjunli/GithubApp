@@ -3,43 +3,32 @@ package com.anly.githubapp.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by mingjun on 16/7/20.
  */
 public class TrendingRepo implements Parcelable {
 
     /**
-     * title :  cloudfoundry / bosh
-     * description :  Cloud Foundry BOSH is an open source tool chain for release engineering, deployment and lifecycle management of large scale distributed services.
-     * readme : http://www.github.com/cloudfoundry/bosh
+     *
+     avatar: "https://avatars2.githubusercontent.com/u/7720173?v=3&s=40",
+     desc: "Pure Javascript OCR for 62 Languages 📖 🎉 🖥",
+     link: "https://github.comnaptha/tesseract.js",
+     owner: "naptha",
+     repo: "tesseract.js",
+     stars: 663
      */
-    private String title;
-    private String description;
-    private String readme;
 
-    public String getTitle() {
-        return title;
-    }
+    public String avatar;
+    public String desc;
+    public String link;
+    public String owner;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @SerializedName("repo")
+    public String name;
+    public int stars;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getReadme() {
-        return readme;
-    }
-
-    public void setReadme(String readme) {
-        this.readme = readme;
-    }
 
     @Override
     public int describeContents() {
@@ -48,21 +37,27 @@ public class TrendingRepo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.title);
-        dest.writeString(this.description);
-        dest.writeString(this.readme);
+        dest.writeString(this.avatar);
+        dest.writeString(this.desc);
+        dest.writeString(this.link);
+        dest.writeString(this.owner);
+        dest.writeString(this.name);
+        dest.writeInt(this.stars);
     }
 
     public TrendingRepo() {
     }
 
     protected TrendingRepo(Parcel in) {
-        this.title = in.readString();
-        this.description = in.readString();
-        this.readme = in.readString();
+        this.avatar = in.readString();
+        this.desc = in.readString();
+        this.link = in.readString();
+        this.owner = in.readString();
+        this.name = in.readString();
+        this.stars = in.readInt();
     }
 
-    public static final Parcelable.Creator<TrendingRepo> CREATOR = new Parcelable.Creator<TrendingRepo>() {
+    public static final Creator<TrendingRepo> CREATOR = new Creator<TrendingRepo>() {
         @Override
         public TrendingRepo createFromParcel(Parcel source) {
             return new TrendingRepo(source);

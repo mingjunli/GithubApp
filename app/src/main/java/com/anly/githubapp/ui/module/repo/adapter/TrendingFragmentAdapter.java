@@ -20,8 +20,7 @@ public class TrendingFragmentAdapter extends ArrayFragmentPagerAdapter<Integer> 
 
     @Override
     public Fragment getItem(int position) {
-        int lang = mList.get(position);
-        return TrendingFragment.newInstance(lang);
+        return TrendingFragment.newInstance((String) getPageTitle(position));
     }
 
     @Override
@@ -38,7 +37,7 @@ public class TrendingFragmentAdapter extends ArrayFragmentPagerAdapter<Integer> 
                 return "Swift";
 
             case TrendingApi.LANG_HTML:
-                return "HTML";
+                return "html";
 
             case TrendingApi.LANG_PYTHON:
                 return "Python";

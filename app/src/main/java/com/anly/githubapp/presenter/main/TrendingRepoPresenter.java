@@ -27,8 +27,8 @@ public class TrendingRepoPresenter extends RxMvpPresenter<LceView<ArrayList<Tren
         this.mTrendingApi = api;
     }
 
-    public void loadTrendingRepo(@TrendingApi.LanguageType int languageType) {
-        mCompositeSubscription.add(mTrendingApi.getTrendingRepo(languageType)
+    public void loadTrendingRepo(String language, String since) {
+        mCompositeSubscription.add(mTrendingApi.getTrendingRepo(language, since)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Action0() {

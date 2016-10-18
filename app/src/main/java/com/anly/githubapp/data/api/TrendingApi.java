@@ -37,5 +37,5 @@ public interface TrendingApi {
      * @param language
      * @return
      */
-    Observable<ArrayList<TrendingRepo>> getTrendingRepo(@LanguageType int language);
+    Observable<ArrayList<TrendingRepo>> getTrendingRepo(String language, String since);
 }
