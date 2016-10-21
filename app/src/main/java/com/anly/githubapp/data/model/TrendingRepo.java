@@ -27,7 +27,7 @@ public class TrendingRepo implements Parcelable {
 
     @SerializedName("repo")
     public String name;
-    public int stars;
+    public String stars;
 
 
     @Override
@@ -42,7 +42,7 @@ public class TrendingRepo implements Parcelable {
         dest.writeString(this.link);
         dest.writeString(this.owner);
         dest.writeString(this.name);
-        dest.writeInt(this.stars);
+        dest.writeString(this.stars);
     }
 
     public TrendingRepo() {
@@ -54,7 +54,7 @@ public class TrendingRepo implements Parcelable {
         this.link = in.readString();
         this.owner = in.readString();
         this.name = in.readString();
-        this.stars = in.readInt();
+        this.stars = in.readString();
     }
 
     public static final Creator<TrendingRepo> CREATOR = new Creator<TrendingRepo>() {
