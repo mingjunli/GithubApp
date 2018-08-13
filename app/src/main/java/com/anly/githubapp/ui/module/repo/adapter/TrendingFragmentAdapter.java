@@ -21,7 +21,7 @@ public class TrendingFragmentAdapter extends ArrayFragmentPagerAdapter<Integer> 
     @Override
     public Fragment getItem(int position) {
         int lang = mList.get(position);
-        return TrendingFragment.newInstance(lang);
+        return TrendingFragment.newInstance(getPageTitle(position).toString());
     }
 
     @Override

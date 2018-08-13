@@ -45,13 +45,13 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
     @Inject
     TrendingRepoPresenter mPresenter;
 
-    private int mCurrentLang;
+    private String mCurrentLang;
 
     private static final String EXTRA_LANG = "extra_lang";
-    public static TrendingFragment newInstance(int lang) {
+    public static TrendingFragment newInstance(String lang) {
 
         Bundle args = new Bundle();
-        args.putInt(EXTRA_LANG, lang);
+        args.putString(EXTRA_LANG, lang);
 
         TrendingFragment fragment = new TrendingFragment();
         fragment.setArguments(args);
@@ -72,7 +72,7 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         super.onCreate(savedInstanceState);
         getComponent(MainComponent.class).inject(this);
 
-        mCurrentLang = getArguments().getInt(EXTRA_LANG, TrendingApi.LANG_JAVA);
+        mCurrentLang = getArguments().getString(EXTRA_LANG);
         mPresenter.attachView(this);
     }
 

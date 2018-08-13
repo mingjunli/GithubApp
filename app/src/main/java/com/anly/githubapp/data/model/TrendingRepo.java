@@ -3,18 +3,28 @@ package com.anly.githubapp.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by mingjun on 16/7/20.
  */
 public class TrendingRepo implements Parcelable {
 
     /**
-     * title :  cloudfoundry / bosh
-     * description :  Cloud Foundry BOSH is an open source tool chain for release engineering, deployment and lifecycle management of large scale distributed services.
-     * readme : http://www.github.com/cloudfoundry/bosh
+     "avatar": "https://avatars0.githubusercontent.com/u/15684156?s=40&v=4",
+     "desc": "👨‍🎓 Java related : basic, concurrent, algorithm",
+     "link": "https://github.com/crossoverJie/Java-Interview",
+     "owner": "crossoverJie",
+     "repo": "Java-Interview",
+     "stars": "9,531"
      */
+
+    @SerializedName("repo")
     private String title;
+
+    @SerializedName("desc")
     private String description;
+
     private String readme;
 
     public String getTitle() {

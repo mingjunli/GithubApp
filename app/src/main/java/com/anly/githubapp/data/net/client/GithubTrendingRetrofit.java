@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient;
  */
 public class GithubTrendingRetrofit extends BaseRetrofit {
 
-    private static final String END_POINT = "http://githubtrending.herokuapp.com/";
+    private static final String END_POINT = "http://anly.leanapp.cn/api/github/";
 
     CacheHttpClient mHttpClient;
 

@@ -26,38 +26,7 @@ public class TrendingRepoDataSource implements TrendingApi {
     }
 
     @Override
-    public Observable<ArrayList<TrendingRepo>> getTrendingRepo(@LanguageType final int language) {
-        return mTrendingService.getTrendingRepos()
-                .map(new Func1<TrendingResultResp, ArrayList<TrendingRepo>>() {
-                    @Override
-                    public ArrayList<TrendingRepo> call(TrendingResultResp resp) {
-
-                        switch (language) {
-                            case LANG_JAVA:
-                                return resp.getJava();
-
-                            case LANG_OC:
-                                return resp.getOc();
-
-                            case LANG_SWIFT:
-                                return resp.getSwift();
-
-                            case LANG_HTML:
-                                return resp.getHtml();
-
-                            case LANG_PYTHON:
-                                return resp.getPython();
-
-                            case LANG_BASH:
-                                return  resp.getBash();
-
-                            default:
-                                AppLog.w("unknown language");
-                                break;
-                        }
-
-                        return null;
-                    }
-                });
+    public Observable<ArrayList<TrendingRepo>> getTrendingRepo(String language) {
+        return mTrendingService.getTrendingRepos(language);
     }
 }
