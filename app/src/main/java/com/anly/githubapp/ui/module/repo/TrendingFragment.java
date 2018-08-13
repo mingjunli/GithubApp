@@ -110,9 +110,7 @@ public class TrendingFragment extends BaseFragment implements LceView<ArrayList<
         public void onItemClick(View view, int i) {
             TrendingRepo trendingRepo = mAdapter.getItem(i);
 
-            String fullName = StringUtil.replaceAllBlank(trendingRepo.getTitle());
-            String[] array = fullName.split("\\/");
-            RepoDetailActivity.launch(getActivity(), array[0], array[1]);
+            RepoDetailActivity.launch(getActivity(), trendingRepo.owner, trendingRepo.title);
         }
     };
 

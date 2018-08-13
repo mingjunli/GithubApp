@@ -19,7 +19,7 @@ public class TrendingRepoRecyclerAdapter extends BaseQuickAdapter<TrendingRepo> 
 
     @Override
     protected void convert(BaseViewHolder holder, TrendingRepo repo) {
-        holder.setText(R.id.name, StringUtil.replaceAllBlank(repo.getTitle()));
-        holder.setText(R.id.desc, StringUtil.trimNewLine(repo.getDescription().trim()));
+        holder.setText(R.id.name, repo.owner + " / " + repo.title);
+        holder.setText(R.id.desc, StringUtil.trimNewLine(repo.description.trim()));
     }
 }
